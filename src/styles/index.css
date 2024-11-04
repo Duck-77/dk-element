@@ -2,3 +2,5 @@
 @import './reset.css';
 /* Dk-Button */
 @import '../components/Button/style.css';
+/* Dk-Collapse */
+@import '../components/Collapse/style.css'

@@ -63,4 +63,7 @@
     --dk-disabled-bg-color: var(--dk-fill-color-light);
     --dk-disabled-text-color: var(--dk-text-color-placeholder);
     --dk-disabled-border-color: var(--dk-border-color-light);
+
+    /*transition*/
+    --dk-transition-duration: 0.3s;
 }

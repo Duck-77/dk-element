@@ -23,7 +23,7 @@
 import { ref } from 'vue'
 import type { ButtonProps } from './types'
 defineOptions({
-    name: 'dk-button',
+    name: 'DkButton',
 })
 withDefaults(defineProps<ButtonProps>(), {
     nativeType: 'button',

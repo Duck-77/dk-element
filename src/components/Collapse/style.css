@@ -1,0 +1,55 @@
+.dk-collapse {
+    --dk-collapse-header-height: 48px;
+    --dk-collapse-header-bg-color: var(--dk-fill-color-blank);
+    --dk-collapse-header-text-color: var(--dk-text-color-primary);
+    --dk-collapse-header-font-size: 13px;
+    --dk-collapse-header-font-weight: var(--dk-font-weight-primary);
+    --dk-collapse-border-color: var(--dk-border-color-light);
+    --dk-collapse-disabled-text-color: var(--dk-disabled-text-color);
+    --dk-collapse-content-bg-color: var(--dk-fill-color-blank);
+    --dk-collapse-content-font-size: 13px;
+    --dk-collapse-content-font-weight: var(--dk-font-weight-primary);
+    --dk-collapse-content-text-color: var(--dk-text-color-primary);
+    border-top: 1px solid var(--dk-collapse-border-color);
+    border-bottom: 1px solid var(--dk-collapse-border-color);
+}
+
+.dk-collapse-item__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--dk-collapse-header-height);
+    line-height: var(--dk-collapse-header-height);
+    background-color: var(--dk-collapse-header-bg-color);
+    color: var(--dk-collapse-header-text-color);
+    cursor: pointer;
+    font-size: var(--dk-collapse-header-font-size);
+    font-weight: var(--dk-collapse-header-font-weight);
+    transition: border-bottom-color var(--dk-transition-duration);
+    outline: none;
+    border-bottom: 1px solid var(--dk-collapse-border-color);
+
+    &.is-disabled {
+        color: var(--dk-collapse-disabled-text-color);
+    }
+    &.is-active {
+        border-bottom-color: transparent;
+    }
+}
+
+.dk-collapse-item__content {
+    will-change: height;
+    background-color: var(--dk-collapse-content-bg-color);
+    overflow: hidden;
+    box-sizing: border-box;
+    font-size: var(--dk-collapse-content-font-size);
+    font-weight: var(--dk-collapse-content-font-weight);
+    color: var(--dk-collapse-content-text-color);
+    border-bottom: 1px solid var(--dk-collapse-border-color);
+    padding-bottom: 25px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: height var(--dk-transition-duration) ease-in-out;
+}
