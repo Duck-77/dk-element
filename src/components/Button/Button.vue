@@ -3,8 +3,8 @@
         ref="_ref"
         class="dk-button"
         :class="{
-            [`dk-button-${type}`]: type,
-            [`dk-button-${size}`]: size,
+            [`dk-button--${type}`]: type,
+            [`dk-button--${size}`]: size,
             'is-plain': plain,
             'is-round': round,
             'is-circle': circle,
@@ -35,5 +35,4 @@ defineExpose({
     ref: _ref,
 })
 </script>
-<style scoped>
-</style>
+<style scoped></style>

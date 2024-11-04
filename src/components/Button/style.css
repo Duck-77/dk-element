@@ -1,19 +1,18 @@
 .dk-button {
-    --dk-button-font-weight: var(--dk-font-weight-primary);
-    --dk-button-border-color: var(--dk-border-color);
-    --dk-button-bg-color: var(--dk-fill-color-blank);
+    --dk-button-size: 32px;
     --dk-button-text-color: var(--dk-text-color-regular);
-    --dk-button-disabled-text-color: var(--dk-disabled-text-color);
-    --dk-button-disabled-bg-color: var(--dk-fill-color-blank);
-    --dk-button-disabled-border-color: var(--dk-border-color-light);
-    --dk-button-hover-text-color: var(--dk-color-primary);
-    --dk-button-hover-bg-color: var(--dk-color-primary-light-9);
-    --dk-button-hover-border-color: var(--dk-color-primary-light-7);
-    --dk-button-active-text-color: var(--dk-button-hover-text-color);
-    --dk-button-active-border-color: var(--dk-color-primary);
-    --dk-button-active-bg-color: var(--dk-button-hover-bg-color);
-    --dk-button-outline-color: var(--dk-color-primary-light-5);
-    --dk-button-active-color: var(--dk-text-color-primary);
+    --dk-button-text-color-hover: var(--dk-color-primary);
+    --dk-button-text-color-active: var(--dk-button-text-color-hover);
+    --dk-button-text-color-disabled: var(--dk-disabled-text-color);
+    --dk-button-font-weight: var(--dk-font-weight-primary);
+    --dk-button-bg-color: var(--dk-fill-color-blank);
+    --dk-button-bg-color-hover: var(--dk-color-primary-light-9);
+    --dk-button-bg-color-active: var(--dk-button-bg-color-hover);
+    --dk-button-bg-color-disabled: var(--dk-fill-color-blank);
+    --dk-button-border-color: var(--dk-border-color);
+    --dk-button-border-color-hover: var(--dk-color-primary-light-7);
+    --dk-button-border-color-active: var(--dk-color-primary);
+    --dk-button-border-color-disbaled: var(--dk-border-color-light);
 }
 
 .dk-button {
@@ -21,7 +20,7 @@
     justify-content: center;
     align-items: center;
     line-height: 1;
-    height: 32px;
+    height: var(--dk-button-size);
     white-space: nowrap;
     cursor: pointer;
     color: var(--dk-button-text-color);
@@ -31,7 +30,6 @@
     transition: 0.1s;
     font-weight: var(--dk-button-font-weight);
     user-select: none;
-    vertical-align: middle;
     appearance: none;
     -webkit-appearance: none;
     background-color: var(--dk-button-bg-color);
@@ -40,87 +38,94 @@
     padding: 8px 15px;
     font-size: var(--dk-font-size-base);
     border-radius: var(--dk-border-radius-base);
-    & & {
+
+    & + & {
         margin-left: 12px;
+        margin-top: 12px;
     }
+
     &:hover,
     &:focus {
-        color: var(--dk-button-hover-text-color);
-        border-color: var(--dk-button-hover-border-color);
-        background-color: var(--dk-button-hover-bg-color);
+        color: var(--dk-button-text-color-hover);
+        border-color: var(--dk-button-border-color-hover);
+        background-color: var(--dk-button-bg-color-hover);
         outline: none;
     }
+
     &:active {
-        color: var(--dk-button-active-text-color);
-        border-color: var(--dk-button-active-border-color);
-        background-color: var(--dk-button-active-bg-color);
+        color: var(--dk-button-text-color-active);
+        border-color: var(--dk-button-border-color-active);
+        background-color: var(--dk-button-bg-color-active);
         outline: none;
     }
+
     &.is-plain {
-        --dk-button-hover-text-color: var(--dk-color-primary);
-        --dk-button-hover-bg-color: var(--dk-fill-color-blank);
-        --dk-button-hover-border-color: var(--dk-color-primary);
+        --dk-button-text-color-hover: var(--dk-color-primary);
+        --dk-button-bg-color-hover: var(--dk-fill-color-blank);
+        --dk-button-border-color-hover: var(--dk-color-primary);
     }
-    /*round*/
+
     &.is-round {
         border-radius: var(--dk-border-radius-round);
     }
-    /*circle*/
+
     &.is-circle {
+        width: 32px;
         border-radius: 50%;
         padding: 8px;
     }
-    /*disabled*/
+
     &.is-disabled,
     &.is-disabled:hover,
-    &.is-disabled:focus,
+    &.is-disabled:active,
     &[disabled],
     &[disabled]:hover,
-    &[disabled]:focus {
-        color: var(--dk-button-disabled-text-color);
+    &[disabled]:active {
+        color: var(--dk-button-text-color-disabled);
         cursor: not-allowed;
         background-image: none;
-        background-color: var(--dk-button-disabled-bg-color);
-        border-color: var(--dk-button-disabled-border-color);
+        background-color: var(--dk-button-bg-color-disabled);
+        border-color: var(--dk-button-border-color-disabled);
     }
 }
-@each $val in primary, success, warning, info, danger {
+
+@each $val in primary, success, warning, danger, info {
     .dk-button--$(val) {
         --dk-button-text-color: var(--dk-color-white);
         --dk-button-bg-color: var(--dk-color-$(val));
         --dk-button-border-color: var(--dk-color-$(val));
-        --dk-button-outline-color: var(--dk-color-$(val)-light-5);
-        --dk-button-active-color: var(--dk-color-$(val)-dark-2);
-        --dk-button-hover-text-color: var(--dk-color-white);
-        --dk-button-hover-bg-color: var(--dk-color-$(val)-light-3);
-        --dk-button-hover-border-color: var(--dk-color-$(val)-light-3);
-        --dk-button-active-bg-color: var(--dk-color-$(val)-dark-2);
-        --dk-button-active-border-color: var(--dk-color-$(val)-dark-2);
-        --dk-button-disabled-text-color: var(--dk-color-white);
-        --dk-button-disabled-bg-color: var(--dk-color-$(val)-light-5);
-        --dk-button-disabled-border-color: var(--dk-color-$(val)-light-5);
+        --dk-button-text-color-hover: var(--dk-color-white);
+        --dk-button-bg-color-hover: var(--dk-color-$(val)-light-3);
+        --dk-button-border-color-hover: var(--dk-color-$(var)-light-3);
+        --dk-button-text-color-active: var(--dk-text-color-secondary);
+        --dk-button-bg-color-active: var(--dk-color-$(val)-dark-2);
+        --dk-button-border-color-active: var(--dk-color-$(var)-dark-2);
+        --dk-button-text-color-disabled: var(--dk-color-white);
+        --dk-button-bg-color-disabled: var(--dk-color-$(val)-light-5);
+        --dk-button-border-color-disabled: var(--dk-color-$(val)-light-5);
     }
+
     .dk-button--$(val).is-plain {
         --dk-button-text-color: var(--dk-color-$(val));
         --dk-button-bg-color: var(--dk-color-$(val)-light-9);
         --dk-button-border-color: var(--dk-color-$(val)-light-5);
-        --dk-button-hover-text-color: var(--dk-color-white);
-        --dk-button-hover-bg-color: var(--dk-color-$(val));
-        --dk-button-hover-border-color: var(--dk-color-$(val));
-        --dk-button-active-text-color: var(--dk-color-white);
+        --dk-button-text-color-hover: var(--dk-color-white);
+        --dk-button-bg-color-hover: var(--dk-color-$(val));
+        --dk-button-border-color-hover: var(--dk-color-$(val));
+        --dk-button-text-color-active: var(--dk-color-white);
     }
 }
+
 .dk-button--large {
     --dk-button-size: 40px;
-    height: var(--dk-button-size);
     padding: 12px 19px;
     font-size: var(--dk-font-size-base);
     border-radius: var(--dk-border-radius-base);
 }
+
 .dk-button--small {
     --dk-button-size: 24px;
-    height: var(--dk-button-size);
     padding: 5px 11px;
-    font-size: 12px;
+    font-size: calc(var(--dk-font-size-small) - 1px);
     border-radius: calc(var(--dk-border-radius-base) - 1px);
 }

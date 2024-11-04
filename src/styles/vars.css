@@ -1,42 +1,20 @@
 :root {
+    /* each variables */
+    --colors: (primary: #409eff, success: #67c23a, warning: #e6a23c, danger: #f56c6c, info: #909399);
+
+    /* each */
+    @each $val, $color in var(--colors) {
+        --dk-color-$(val): $(color);
+        @for $i from 3 to 9 by 2 {
+            --dk-color-$(val)-light-$(i): mix(#fff, $(color), .$(i));
+        }
+        --dk-color-$(val)-light-8: mix(#fff, $(color), 0.8);
+        --dk-color-$(val)-dark-2: mix(#000, $(color), 0.2);
+    }
+
     /* colors */
     --dk-color-white: #ffffff;
     --dk-color-black: #000000;
-    --dk-color-primary: #409eff;
-    --dk-color-primary-light-3: #79bbff;
-    --dk-color-primary-light-5: #a0cfff;
-    --dk-color-primary-light-7: #c6e2ff;
-    --dk-color-primary-light-8: #d9ecff;
-    --dk-color-primary-light-9: #ecf5ff;
-    --dk-color-primary-dark-2: #337ecc;
-    --dk-color-success: #67c23a;
-    --dk-color-success-light-3: #95d475;
-    --dk-color-success-light-5: #b3e19d;
-    --dk-color-success-light-7: #d1edc4;
-    --dk-color-success-light-8: #e1f3d8;
-    --dk-color-success-light-9: #f0f9eb;
-    --dk-color-success-dark-2: #529b2e;
-    --dk-color-warning: #e6a23c;
-    --dk-color-warning-light-3: #eebe77;
-    --dk-color-warning-light-5: #f3d19e;
-    --dk-color-warning-light-7: #f8e3c5;
-    --dk-color-warning-light-8: #faecd8;
-    --dk-color-warning-light-9: #fdf6ec;
-    --dk-color-warning-dark-2: #b88230;
-    --dk-color-danger: #f56c6c;
-    --dk-color-danger-light-3: #f89898;
-    --dk-color-danger-light-5: #fab6b6;
-    --dk-color-danger-light-7: #fcd3d3;
-    --dk-color-danger-light-8: #fde2e2;
-    --dk-color-danger-light-9: #fef0f0;
-    --dk-color-danger-dark-2: #c45656;
-    --dk-color-info: #909399;
-    --dk-color-info-light-3: #b1b3b8;
-    --dk-color-info-light-5: #c8c9cc;
-    --dk-color-info-light-7: #dedfe0;
-    --dk-color-info-light-8: #e9e9eb;
-    --dk-color-info-light-9: #f4f4f5;
-    --dk-color-info-dark-2: #73767a;
 
     --dk-bg-color: #ffffff;
     --dk-bg-color-page: #f2f3f5;
