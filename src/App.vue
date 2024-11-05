@@ -78,6 +78,9 @@ const openValue = ref<NameType[]>(['c'])
                 </CollapseItem>
             </Collapse>
         </div>
+        <div class="icons">
+            <font-awesome-icon :icon="['fas', 'user']" />
+        </div>
     </main>
 </template>
 
