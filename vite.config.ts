@@ -1,5 +1,6 @@
-import { fileURLToPath, URL } from 'node:url'
+/// <reference path="node_modules/vitest/index.d.cts" />
 
+import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -19,6 +20,11 @@ export default defineConfig({
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),
         },
+    },
+    test: {
+        globals: true,
+        // include: ['**/*.{spec,test}.(c|m)[jt]s(x)'],
+        environment: 'jsdom',
     },
     css: {
         postcss: {

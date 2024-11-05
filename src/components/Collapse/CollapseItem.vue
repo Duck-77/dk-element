@@ -7,9 +7,9 @@
             <slot name="title">{{ title }}</slot>
             <Icon icon="angle-right" class="header-angle" />
         </button>
-        <Transition name="fade" v-on="transitionEvents">
+        <Transition name="collapse" v-on="transitionEvents">
             <div class="dk-collapse-item__wrapper" v-show="isActive">
-                <div class="dk-collapse-item__content" :id="`item-content-${name}`">
+                <div class="dk-collapse-item__content" :id="`item-content--${name}`">
                     <slot></slot>
                 </div>
             </div>
@@ -20,7 +20,7 @@
     import { computed, inject } from 'vue'
     import type { CollapseItemProps } from './types'
     import { collapseContextKey } from './types'
-    import Icon from '../Icon/Icon.vue';
+    import Icon from '../Icon/Icon.vue'
     defineOptions({
         name: 'DkCollapseItem',
     })

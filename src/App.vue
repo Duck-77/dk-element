@@ -62,14 +62,19 @@
         </div>
         <div class="alert">
             <Alert title="Success alert" content="More text description" type="success"></Alert>
-            <Alert title="Warn alert" content="More text description" type="warning" effect="dark"></Alert>
+            <Alert title="Warning alert" content="More text description" type="warning" effect="dark"></Alert>
             <Alert title="Info alert" content="More text description" type="info" content-center title-center></Alert>
-            <Alert content="More text description" type="error"></Alert>
+            <Alert title="Error alert" content="More text description" type="error"></Alert>
             <Alert content="More text description" type="success" content-center></Alert>
             <Alert content="More text description" type="warning"></Alert>
             <Alert content="More text description" type="info"></Alert>
+            <Alert content="More text description" type="error"></Alert>
         </div>
     </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+    main {
+        overflow: hidden;
+    }
+</style>

@@ -7,7 +7,7 @@
         'is-circle': circle,
         'is-disable': disabled,
         'is-loading': loading,
-    }" :disabled="disabled || loading" :autofocus="autofocus" :type="nativeType">
+    }" :disabled="disabled || loading" :type="nativeType">
         <Icon icon="spinner" spin v-if="loading" />
         <Icon :icon="icon" v-if="icon" />
         <span>

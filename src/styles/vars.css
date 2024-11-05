@@ -1,6 +1,6 @@
 :root {
     /* each variables */
-    --colors: (primary: #409eff, success: #67c23a, warning: #e6a23c, danger: #f56c6c, info: #909399);
+    --colors: (primary: #409eff, success: #67c23a, warning: #e6a23c, danger: #f56c6c, info: #909399, error: #f56c6c);
 
     /* each */
     @each $val, $color in var(--colors) {

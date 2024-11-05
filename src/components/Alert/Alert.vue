@@ -4,10 +4,13 @@
             [`dk-alert-${type}`]: type,
             [`dk-alert-${effect}`]: effect,
         }" :style="alertTextColor">
+            <!-- Alert-Light-->
             <div class="dk-alert__left-icon" v-if="title && showIcon">
                 <Icon :icon="alertIcon" size="2x" />
             </div>
-            <div class="dk-alert__content-info">
+            <!-- Alert-Right -->
+            <div class="dk-alert__info">
+                <!-- Title -->
                 <span v-if="title" class="dk-alert__title" :class="{
                     'is-center': titleCenter,
                 }">
@@ -15,18 +18,19 @@
                     <Icon class="dk-alert__close-btn" :style="alertTextColor" :icon="closeIcon || 'xmark'"
                         @click="handleCloseClick" v-if="closeable" />
                 </span>
-                <p class="dk-alert__content" :class="{
+                <!-- Content -->
+                <div class="dk-alert__content" :class="{
                     'is-center': contentCenter,
                 }">
-                <div class="dk-alert__content-row">
-                    <Icon :icon="alertIcon" class="dk-alert-icon" :class="{
-                        [`alert-${type}-icon`]: type,
-                    }" :style="alertTextColor" v-if="showIcon && !title" />
-                    <slot>{{ content }}</slot>
+                    <div class="dk-alert__content-row">
+                        <Icon :icon="alertIcon" class="dk-alert-icon" :class="{
+                            [`alert-${type}-icon`]: type,
+                        }" :style="alertTextColor" v-if="showIcon && !title" />
+                        <slot>{{ content }}</slot>
+                    </div>
+                    <Icon class="dk-alert__close-btn" :style="alertTextColor" :icon="closeIcon || 'xmark'"
+                        @click="handleCloseClick" v-if="closeable && !title" />
                 </div>
-                <Icon class="dk-alert__close-btn" :style="alertTextColor" :icon="closeIcon || 'xmark'"
-                    @click="handleCloseClick" v-if="closeable && !title" />
-                </p>
             </div>
         </div>
     </Transition>
@@ -40,6 +44,7 @@
     })
     const props = withDefaults(defineProps<AlertProps>(), {
         closeable: true,
+        showIcon: true,
     })
     const emits = defineEmits<AlertEmits>()
 

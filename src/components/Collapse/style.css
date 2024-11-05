@@ -17,6 +17,7 @@
 .dk-collapse-item__header {
     width: 100%;
     padding: 0;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     user-select: none;
@@ -66,7 +67,7 @@
     padding: 0 0 25px;
 }
 
-.fade-enter-active,
-.fade-leave-active {
+.collapse-enter-active,
+.collapse-leave-active {
     transition: height var(--dk-transition-duration) ease-in-out;
 }

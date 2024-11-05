@@ -10,7 +10,8 @@
         "build-only": "vite build",
         "type-check": "vue-tsc --build --force",
         "lint": "eslint . --fix",
-        "commit": "git cz"
+        "commit": "git cz",
+        "test": "vitest"
     },
     "dependencies": {
         "vue": "^3.5.12"
@@ -25,18 +26,22 @@
         "@vitejs/plugin-vue": "^5.1.4",
         "@vitejs/plugin-vue-jsx": "^4.0.1",
         "@vue/eslint-config-typescript": "^14.1.1",
+        "@vue/test-utils": "^2.4.6",
         "@vue/tsconfig": "^0.5.1",
         "eslint": "^9.13.0",
         "eslint-plugin-vue": "^9.29.0",
         "git-cz": "^4.9.0",
+        "jsdom": "^25.0.1",
         "lodash-es": "^4.17.21",
         "npm-run-all2": "^7.0.1",
         "postcss-color-mix": "^1.1.0",
         "postcss-each": "^1.1.0",
         "postcss-each-variables": "^0.3.0",
         "postcss-for": "^2.1.1",
+        "ts-axios-qyq": "^1.0.8",
         "typescript": "~5.6.0",
         "vite": "^5.4.10",
+        "vitest": "^2.1.4",
         "vue-tsc": "^2.1.6"
     },
     "config": {
