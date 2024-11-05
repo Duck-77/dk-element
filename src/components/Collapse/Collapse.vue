@@ -4,12 +4,13 @@
     </div>
 </template>
 <script setup lang="ts">
-defineOptions({
-    name: 'DkCollapse',
-})
 import { ref, provide, watch } from 'vue'
 import type { NameType, CollapseProps, CollapseEmits } from './types'
 import { collapseContextKey } from './types'
+defineOptions({
+    name: 'DkCollapse',
+})
+
 
 const props = defineProps<CollapseProps>()
 const emits = defineEmits<CollapseEmits>()

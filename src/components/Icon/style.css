@@ -1,0 +1,17 @@
+.dk-icon {
+    --dk-icon-color: inherit;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    fill: currentColor;
+    color: var(--dk-icon-color);
+    font-size: inherit;
+}
+
+@each $val in primary, info, success, warning, danger {
+    .dk-icon-$(val) {
+        --dk-icon-color: var(--dk-color-$(val));
+    }
+}

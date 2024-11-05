@@ -1,6 +1,7 @@
+import type { Type } from '@/types'
 import type { PropType } from 'vue'
 
-export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'info'
+export type ButtonType = Type
 export type ButtonSize = 'large' | 'small'
 export type NativeType = 'button' | 'reset' | 'submit'
 

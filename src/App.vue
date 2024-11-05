@@ -4,6 +4,7 @@ import Button from './components/Button/Button.vue'
 import Collapse from './components/Collapse/Collapse.vue'
 import CollapseItem from './components/Collapse/CollapseItem.vue'
 import type { NameType } from './components/Collapse/types'
+import Icon from './components/Icon/Icon.vue'
 
 const openValue = ref<NameType[]>(['c'])
 </script>
@@ -79,7 +80,7 @@ const openValue = ref<NameType[]>(['c'])
             </Collapse>
         </div>
         <div class="icons">
-            <font-awesome-icon :icon="['fas', 'user']" />
+            <Icon icon="user" size="2xl" type="primary" color="red"></Icon>
         </div>
     </main>
 </template>
