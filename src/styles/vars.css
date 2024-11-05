@@ -12,7 +12,6 @@
         --dk-color-$(val)-dark-2: mix(#000, $(color), 0.2);
     }
 
-    /* colors */
     --dk-color-white: #ffffff;
     --dk-color-black: #000000;
 
@@ -66,4 +65,6 @@
 
     /*transition*/
     --dk-transition-duration: 0.3s;
+    --dk-transition-duration-fast: 0.2s;
+    --dk-transition-duration-slow: 0.5s;
 }

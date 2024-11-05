@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     user-select: none;
-    /* justify-content: center; */
+    justify-content: space-between;
     height: var(--dk-collapse-header-height);
     line-height: var(--dk-collapse-header-height);
     background-color: var(--dk-collapse-header-bg-color);
@@ -39,10 +39,18 @@
     }
     &.is-active {
         border-bottom-color: transparent;
+
+        .header-angle {
+            transform: rotate(90deg);
+        }
+    }
+
+    .header-angle {
+        transition: transform var(--dk-transition-duration) ease-in-out;
     }
 }
 
-.dk-collapse-item__wrapper{
+.dk-collapse-item__wrapper {
     border-bottom: 1px solid var(--dk-collapse-border-color);
 }
 

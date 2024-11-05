@@ -87,6 +87,10 @@
         background-color: var(--dk-button-bg-color-disabled);
         border-color: var(--dk-button-border-color-disabled);
     }
+
+    [class*='dk-icon'] + span {
+        margin-left: 6px;
+    }
 }
 
 @each $val in primary, success, warning, danger, info {

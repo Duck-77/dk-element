@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { onMounted, ref, watchEffect } from 'vue'
-import Button from './components/Button/Button.vue'
-import Collapse from './components/Collapse/Collapse.vue'
-import CollapseItem from './components/Collapse/CollapseItem.vue'
-import type { NameType } from './components/Collapse/types'
-import Icon from './components/Icon/Icon.vue'
+    import { onMounted, ref, watchEffect } from 'vue'
+    import Button from './components/Button/Button.vue'
+    import Collapse from './components/Collapse/Collapse.vue'
+    import CollapseItem from './components/Collapse/CollapseItem.vue'
+    import type { NameType } from './components/Collapse/types'
+    import Icon from './components/Icon/Icon.vue'
+    import Alert from './components/Alert/Alert.vue'
 
-const openValue = ref<NameType[]>(['c'])
+    const openValue = ref<NameType[]>(['c'])
 </script>
 
 <template>
@@ -23,64 +24,50 @@ const openValue = ref<NameType[]>(['c'])
             <Button type="info">Test Button</Button>
             <br />
             <Button :disabled="true">disabled</Button>
-            <Button
-                type="primary"
-                disabled
-                >Test Button</Button
-            >
-            <Button
-                type="success"
-                disabled
-                >Test Button</Button
-            >
-            <Button
-                type="warning"
-                disabled
-                >Test Button</Button
-            >
-            <Button
-                type="danger"
-                disabled
-                >Test Button</Button
-            >
-            <Button
-                type="info"
-                disabled
-                >Test Button</Button
-            >
+            <Button type="primary" disabled>Test Button</Button>
+            <Button type="success" disabled>Test Button</Button>
+            <Button type="warning" disabled>Test Button</Button>
+            <Button type="danger" disabled>Test Button</Button>
+            <Button type="info" disabled>Test Button</Button>
             <br />
             <Button size="large">Large Button</Button>
             <Button size="small">Small Button</Button>
+            <Button size="large" loading>loading</Button>
+            <Button size="large" icon="user">user</Button>
         </div>
         <div class="collapse-display">
-            <Collapse
-                v-model="openValue"
-                accordion>
-                <CollapseItem
-                    name="a"
-                    title="Feedback">
+            <Collapse v-model="openValue" accordion>
+                <CollapseItem name="a" title="Feedback">
                     <div>
                         Operation feedback: enable the users to clearly perceive their operations by style updates and
                         interactive effects;
                     </div>
                     <div>Visual feedback: reflect current state by updating or rearranging elements of the page.</div>
                 </CollapseItem>
-                <CollapseItem
-                    name="b"
-                    title="b title">
+                <CollapseItem name="b" title="b title">
                     <div>this is content b</div>
                 </CollapseItem>
 
-                <CollapseItem
-                    name="c"
-                    title="c title"
-                    disabled>
+                <CollapseItem name="c" title="c title" disabled>
                     <div>this is content c</div>
                 </CollapseItem>
             </Collapse>
         </div>
         <div class="icons">
-            <Icon icon="user" size="2xl" type="primary" color="red"></Icon>
+            <!-- <Icon
+                icon="user"
+                size="2xl"
+                type="primary"
+                color="red"></Icon> -->
+        </div>
+        <div class="alert">
+            <Alert title="Success alert" content="More text description" type="success"></Alert>
+            <Alert title="Warn alert" content="More text description" type="warning" effect="dark"></Alert>
+            <Alert title="Info alert" content="More text description" type="info" content-center title-center></Alert>
+            <Alert content="More text description" type="error"></Alert>
+            <Alert content="More text description" type="success" content-center></Alert>
+            <Alert content="More text description" type="warning"></Alert>
+            <Alert content="More text description" type="info"></Alert>
         </div>
     </main>
 </template>
