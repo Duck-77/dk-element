@@ -1,7 +1,7 @@
 <template>
     <div
         class="dk-collapse-item">
-        <div
+        <button
             class="dk-collapse-item__header"
             :class="{
                 'is-disabled': disabled,
@@ -10,7 +10,7 @@
             :id="`item-header-${name}`"
             @click="handleClick">
             <slot name="title">{{ title }}</slot>
-        </div>
+        </button>
         <Transition
             name="fade"
             v-on="transitionEvents">

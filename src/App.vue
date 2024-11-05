@@ -6,7 +6,6 @@ import CollapseItem from './components/Collapse/CollapseItem.vue'
 import type { NameType } from './components/Collapse/types'
 
 const openValue = ref<NameType[]>(['c'])
-
 </script>
 
 <template>
@@ -56,12 +55,14 @@ const openValue = ref<NameType[]>(['c'])
             <Collapse
                 v-model="openValue"
                 accordion>
-                <CollapseItem name="a">
-                    <template #title>
-                        <h1>a title</h1>
-                    </template>
-                    <h1>headline title</h1>
-                    <div>this is content a</div>
+                <CollapseItem
+                    name="a"
+                    title="Feedback">
+                    <div>
+                        Operation feedback: enable the users to clearly perceive their operations by style updates and
+                        interactive effects;
+                    </div>
+                    <div>Visual feedback: reflect current state by updating or rearranging elements of the page.</div>
                 </CollapseItem>
                 <CollapseItem
                     name="b"
