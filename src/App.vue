@@ -7,7 +7,7 @@
     import Icon from './components/Icon/Icon.vue'
     import Alert from './components/Alert/Alert.vue'
 
-    const openValue = ref<NameType[]>(['c'])
+    const openValue = ref<NameType[]>(['a','b'])
 </script>
 
 <template>

@@ -11,7 +11,6 @@
         name: 'DkCollapse',
     })
 
-
     const props = defineProps<CollapseProps>()
     const emits = defineEmits<CollapseEmits>()
     const activeNames = ref<NameType[]>(props.modelValue)
@@ -37,8 +36,8 @@
                 activeNames.value.push(item)
             }
         }
-        emits('update:modelValue', activeNames.value)
-        emits('change', activeNames.value)
+        emits('update:modelValue', [...activeNames.value])
+        emits('change', [...activeNames.value])
     }
     provide(collapseContextKey, { activeNames, handleItemClick })
 </script>

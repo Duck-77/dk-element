@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 import Button from '../../src/components/Button/Button.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-describe('Compontent-Test:Button.vue', () => {
+describe('Compontent-Test:Button', () => {
     describe('props',()=>{
         describe('type', () => {
             test('primary', () => {
