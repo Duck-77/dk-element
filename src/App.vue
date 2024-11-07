@@ -12,6 +12,7 @@
     import type { Options } from '@popperjs/core'
     import type { MenuOption } from './components/Dropdown/types'
     import Dropdown from './components/Dropdown/Dropdown.tsx'
+import Message from './components/Message/Message.vue'
 
     const openValue = ref<NameType[]>(['a'])
 
@@ -72,10 +73,6 @@
     }
 
     const dropdownRef = ref()
-
-    onMounted(()=>{
-        console.log(dropdownRef.value)
-    })
 
 </script>
 
@@ -152,6 +149,10 @@
             <Dropdown ref="dropdownRef" :menuOptions="menuOptions" :hide-on-click="true" @select="handleSelect">
                 <Button>dropdown</Button>
             </Dropdown>
+        </div>
+
+        <div class="message">
+            <Message message="hello world" :duration="0"></Message>
         </div>
     </main>
 </template>

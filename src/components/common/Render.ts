@@ -4,7 +4,7 @@ import type { PropType, VNode } from 'vue'
 export default defineComponent({
     props: {
         vnode: {
-            type: Object as PropType<string | VNode>,
+            type: [String, Object],
             require: false,
         },
     },

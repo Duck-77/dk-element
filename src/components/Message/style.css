@@ -1,0 +1,16 @@
+.dk-message {
+    display: inline-flex;
+    justify-content: center;
+
+    .dk-message__content + .dk-message__close{
+        margin-left: 6px;
+    }
+}
+
+.dk-message__content {
+}
+
+.dk-message__close {
+    display: flex;
+    align-items: center;
+}
