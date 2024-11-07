@@ -65,15 +65,25 @@
         }
     }
 
-    toggle.show = debounce(() => {
+    const debounceShow = debounce(() => {
         popperShow.value = true
         emits('visible-change', true)
     }, props.showAfter)
 
-    toggle.hide = debounce(() => {
+    const debounceHide = debounce(() => {
         popperShow.value = false
         emits('visible-change', false)
     }, props.hideAfter)
+
+    toggle.show = () => {
+       debounceHide.cancel()
+       debounceShow()
+    }
+
+    toggle.hide = () => {
+        debounceShow.cancel()
+        debounceHide()
+    }
 
     const attchEvents = () => {
         if (props.trigger === 'click') {
@@ -130,8 +140,8 @@
     defineExpose<TooltipExpose>({
         tooltipRef,
         contentRef: popperRef,
-        onOpen: toggle.show,
-        onClose: toggle.hide
+        onShow: toggle.show,
+        onHide: toggle.hide
     })
 
     onMounted(() => {

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { mount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import { beforeEach } from 'vitest'

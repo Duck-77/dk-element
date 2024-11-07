@@ -10,6 +10,8 @@
     import Tooltip from './components/Tooltip/Tooltip.vue'
     import type { TooltipExpose } from './components/Tooltip/types'
     import type { Options } from '@popperjs/core'
+    import type { MenuOption } from './components/Dropdown/types'
+    import Dropdown from './components/Dropdown/Dropdown.vue'
 
     const openValue = ref<NameType[]>(['a'])
 
@@ -36,12 +38,34 @@
     const tooltipInstance = ref<TooltipExpose>()
 
     const open = () => {
-        tooltipInstance.value?.onOpen()
+        tooltipInstance.value?.onShow()
     }
 
     const close = () => {
-        tooltipInstance.value?.onClose()
+        tooltipInstance.value?.onHide()
     }
+
+    const menuOptions: MenuOption[] = [
+        {
+            label: 'option1',
+            key: 1,
+            disabled: true
+        },
+        {
+            label: 'option2',
+            key: 2,
+            divided: true
+        },
+        {
+            label: 'option3',
+            key: 3,
+            divided: true
+        },
+        {
+            label: 'option4',
+            key: 4,
+        }
+    ]
 
 </script>
 
@@ -114,8 +138,10 @@
         <Button @click="open">open</Button>
         <Button @click="close">close</Button>
 
-        <div class="wrapper">
-            <div class="sub"></div>
+        <div class="dropdown">
+            <Dropdown :menuOptions="menuOptions">
+                <Button>dropdown</Button>
+            </Dropdown>
         </div>
     </main>
 </template>
@@ -125,7 +151,8 @@
         overflow: hidden;
     }
 
-    .tooltip {
+    .tooltip,
+    .dropdown {
         width: 100%;
         height: 200px;
         display: flex;

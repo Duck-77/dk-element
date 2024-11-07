@@ -1,5 +1,7 @@
-import type { Placement, Options } from '@popperjs/core'
 import type { Ref } from 'vue'
+import type { Placement, Options } from '@popperjs/core'
+import type { DebouncedFunc } from 'lodash-es'
+
 
 export type Trigger = 'hover' | 'click'
 export type TooltipEffect = 'light' | 'dark'
@@ -29,6 +31,6 @@ export interface TooltipEmits {
 export interface TooltipExpose {
     tooltipRef: Ref<undefined | HTMLElement>
     contentRef: Ref<undefined | HTMLElement>
-    onOpen: () => void
-    onClose: () => void
+    onShow: () => void
+    onHide: () => void
 }
