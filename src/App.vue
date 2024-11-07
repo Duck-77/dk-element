@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import { useFloating, type Placement } from '@floating-ui/vue'
-    import { computed, onMounted, ref, watchEffect } from 'vue'
+    import { computed, h, onMounted, ref, watchEffect } from 'vue'
     import Button from './components/Button/Button.vue'
     import Collapse from './components/Collapse/Collapse.vue'
     import CollapseItem from './components/Collapse/CollapseItem.vue'
@@ -11,7 +11,7 @@
     import type { TooltipExpose } from './components/Tooltip/types'
     import type { Options } from '@popperjs/core'
     import type { MenuOption } from './components/Dropdown/types'
-    import Dropdown from './components/Dropdown/Dropdown.vue'
+    import Dropdown from './components/Dropdown/Dropdown.tsx'
 
     const openValue = ref<NameType[]>(['a'])
 
@@ -47,25 +47,35 @@
 
     const menuOptions: MenuOption[] = [
         {
-            label: 'option1',
+            label: h('h3','hello world'),
             key: 1,
             disabled: true
         },
         {
             label: 'option2',
             key: 2,
-            divided: true
+            divided: false
         },
         {
             label: 'option3',
             key: 3,
-            divided: true
+            divided: false
         },
         {
             label: 'option4',
             key: 4,
         }
     ]
+
+    const handleSelect = (option:MenuOption)=>{
+        console.log(option)
+    }
+
+    const dropdownRef = ref()
+
+    onMounted(()=>{
+        console.log(dropdownRef.value)
+    })
 
 </script>
 
@@ -139,7 +149,7 @@
         <Button @click="close">close</Button>
 
         <div class="dropdown">
-            <Dropdown :menuOptions="menuOptions">
+            <Dropdown ref="dropdownRef" :menuOptions="menuOptions" :hide-on-click="true" @select="handleSelect">
                 <Button>dropdown</Button>
             </Dropdown>
         </div>

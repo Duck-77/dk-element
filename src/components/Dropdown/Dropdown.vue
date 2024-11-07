@@ -1,30 +1,19 @@
 <template>
     <div class="dk-dropdown">
-        <Tooltip
-            ref="tooltipRef"
-            :manual="manual"
-            :effect="effect"
-            :transition="transition"
-            :trigger="trigger"
-            :placement="placement"
-            :popper-options="popperOptions"
-            :show-after="showAfter"
-            :hide-after="hideAfter"
+        <Tooltip ref="tooltipInstance" :manual="manual" :effect="effect" :transition="transition" :trigger="trigger"
+            :placement="placement" :popper-options="popperOptions" :show-after="showAfter" :hide-after="hideAfter"
             @visible-change="handleVisibeChange">
             <slot></slot>
             <template #content>
                 <ul class="dk-dropdown__menu">
                     <template v-for="option in menuOptions" :key="option.key">
                         <li v-if="option.divided" role="separator" class="divided-placeholder"></li>
-                        <li
-                            class="dk-dropdown__option"
-                            :class="{
-                                'is-disabled': option.disabled,
-                                'is-divided': option.divided,
-                            }"
-                            :id="`dk-dropdown__option-${option.key}`"
+                        <li class="dk-dropdown__option" :class="{
+                            'is-disabled': option.disabled,
+                            'is-divided': option.divided,
+                        }" :id="`dk-dropdown__option-${option.key}`"
                             @click="($event) => handleOptionClick(option)">
-                            {{ option.label }}
+                            <Render :vnode="option.label"></Render>
                         </li>
                     </template>
                 </ul>
@@ -33,43 +22,54 @@
     </div>
 </template>
 <script setup lang="ts">
-import { nextTick, ref } from 'vue'
-import type { DropdownProps, DropdownEmits, MenuOption, DropdownExpose } from './types.ts'
-import Tooltip from '../Tooltip/Tooltip.vue'
-import type { TooltipExpose } from '../Tooltip/types'
-const props = withDefaults(defineProps<DropdownProps>(), {
-    effect: 'light',
-    trigger: 'click',
-    placement: 'bottom',
-    transition: 'fade',
-    showAfter: 0,
-    hideAfter: 0,
-})
+    import { computed, nextTick, ref } from 'vue'
+    import type { DropdownProps, DropdownEmits, MenuOption, DropdownExpose } from './types.ts'
+    import Tooltip from '../Tooltip/Tooltip.vue'
+    import type { TooltipExpose } from '../Tooltip/types'
+    import Render from '../common/Render.js'
 
-const emits = defineEmits<DropdownEmits>()
+    defineOptions({
+        name: 'DkDropdown'
+    })
 
-const tooltipRef = ref<TooltipExpose>()
+    const props = withDefaults(defineProps<DropdownProps>(), {
+        effect: 'light',
+        trigger: 'click',
+        placement: 'bottom',
+        transition: 'fade',
+        showAfter: 0,
+        hideAfter: 0,
+        hideOnClick: true
+    })
 
-const handleVisibeChange = (e: boolean) => {
-    emits('visible-change', e)
-}
+    const emits = defineEmits<DropdownEmits>()
 
-const handleOptionClick = (option: MenuOption) => {
-    if (option.disabled) {
-        return
+    const tooltipInstance = ref<TooltipExpose>()
+
+    const handleVisibeChange = (e: boolean) => {
+        emits('visible-change', e)
     }
-    emits('select', option)
-}
 
-// nextTick(() => {
-//     if (tooltipRef.value) {
-//         defineExpose<DropdownExpose>({
-//             tooltipRef: tooltipRef.value?.tooltipRef,
-//             contentRef: tooltipRef.value?.contentRef,
-//             onShow: tooltipRef.value!.onShow,
-//             onHide: tooltipRef.value!.onHide
-//         })
-//     }
-// })
+    const handleOptionClick = (option: MenuOption) => {
+        if (option.disabled) {
+            return
+        }
+        if (props.hideOnClick) {
+            tooltipInstance.value?.onHide()
+        }
+        emits('select', option)
+
+    }
+
+    const tooltipRef = computed(() => tooltipInstance.value?.tooltipRef as HTMLElement | undefined)
+    const contentRef = computed(() => tooltipInstance.value?.contentRef as HTMLElement | undefined)
+
+
+    defineExpose<DropdownExpose>({
+        tooltipRef,
+        contentRef,
+        onShow: tooltipInstance.value!.onShow,
+        onHide: tooltipInstance.value!.onHide
+    })
 </script>
 <style scoped></style>
