@@ -1,13 +1,48 @@
 <script setup lang="ts">
-    import { onMounted, ref, watchEffect } from 'vue'
+    import { useFloating, type Placement } from '@floating-ui/vue'
+    import { computed, onMounted, ref, watchEffect } from 'vue'
     import Button from './components/Button/Button.vue'
     import Collapse from './components/Collapse/Collapse.vue'
     import CollapseItem from './components/Collapse/CollapseItem.vue'
     import type { NameType } from './components/Collapse/types'
     import Icon from './components/Icon/Icon.vue'
     import Alert from './components/Alert/Alert.vue'
+    import Tooltip from './components/Tooltip/Tooltip.vue'
+    import type { TooltipExpose } from './components/Tooltip/types'
+    import type { Options } from '@popperjs/core'
 
-    const openValue = ref<NameType[]>(['a','b'])
+    const openValue = ref<NameType[]>(['a'])
+
+    const tooltipOpen = ref(false)
+
+    const btnText = computed(() => tooltipOpen.value ? 'close' : 'open')
+
+    const handleTooltipToggle = (bool: boolean) => {
+        tooltipOpen.value = bool
+    }
+
+    const placement = ref<Placement>('bottom')
+
+    const randomClick = () => {
+        const randoms = ['left', 'right', 'bottom', 'top']
+        placement.value = randoms[Math.floor(Math.random() * 4)] as Placement
+    }
+
+    const popperOptions = ref<Partial<Options>>({
+        placement: 'left-start',
+        // strategy: 'fixed'
+    })
+
+    const tooltipInstance = ref<TooltipExpose>()
+
+    const open = () => {
+        tooltipInstance.value?.onOpen()
+    }
+
+    const close = () => {
+        tooltipInstance.value?.onClose()
+    }
+
 </script>
 
 <template>
@@ -70,11 +105,27 @@
             <Alert content="More text description" type="info"></Alert>
             <Alert content="More text description" type="error"></Alert>
         </div>
+        <div class="tooltip">
+            <Tooltip @visible-change="handleTooltipToggle" content="Hello World" :placement="placement" manual :popper-options="popperOptions"
+                ref="tooltipInstance">
+                <Button @click="randomClick">{{ placement }}</Button>
+            </Tooltip>
+        </div>
+        <Button @click="open">open</Button>
+        <Button @click="close">close</Button>
     </main>
 </template>
 
 <style scoped>
     main {
         overflow: hidden;
+    }
+
+    .tooltip {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 </style>

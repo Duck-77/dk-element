@@ -8,3 +8,5 @@
 @import '../components/Icon/style.css';
 /* Dk-Alert */
 @import '../components/Alert/style.css';
+/* Dk-Tooltip */
+@import '../components/Tooltip/style.css'
