@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, test, vi } from 'vitest'
 import Collapse from '../../src/components/Collapse/Collapse.vue'
 import CollapseItem from '../../src/components/Collapse/CollapseItem.vue'
 
-describe('Components-Tes:Collapse', () => {
+describe('Component-Tes:Collapse', () => {
     let wrapper: VueWrapper
     let handleClick
     //headers

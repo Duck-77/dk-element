@@ -29,7 +29,7 @@
     }
 
     const popperOptions = ref<Partial<Options>>({
-        placement: 'left-start',
+        // placement: 'left-start',
         // strategy: 'fixed'
     })
 
@@ -106,13 +106,17 @@
             <Alert content="More text description" type="error"></Alert>
         </div>
         <div class="tooltip">
-            <Tooltip @visible-change="handleTooltipToggle" content="Hello World" :placement="placement" manual :popper-options="popperOptions"
-                ref="tooltipInstance">
+            <Tooltip @visible-change="handleTooltipToggle" content="Hello World" :placement="placement" trigger="click"
+                :popper-options="popperOptions" ref="tooltipInstance">
                 <Button @click="randomClick">{{ placement }}</Button>
             </Tooltip>
         </div>
         <Button @click="open">open</Button>
         <Button @click="close">close</Button>
+
+        <div class="wrapper">
+            <div class="sub"></div>
+        </div>
     </main>
 </template>
 
@@ -128,4 +132,5 @@
         align-items: center;
         justify-content: center;
     }
+
 </style>
