@@ -76,10 +76,10 @@
     const dropdownRef = ref()
 
     onMounted(() => {
-        DkMessage({ message: 'Hello World', duration: 0 })
-        DkMessage({ message: 'Hello World 1', duration: 2000 })
-        DkMessage({ message: 'Hello World', duration: 0 })
-        DkMessage({ message: 'Hello World', duration: 0 })
+        DkMessage({ message: 'Hello World 1', duration: 0 })
+        DkMessage({ message: 'Hello World 2', duration: 0 })
+        DkMessage({ message: 'Hello World 3', duration: 0 })
+        DkMessage({ message: 'Hello World 4', duration: 0 })
     })
 
 </script>

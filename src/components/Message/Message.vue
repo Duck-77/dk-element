@@ -20,7 +20,7 @@
     import Render from '../common/Render';
     import Icon from '../Icon/Icon.vue';
     import type { MessageProps } from './types';
-    import { getLastMessage, getLastMessageBottomOffset } from './method';
+    import { getLastMessageBottomOffset } from './method';
 
     const props = withDefaults(defineProps<MessageProps>(), {
         type: 'info',
@@ -34,7 +34,10 @@
 
     const messageHeight = ref(0)
 
-    const lastMessageBottomOffset = computed(() => getLastMessageBottomOffset(props.id))
+    const lastMessageBottomOffset = computed(() => {
+        // console.log(props.id, '-get_lastMessageBottomOffset--',getLastMessageBottomOffset(props.id))
+        return getLastMessageBottomOffset(props.id)
+    })
 
     const currentMessageTopOffset = computed(() => props.offset + lastMessageBottomOffset.value)
 
@@ -60,8 +63,6 @@
     defineExpose({
         bottomOffset: currentMessageBottomOffset
     })
-
-    console.log(getLastMessage())
 
     onMounted(async () => {
         messageShow.value = true

@@ -1,9 +1,9 @@
-import { render, h, nextTick } from 'vue'
+import { render, h, nextTick, shallowReactive, reactive } from 'vue'
 import type { MessageCreatorProps, MessageContext } from './types'
 import Message from './Message.vue'
 
 let lastMessageId = 1
-const DkMessageContext: MessageContext[] = []
+const DkMessageContext:MessageContext[] = shallowReactive([])
 
 export const DkMessage = (props: MessageCreatorProps) => {
     const id = `dk_message_${lastMessageId++}`
@@ -19,6 +19,7 @@ export const DkMessage = (props: MessageCreatorProps) => {
         },
     }
     const vnode = h(Message, _props)
+
     render(vnode, container)
 
     const message = {
@@ -43,6 +44,17 @@ export const getLastMessage = () => {
 
 export const getLastMessageBottomOffset = (id: number | string) => {
     const index = DkMessageContext.findIndex((msg) => msg.id === id)
+    // if (index > 0) {
+    //     console.log(
+    //         id,
+    //         '-find_index:',
+    //         index,
+    //         '-find_prev.vm:',
+    //         typeof DkMessageContext[index - 1].vm,
+    //         '-find_prev.vm-->bottomOffset',
+    //         DkMessageContext[index - 1].vm.exposed!.bottomOffset.value
+    //     )
+    // }
     if (index <= 0) {
         return 0
     } else {
