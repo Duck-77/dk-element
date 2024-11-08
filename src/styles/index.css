@@ -10,5 +10,7 @@
 @import '../components/Alert/style.css';
 /* Dk-Tooltip */
 @import '../components/Tooltip/style.css';
+/* Dk-Dropdown */
+@import '../components/Dropdown/style.css';
 /* Dk-Message */
-@import '../components/Message/style.css'
+@import '../components/Message/style.css';

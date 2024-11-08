@@ -156,7 +156,7 @@
         <div class="tooltip">
             <div class="display">
                 <Tooltip @visible-change="handleTooltipToggle" content="Hello World" :placement="placement"
-                    trigger="click" :popper-options="popperOptions" ref="tooltipInstance">
+                    trigger="click" :popper-options="popperOptions" ref="tooltipInstance" effect="light">
                     <Button @click="randomClick">{{ placement }}</Button>
                 </Tooltip>
             </div>
@@ -168,7 +168,7 @@
 
 
         <div class="dropdown">
-            <Dropdown ref="dropdownRef" :menuOptions="menuOptions" :hide-on-click="true" @select="handleSelect">
+            <Dropdown ref="dropdownRef" :menuOptions="menuOptions" effect="light" :hide-on-click="true" @select="handleSelect">
                 <Button>dropdown</Button>
             </Dropdown>
         </div>

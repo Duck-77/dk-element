@@ -5,7 +5,7 @@
         <div ref="triggerRef" class="dk-tooltip__trigger" v-on="events">
             <slot></slot>
         </div>
-        <Transition :name="transition">
+        <Transition :name="transition" v-on="transition === 'drop' ? dropTransitionEvent : {}">
             <div ref="popperRef" class="dk-tooltip__popper" v-if="popperShow">
                 <slot name="content">
                     {{ content }}
@@ -31,6 +31,7 @@
         showAfter: 0,
         hideAfter: 0
     })
+
     const emits = defineEmits<TooltipEmits>()
     // DOM
     const tooltipRef = ref<HTMLElement>()
@@ -76,8 +77,8 @@
     }, props.hideAfter)
 
     toggle.show = () => {
-       debounceHide.cancel()
-       debounceShow()
+        debounceHide.cancel()
+        debounceShow()
     }
 
     toggle.hide = () => {
@@ -136,6 +137,33 @@
             attchEvents()
         }
     })
+
+    const dropTransitionEvent: Record<string, (el: HTMLElement) => void> = {
+        beforeEnter(el) {
+            el.style.height = '0px'
+            el.style.overflow = 'hidden'
+        },
+        enter(el) {
+            el.style.height = `${el.scrollHeight}px`
+        },
+        afterEnter(el) {
+            el.style.height = ''
+            el.style.overflow = ''
+        },
+        beforeLeave(el) {
+            el.style.height = `${el.scrollHeight}px`
+            console.log(el.scrollHeight)
+            el.style.overflow = 'hidden'
+        },
+        leave(el) {
+            el.style.height = `0`
+        }
+        ,
+        afterLeave(el) {
+            el.style.height = ''
+            el.style.overflow = ''
+        },
+    }
 
     defineExpose<TooltipExpose>({
         tooltipRef,

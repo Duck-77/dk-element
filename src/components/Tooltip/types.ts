@@ -1,6 +1,5 @@
 import type { Ref } from 'vue'
 import type { Placement, Options } from '@popperjs/core'
-import type { DebouncedFunc } from 'lodash-es'
 
 
 export type Trigger = 'hover' | 'click'

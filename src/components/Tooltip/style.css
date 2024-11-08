@@ -17,9 +17,11 @@
     line-height: 1.4;
     text-align: justify;
     font-size: var(--dk-popper-font-size);
-    box-shadow: var(--dk-box-shadow-light);
+    box-shadow: var(--dk-box-shadow-lighter);
     word-break: break-all;
     box-sizing: border-box;
+    will-change: height;
+    transition: opacity var(--dk-transition-duration), height var(--dk-transition-duration);
     z-index: 1000;
 
     #arrow,
@@ -81,12 +83,9 @@
     --dk-popper-bg-color: var(--dk-bg-color-dark);
 }
 
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity var(--dk-transition-duration);
-}
-
 .fade-enter-from,
-.fade-leave-to {
+.fade-leave-to,
+.drop-enter-from,
+.drop-leave-to {
     opacity: 0;
 }
