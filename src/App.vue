@@ -168,7 +168,7 @@
 
 
         <div class="dropdown">
-            <Dropdown ref="dropdownRef" :menuOptions="menuOptions" effect="light" :hide-on-click="true" @select="handleSelect">
+            <Dropdown ref="dropdownRef" :menuOptions="menuOptions" effect="light" :hide-on-click="true" transition="drop" @select="handleSelect">
                 <Button>dropdown</Button>
             </Dropdown>
         </div>
@@ -208,7 +208,7 @@
 
     .dropdown {
         width: 100%;
-        height: 200px;
+        height: 400px;
         display: flex;
         align-items: center;
         justify-content: center;

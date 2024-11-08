@@ -21,7 +21,7 @@
     word-break: break-all;
     box-sizing: border-box;
     will-change: height;
-    transition: opacity var(--dk-transition-duration), height var(--dk-transition-duration);
+    transition: opacity var(--dk-transition-duration-fast), height var(--dk-transition-duration-fast);
     z-index: 1000;
 
     #arrow,
