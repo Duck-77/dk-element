@@ -69,45 +69,54 @@
         }
     ]
 
+
     const handleSelect = (option: MenuOption) => {
         console.log(option)
     }
 
     const dropdownRef = ref()
 
-    onMounted(() => {
-        DkMessage({ message: 'Hello World 1', duration: 0 })
-        DkMessage({ message: 'Hello World 2', duration: 0 })
-        DkMessage({ message: 'Hello World 3', duration: 0 })
-        DkMessage({ message: 'Hello World 4', duration: 0 })
-    })
+    const getRandom = (arr: Array<any>) => {
+        return arr[Math.floor(Math.random() * arr.length)]
+    }
+
+
+    const createMessage = () => {
+        const type = getRandom(['success', 'warning', 'info', 'error'])
+        DkMessage({ message: `This is a ${type} message.`, type, plain: true, duration: 0 })
+    }
 
 </script>
 
 <template>
     <main>
         <div class="button-display">
-            <Button>Test Button</Button>
-            <Button plain>Plain Button</Button>
-            <Button round>Round Button</Button>
-            <br />
-            <Button type="primary">Test Button</Button>
-            <Button type="success">Test Button</Button>
-            <Button type="warning">Test Button</Button>
-            <Button type="danger">Test Button</Button>
-            <Button type="info">Test Button</Button>
-            <br />
-            <Button :disabled="true">disabled</Button>
-            <Button type="primary" disabled>Test Button</Button>
-            <Button type="success" disabled>Test Button</Button>
-            <Button type="warning" disabled>Test Button</Button>
-            <Button type="danger" disabled>Test Button</Button>
-            <Button type="info" disabled>Test Button</Button>
-            <br />
-            <Button size="large">Large Button</Button>
-            <Button size="small">Small Button</Button>
-            <Button size="large" loading>loading</Button>
-            <Button size="large" icon="user">user</Button>
+            <div>
+                <Button>Test Button</Button>
+                <Button plain>Plain Button</Button>
+                <Button round>Round Button</Button>
+            </div>
+            <div>
+                <Button type="primary">Test Button</Button>
+                <Button type="success">Test Button</Button>
+                <Button type="warning">Test Button</Button>
+                <Button type="danger">Test Button</Button>
+                <Button type="info">Test Button</Button>
+            </div>
+            <div>
+                <Button :disabled="true">disabled</Button>
+                <Button type="primary" disabled>Test Button</Button>
+                <Button type="success" disabled>Test Button</Button>
+                <Button type="warning" disabled>Test Button</Button>
+                <Button type="danger" disabled>Test Button</Button>
+                <Button type="info" disabled>Test Button</Button>
+            </div>
+            <div>
+                <Button size="large">Large Button</Button>
+                <Button size="small">Small Button</Button>
+                <Button size="large" loading>loading</Button>
+                <Button size="large" icon="user">user</Button>
+            </div>
         </div>
         <div class="collapse-display">
             <Collapse v-model="openValue" accordion>
@@ -145,13 +154,18 @@
             <Alert content="More text description" type="error"></Alert>
         </div>
         <div class="tooltip">
-            <Tooltip @visible-change="handleTooltipToggle" content="Hello World" :placement="placement" trigger="click"
-                :popper-options="popperOptions" ref="tooltipInstance">
-                <Button @click="randomClick">{{ placement }}</Button>
-            </Tooltip>
+            <div class="display">
+                <Tooltip @visible-change="handleTooltipToggle" content="Hello World" :placement="placement"
+                    trigger="click" :popper-options="popperOptions" ref="tooltipInstance">
+                    <Button @click="randomClick">{{ placement }}</Button>
+                </Tooltip>
+            </div>
+            <div class="tooltip-btn">
+                <Button @click="open">open</Button>
+                <Button @click="close">close</Button>
+            </div>
         </div>
-        <Button @click="open">open</Button>
-        <Button @click="close">close</Button>
+
 
         <div class="dropdown">
             <Dropdown ref="dropdownRef" :menuOptions="menuOptions" :hide-on-click="true" @select="handleSelect">
@@ -159,9 +173,9 @@
             </Dropdown>
         </div>
 
-        <!-- <div class="message">
-            <Message message="hello world" :duration="0"></Message>
-        </div> -->
+        <div class="message">
+            <Button @click="createMessage">CreateMessage</Button>
+        </div>
     </main>
 </template>
 
@@ -170,7 +184,28 @@
         overflow: hidden;
     }
 
-    .tooltip,
+    .button-display {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .tooltip {
+        width: 100%;
+        height: 200px;
+
+        div {
+            height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    }
+
+
     .dropdown {
         width: 100%;
         height: 200px;

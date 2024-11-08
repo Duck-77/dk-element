@@ -15,22 +15,29 @@
     --dk-color-white: #ffffff;
     --dk-color-black: #000000;
 
+    /* background */
     --dk-bg-color: #ffffff;
     --dk-bg-color-page: #f2f3f5;
     --dk-bg-color-overlay: #ffffff;
     --dk-bg-color-light: #ffffff;
     --dk-bg-color-dark: #000000;
+
+    /* text */
     --dk-text-color-primary: #303133;
     --dk-text-color-regular: #606266;
     --dk-text-color-secondary: #909399;
     --dk-text-color-placeholder: #a8abb2;
     --dk-text-color-disabled: #c0c4cc;
+
+    /* border */
     --dk-border-color: #dcdfe6;
     --dk-border-color-light: #e4e7ed;
     --dk-border-color-lighter: #ebeef5;
     --dk-border-color-extra-light: #f2f6fc;
     --dk-border-color-dark: #d4d7de;
     --dk-border-color-darker: #cdd0d6;
+
+    /* fill */
     --dk-fill-color: #f0f2f5;
     --dk-fill-color-light: #f5f7fa;
     --dk-fill-color-lighter: #fafafa;
@@ -38,6 +45,14 @@
     --dk-fill-color-dark: #ebedf0;
     --dk-fill-color-darker: #e6e8eb;
     --dk-fill-color-blank: #ffffff;
+
+    /* box-shadow */
+
+    --dk-box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, 0.04), 0px 8px 20px rgba(0, 0, 0, 0.08);
+    --dk-box-shadow-light: 0px 0px 12px rgba(0, 0, 0, 0.12);
+    --dk-box-shadow-lighter: 0px 0px 6px rgba(0, 0, 0, 0.12);
+    --dk-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08), 0px 12px 32px rgba(0, 0, 0, 0.12),
+        0px 8px 16px -8px rgba(0, 0, 0, 0.16);
 
     /* border */
     --dk-border-width: 1px;
@@ -49,7 +64,7 @@
     --dk-border-radius-round: 20px;
     --dk-border-radius-circle: 100%;
 
-    /*font*/
+    /* font */
     --dk-font-size-extra-large: 20px;
     --dk-font-size-large: 18px;
     --dk-font-size-medium: 16px;
@@ -60,13 +75,14 @@
         '\5fae\8f6f\96c5\9ed1', Arial, sans-serif;
     --dk-font-weight-primary: 500;
 
-    /*disabled*/
+    /* disabled */
     --dk-disabled-bg-color: var(--dk-fill-color-light);
     --dk-disabled-text-color: var(--dk-text-color-placeholder);
     --dk-disabled-border-color: var(--dk-border-color-light);
 
-    /*transition*/
+    /* transition */
     --dk-transition-duration: 0.3s;
     --dk-transition-duration-fast: 0.2s;
-    --dk-transition-duration-slow: 0.5s;
+    --dk-transition-duration-slow: 0.4s;
+    --dk-transition-duration-extra-slow: 0.4s;
 }

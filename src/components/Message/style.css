@@ -1,16 +1,74 @@
 .dk-message {
-    display: inline-flex;
-    justify-content: center;
+    --dk-message-padding: 10px 16px;
+    --dk-message-bg-color: var(--dk-color-info-light-8);
+    --dk-message-text-color: var(--dk-color-info);
+    --dk-message-border-radius: var(--dk-border-radius-base);
+    --dk-message-border: var(--dk-border);
+    --dk-message-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    --dk-message-icon-right: 8px;
+    --dk-message-close-left: 10px;
+    --dk-message-bg-plain: var(--dk-bg-color);
+}
 
-    .dk-message__content + .dk-message__close{
-        margin-left: 6px;
+.dk-message {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: var(--dk-message-padding);
+    width: fit-content;
+    max-width: calc(100% - 32px);
+    color: var(--dk-message-text-color);
+    background: var(--dk-message-bg-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    border: var(--dk-message-border);
+    box-sizing: border-box;
+    border-radius: var(--dk-message-border-radius);
+    transition: opacity var(--dk-transition-duration-slow), transform 0.4s, top 0.4s;
+
+    .dk-message__close {
+        fill: currentColor;
+        color: var(--dk-text-color-placeholder);
+        display: flex;
+        align-items: center;
+
+        & svg {
+            cursor: pointer;
+        }
+    }
+
+    .dk-message__content {
+        display: flex;
+        align-items: center;
+
+        .dk-message-icon {
+            margin-right: var(--dk-message-icon-right);
+        }
+    }
+
+    .dk-message__content + .dk-message__close {
+        margin-left: var(--dk-message-close-left);
+    }
+
+    &.is-plain {
+        background: var(--dk-message-bg-plain);
+        border-color: var(--dk-bg-color-overlay);
+        box-shadow: var(--dk-box-shadow-light);
     }
 }
 
-.dk-message__content {
+@each $type in success, warning, info, error {
+    .dk-message-$(type) {
+        --dk-message-bg-color: var(--dk-color-$(type)-light-8);
+        --dk-message-text-color: var(--dk-color-$(type));
+        --dk-message-border: var(--dk-border-width) var(--dk-border-style) var(--dk-color-$(type)-light-7);
+    }
 }
 
-.dk-message__close {
-    display: flex;
-    align-items: center;
+.fade-down-up-enter-from,
+.fade-down-up-leave-to {
+    opacity: 0;
+    transform: translate(-50%, -100%);
 }

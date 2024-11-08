@@ -9,6 +9,9 @@ export interface MessageProps {
     showClose?: boolean
     type?: MessageType
     offset?: number
+    zIndex: number
+    plain?: boolean
+    icon?: string
     onDestory: () => void
 }
 
@@ -17,6 +20,11 @@ export interface MessageContext {
     vnode: VNode
     vm: ComponentInternalInstance
     props: MessageProps
+    destory: () => void
 }
 
-export type MessageCreatorProps = Omit<MessageProps, 'onDestory'| 'id'>
+export type MessageCreatorProps = Omit<MessageProps, 'onDestory' | 'id' | 'zIndex'>
+
+export interface MessageCreator {
+    (props: MessageCreatorProps): MessageContext
+}

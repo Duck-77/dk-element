@@ -1,20 +1,23 @@
 import { render, h, nextTick, shallowReactive, reactive } from 'vue'
-import type { MessageCreatorProps, MessageContext } from './types'
+import type { MessageContext, MessageCreator } from './types'
+import { usezIndex } from '@/hooks/usezIndex'
 import Message from './Message.vue'
 
 let lastMessageId = 1
-const DkMessageContext:MessageContext[] = shallowReactive([])
+const dkMessageContext: MessageContext[] = shallowReactive([])
 
-export const DkMessage = (props: MessageCreatorProps) => {
+export const DkMessage: MessageCreator = (props) => {
     const id = `dk_message_${lastMessageId++}`
+    const { next } = usezIndex()
     const container = document.createElement('div')
     const _props = {
         ...props,
         id,
+        zIndex: next(),
         onDestory: () => {
-            const index = DkMessageContext.findIndex((msg) => msg.id === id)
+            const index = dkMessageContext.findIndex((msg) => msg.id === id)
             if (index === -1) return
-            DkMessageContext.splice(index, 1)
+            dkMessageContext.splice(index, 1)
             render(null, container)
         },
     }
@@ -22,43 +25,43 @@ export const DkMessage = (props: MessageCreatorProps) => {
 
     render(vnode, container)
 
-    const message = {
+    // 添加到MessageContext
+    const manualDestory = () => {
+        const message = dkMessageContext.find((message) => message.id === id)
+        if (message) {
+            message.vm.exposed!.visible.value = false
+        }
+    }
+
+    const message: MessageContext = {
         id,
         vnode: vnode,
         vm: vnode.component!,
         props: _props,
+        destory: manualDestory,
     }
 
-    DkMessageContext.push(message)
+    dkMessageContext.push(message)
 
     nextTick(() => {
         document.body.appendChild(container.firstElementChild!)
     })
 
-    return DkMessageContext
+    return message
 }
 
 export const getLastMessage = () => {
-    return DkMessageContext.at(-1)
+    return dkMessageContext.at(-1)
 }
 
 export const getLastMessageBottomOffset = (id: number | string) => {
-    const index = DkMessageContext.findIndex((msg) => msg.id === id)
-    // if (index > 0) {
-    //     console.log(
-    //         id,
-    //         '-find_index:',
-    //         index,
-    //         '-find_prev.vm:',
-    //         typeof DkMessageContext[index - 1].vm,
-    //         '-find_prev.vm-->bottomOffset',
-    //         DkMessageContext[index - 1].vm.exposed!.bottomOffset.value
-    //     )
-    // }
+    const index = dkMessageContext.findIndex((msg) => msg.id === id)
+    // console.log(`第${(id as string).replace('dk_message_', '')}个Message执行computed，它的上一个Message是第${index}个`)
     if (index <= 0) {
         return 0
     } else {
-        const prev: MessageContext = DkMessageContext[index - 1]
+        const prev: MessageContext = dkMessageContext[index - 1]
+        // console.log(`第${index}个的bottomOffset是`, prev.vm.exposed!.bottomOffset.value)
         return prev.vm.exposed!.bottomOffset.value
     }
 }

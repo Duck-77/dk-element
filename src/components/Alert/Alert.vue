@@ -6,7 +6,7 @@
         }" :style="alertTextColor">
             <!-- Alert-Light-->
             <div class="dk-alert__left-icon" v-if="title && showIcon">
-                <Icon :icon="alertIcon" size="2x" />
+                <TypeIcon :type="type" size="2x"></TypeIcon>
             </div>
             <!-- Alert-Right -->
             <div class="dk-alert__info">
@@ -23,9 +23,10 @@
                     'is-center': contentCenter,
                 }">
                     <div class="dk-alert__content-row">
-                        <Icon :icon="alertIcon" class="dk-alert-icon" :class="{
+                        <TypeIcon :type="type" class="dk-alert-icon" :class="{
                             [`alert-${type}-icon`]: type,
-                        }" :style="alertTextColor" v-if="showIcon && !title" />
+                        }" :style="alertTextColor" v-if="showIcon && !title" >
+                        </TypeIcon>
                         <slot>{{ content }}</slot>
                     </div>
                     <Icon class="dk-alert__close-btn" :style="alertTextColor" :icon="closeIcon || 'xmark'"
@@ -39,6 +40,7 @@
     import { computed, ref } from 'vue'
     import type { AlertEmits, AlertProps } from './type'
     import Icon from '../Icon/Icon.vue'
+import TypeIcon from '../common/TypeIcon';
     defineOptions({
         name: 'DkAlert',
     })
