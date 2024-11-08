@@ -1,10 +1,12 @@
 <template>
-    <div class="dk-message" :class="{
+    <div ref="messageRef" class="dk-message" :class="{
         [`dk-message-${type}`]: type,
         'is-close': showClose
-    }" role="alert" v-if="messageShow">
+    }" :style="messageStyle" role="alert" v-if="messageShow">
         <div class="dk-message__content">
             <slot>
+                {{ lastMessageBottomOffset + ' ' + offset + ' ' + currentMessageTopOffset + ' ' + +messageHeight + ' ' +
+                    currentMessageBottomOffset }}
                 <Render :vnode="message" />
             </slot>
         </div>
@@ -14,17 +16,33 @@
     </div>
 </template>
 <script setup lang="ts">
-    import { onMounted, ref } from 'vue';
+    import { computed, nextTick, onMounted, ref, watch } from 'vue';
     import Render from '../common/Render';
     import Icon from '../Icon/Icon.vue';
     import type { MessageProps } from './types';
+    import { getLastMessage, getLastMessageBottomOffset } from './method';
 
     const props = withDefaults(defineProps<MessageProps>(), {
         type: 'info',
         duration: 3000,
+        offset: 20
     })
 
+    const messageRef = ref<HTMLElement>()
+
     const messageShow = ref(false)
+
+    const messageHeight = ref(0)
+
+    const lastMessageBottomOffset = computed(() => getLastMessageBottomOffset(props.id))
+
+    const currentMessageTopOffset = computed(() => props.offset + lastMessageBottomOffset.value)
+
+    const currentMessageBottomOffset = computed(() => currentMessageTopOffset.value + messageHeight.value)
+
+    const messageStyle = computed(() => ({
+        top: currentMessageTopOffset.value + 'px'
+    }))
 
     const showing = () => {
         if (props.duration <= 0) return
@@ -33,12 +51,25 @@
         }, props.duration)
     }
 
-    onMounted(() => {
-        messageShow.value = true
-        console.log('show')
-        showing()
+    watch(messageShow, (cur) => {
+        if (!cur) {
+            props.onDestory()
+        }
     })
 
+    defineExpose({
+        bottomOffset: currentMessageBottomOffset
+    })
+
+    console.log(getLastMessage())
+
+    onMounted(async () => {
+        messageShow.value = true
+        showing()
+
+        await nextTick()
+        messageHeight.value = messageRef.value!.getBoundingClientRect().height
+    })
 </script>
 
 <style scoped>
@@ -49,6 +80,7 @@
         padding: 4px 8px;
         border: 2px solid black;
         background: springgreen;
+        transform: translateX(-50%);
     }
 
 </style>

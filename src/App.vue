@@ -12,7 +12,8 @@
     import type { Options } from '@popperjs/core'
     import type { MenuOption } from './components/Dropdown/types'
     import Dropdown from './components/Dropdown/Dropdown.tsx'
-import Message from './components/Message/Message.vue'
+    import Message from './components/Message/Message.vue'
+    import { DkMessage } from './components/Message/method.ts'
 
     const openValue = ref<NameType[]>(['a'])
 
@@ -48,7 +49,7 @@ import Message from './components/Message/Message.vue'
 
     const menuOptions: MenuOption[] = [
         {
-            label: h('h3','hello world'),
+            label: h('h3', 'hello world'),
             key: 1,
             disabled: true
         },
@@ -68,11 +69,18 @@ import Message from './components/Message/Message.vue'
         }
     ]
 
-    const handleSelect = (option:MenuOption)=>{
+    const handleSelect = (option: MenuOption) => {
         console.log(option)
     }
 
     const dropdownRef = ref()
+
+    onMounted(() => {
+        DkMessage({ message: 'Hello World', duration: 0 })
+        DkMessage({ message: 'Hello World 1', duration: 2000 })
+        DkMessage({ message: 'Hello World', duration: 0 })
+        DkMessage({ message: 'Hello World', duration: 0 })
+    })
 
 </script>
 
@@ -151,9 +159,9 @@ import Message from './components/Message/Message.vue'
             </Dropdown>
         </div>
 
-        <div class="message">
+        <!-- <div class="message">
             <Message message="hello world" :duration="0"></Message>
-        </div>
+        </div> -->
     </main>
 </template>
 
