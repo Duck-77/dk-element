@@ -13,6 +13,7 @@ dist
 dist-ssr
 coverage
 *.local
+__test__
 docs/.vitepress/dist
 docs/.vitepress/cache
 
@@ -20,6 +21,7 @@ docs/.vitepress/cache
 /cypress/screenshots/
 
 # Editor directories and files
+.vscode
 .vscode/*
 !.vscode/extensions.json
 .idea
