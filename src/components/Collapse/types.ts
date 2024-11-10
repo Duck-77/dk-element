@@ -11,6 +11,7 @@ export interface CollapseItemProps {
     name: NameType
     title?: string
     disabled?: boolean
+    center?: boolean
 }
 
 export interface CollapseContext {

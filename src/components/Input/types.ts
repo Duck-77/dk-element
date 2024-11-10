@@ -1,11 +1,18 @@
+import type { CSSProperties } from 'vue'
+
 export interface InputProps {
+    modelValue: string
     type?: string
     size?: 'large' | 'small'
     disabled?: boolean
     clearable?: boolean
     showPassword?: boolean
     placeholder?: string
-    modelValue: string
+    readonly?: boolean
+    autocomplete?: string
+    autofocus?: boolean
+    form?: string
+    inputStyle?: CSSProperties
 }
 
 export interface InputEmits {

@@ -9,6 +9,7 @@
             'is-append': $slots.append,
             'is-prefix': $slots.prefix,
             'is-suffix': $slots.suffix,
+            'is-focus': isFocus
         }">
         <!-- input -->
         <template v-if="type !== 'textarea'">
@@ -16,16 +17,23 @@
             <div class="dk-input__prepend" v-if="$slots.prepend">
                 <slot name="prepend"></slot>
             </div>
-            <div class="dk-input__wrapper">
+            <div class="dk-input__wrapper" :class="{'is-focus': isFocus}">
                 <!-- slots.prefix -->
                 <span class="dk-input__prefix" v-if="$slots.prefix">
                     <slot name="prefix"></slot>
                 </span>
                 <input
+                    ref="inputRef"
                     class="dk-input__inner"
+                    :style="inputStyle"
+                    v-bind="attrs"
                     v-model="inputValue"
                     :type="showPassword ? (!passwordVisible ? 'password' : 'text') : type"
+                    :readonly="readonly"
                     :placeholder="placeholder"
+                    :form="form"
+                    :autocomplete="autocomplete"
+                    :autofocus="autofocus"
                     :disabled="disabled"
                     @focus="($event) => handleFocus($event)"
                     @blur="($event) => handleBlur($event)"
@@ -54,25 +62,38 @@
         <!-- textarea -->
         <template v-else>
             <textarea
-                class="dk-textareaw__wrapper"
+                ref="inputRef"
+                class="dk-textarea__wrapper"
+                :style="inputStyle"
+                v-bind="attrs"
                 v-model="inputValue"
+                :readonly="readonly"
                 :placeholder="placeholder"
+                :form="form"
+                :autocomplete="autocomplete"
+                :autofocus="autofocus"
                 :disabled="disabled"></textarea>
         </template>
     </div>
 </template>
 <script setup lang="ts">
-import { computed, ref, watchEffect } from 'vue'
+import { computed, ref, useAttrs } from 'vue'
+import type { Ref } from 'vue'
 import type { InputProps, InputEmits } from './types'
 import Icon from '../Icon/Icon.vue'
-
 defineOptions({
     name: 'DkInput',
+    inheritAttrs: false,
 })
 const props = withDefaults(defineProps<InputProps>(), {
     type: 'text',
+    autofocus: false,
+    autocomplete: 'off',
 })
 const emits = defineEmits<InputEmits>()
+const attrs = useAttrs()
+
+const inputRef = ref<HTMLInputElement>()
 
 const isFocus = ref(false)
 const clearShow = computed(() => isFocus.value && props.clearable && !!props.modelValue)
@@ -80,9 +101,6 @@ const clearShow = computed(() => isFocus.value && props.clearable && !!props.mod
 const passwordVisible = ref(false)
 const passwordToogleShow = computed(() => props.showPassword && !props.disabled && !!props.modelValue)
 
-watchEffect(() => {
-    console.log(passwordToogleShow.value)
-})
 const inputValue = computed({
     get() {
         return props.modelValue
@@ -110,9 +128,25 @@ const handleBlur = (e: FocusEvent) => {
 
 const handleClear = () => {
     emits('update:modelValue', '')
-    emits('input','')
-    emits('change','')
+    emits('input', '')
+    emits('change', '')
     emits('clear')
 }
+
+defineExpose({
+    ref: inputRef,
+    blur: () => {
+        inputRef.value?.blur()
+    },
+    clear: () => {
+        emits('update:modelValue', '')
+    },
+    focus: () => {
+        inputRef.value?.focus()
+    },
+    select: () => {
+        inputRef.value?.select()
+    },
+})
 </script>
 <style scoped></style>

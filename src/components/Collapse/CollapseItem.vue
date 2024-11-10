@@ -9,7 +9,9 @@
         </button>
         <Transition name="collapse" v-on="transitionEvents">
             <div class="dk-collapse-item__wrapper" v-show="isActive">
-                <div class="dk-collapse-item__content" :id="`item-content--${name}`">
+                <div class="dk-collapse-item__content" :class="{
+                    'is-center': center
+                }" :id="`item-content--${name}`">
                     <slot></slot>
                 </div>
             </div>

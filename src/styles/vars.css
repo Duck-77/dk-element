@@ -38,7 +38,7 @@
     --dk-border-color-dark: #d4d7de;
     --dk-border-color-darker: #cdd0d6;
 
-    /* fill */
+    /* fill-color */
     --dk-fill-color: #f0f2f5;
     --dk-fill-color-light: #f5f7fa;
     --dk-fill-color-lighter: #fafafa;
@@ -46,6 +46,11 @@
     --dk-fill-color-dark: #ebedf0;
     --dk-fill-color-darker: #e6e8eb;
     --dk-fill-color-blank: #ffffff;
+
+    /* size */
+    --dk-component-size-large: 40px;
+    --dk-component-size: 32px;
+    --dk-component-size-small: 24px;
 
     /* box-shadow */
 
