@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 import Input from '../../src/components/Input/Input.vue'
 
 describe('test::dk-input', () => {
-    it('1.测试 动态绑定', () => {
+    it('1.测试 类的动态绑定与插槽', () => {
         let wrapper = mount(Input, {
             props: {
                 size: 'large',
@@ -89,7 +89,7 @@ describe('test::dk-input', () => {
         expect(input.element.value).toBe('')
     })
 
-    it.only('4.测试 密码显示切换', async () => {
+    it('4.测试 密码显示切换', async () => {
         const wrapper = mount(Input, {
             props: {
                 modelValue: '',
@@ -114,5 +114,39 @@ describe('test::dk-input', () => {
         const passwordToogle = wrapper.find('.dk-input__password-toogle')
         await passwordToogle.trigger('click')
         expect(wrapper.get('.dk-input__password-toogle').attributes('icon')).toBe('fa-regular fa-eye')
+    })
+
+    it.only('5.测试 事件', async () => {
+        const wrapper = mount(Input, {
+            props: {
+                modelValue: '123456',
+                'onUpdate:modelValue': (e) => wrapper.setProps({ modelValue: e }),
+                clearable: true,
+            },
+            global: {
+                stubs: ['Icon'],
+            },
+        })
+
+        const input = wrapper.get('input')
+        await input.trigger('focus').then(() => {
+            input.setValue('12345')
+        })
+
+        const clearButton = wrapper.find('.dk-input__clear')
+        expect(clearButton.exists()).toBeTruthy()
+
+        await clearButton.trigger('click')
+        console.log(wrapper.emitted())
+        expect(wrapper.emitted()).toHaveProperty('focus')
+        expect(wrapper.emitted()).toHaveProperty('update:modelValue')
+        expect(wrapper.emitted()).toHaveProperty('input')
+        const inputEvents = wrapper.emitted('input')
+        const updateEvents = wrapper.emitted('update:modelValue')
+        expect(inputEvents![0]).toEqual([''])
+        expect(updateEvents![1]).toEqual([''])
+
+        await input.trigger('blur')
+        expect(wrapper.emitted()).toHaveProperty('blur')
     })
 })

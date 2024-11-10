@@ -1,14 +1,15 @@
 <template>
-    <div class="dk-input" :class="{
-        [`dk-input--${type}`]: type,
-        [`dk-input--${size}`]: size,
-        'is-disabled': disabled,
-        'is-prepend': $slots.prepend,
-        'is-append': $slots.append,
-        'is-prefix': $slots.prefix,
-        'is-suffix': $slots.suffix,
-    }">
-
+    <div
+        class="dk-input"
+        :class="{
+            [`dk-input--${type}`]: type,
+            [`dk-input--${size}`]: size,
+            'is-disabled': disabled,
+            'is-prepend': $slots.prepend,
+            'is-append': $slots.append,
+            'is-prefix': $slots.prefix,
+            'is-suffix': $slots.suffix,
+        }">
         <!-- input -->
         <template v-if="type !== 'textarea'">
             <!-- slots.prepend -->
@@ -20,17 +21,28 @@
                 <span class="dk-input__prefix" v-if="$slots.prefix">
                     <slot name="prefix"></slot>
                 </span>
-                <input class="dk-input__inner" v-model="inputValue"
-                    :type="showPassword ? (!passwordVisible ? 'password' : 'text') : type" :placeholder="placeholder"
-                    :disabled="disabled" @focus="isFocus = true" @blur="isFocus = false">
+                <input
+                    class="dk-input__inner"
+                    v-model="inputValue"
+                    :type="showPassword ? (!passwordVisible ? 'password' : 'text') : type"
+                    :placeholder="placeholder"
+                    :disabled="disabled"
+                    @focus="($event) => handleFocus($event)"
+                    @blur="($event) => handleBlur($event)"
+                    @change="handleChange" />
                 <!-- slots.suffix -->
                 <span class="dk-input__suffix" v-if="$slots.suffix || clearShow || passwordToogleShow">
                     <slot name="suffix"></slot>
-                    <Icon class="dk-input__clear" icon="fa-regular fa-circle-xmark" @click="handleClear"
+                    <Icon
+                        class="dk-input__clear"
+                        icon="fa-regular fa-circle-xmark"
+                        @click="handleClear"
                         v-if="clearShow"></Icon>
-                    <Icon class="dk-input__password-toogle"
+                    <Icon
+                        class="dk-input__password-toogle"
                         :icon="passwordVisible ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"
-                        @click="passwordVisible = !passwordVisible" v-if="passwordToogleShow"></Icon>
+                        @click="passwordVisible = !passwordVisible"
+                        v-if="passwordToogleShow"></Icon>
                 </span>
             </div>
             <!-- slots.append -->
@@ -41,49 +53,66 @@
 
         <!-- textarea -->
         <template v-else>
-            <textarea class="dk-textareaw__wrapper" v-model="inputValue" :placeholder="placeholder"
+            <textarea
+                class="dk-textareaw__wrapper"
+                v-model="inputValue"
+                :placeholder="placeholder"
                 :disabled="disabled"></textarea>
         </template>
     </div>
 </template>
 <script setup lang="ts">
-    import { computed, ref, watchEffect } from 'vue';
-    import type { InputProps, InputEmits } from './types';
-    import Icon from '../Icon/Icon.vue';
+import { computed, ref, watchEffect } from 'vue'
+import type { InputProps, InputEmits } from './types'
+import Icon from '../Icon/Icon.vue'
 
-    defineOptions({
-        name: 'DkInput'
-    })
-    const props = withDefaults(defineProps<InputProps>(), {
-        type: 'text'
-    })
-    const emits = defineEmits<InputEmits>()
+defineOptions({
+    name: 'DkInput',
+})
+const props = withDefaults(defineProps<InputProps>(), {
+    type: 'text',
+})
+const emits = defineEmits<InputEmits>()
 
-    const isFocus = ref(false)
-    const clearShow = computed(() => isFocus.value && props.clearable && !!props.modelValue)
+const isFocus = ref(false)
+const clearShow = computed(() => isFocus.value && props.clearable && !!props.modelValue)
 
-    const passwordVisible = ref(false)
-    const passwordToogleShow = computed(() => props.showPassword && !props.disabled && !!props.modelValue)
+const passwordVisible = ref(false)
+const passwordToogleShow = computed(() => props.showPassword && !props.disabled && !!props.modelValue)
 
-    watchEffect(() => {
-        console.log(passwordToogleShow.value)
-    })
-    const inputValue = computed({
-        get() {
-            return props.modelValue
-        },
-        set(newVal) {
-            if (newVal !== props.modelValue) {
-                emits('update:modelValue', newVal)
-            }
+watchEffect(() => {
+    console.log(passwordToogleShow.value)
+})
+const inputValue = computed({
+    get() {
+        return props.modelValue
+    },
+    set(newVal) {
+        if (newVal !== props.modelValue) {
+            emits('update:modelValue', newVal)
         }
-    })
+    },
+})
 
-    const handleClear = () => {
-        emits('update:modelValue', '')
-        emits('clear')
-    }
+const handleChange = () => {
+    emits('change', props.modelValue)
+}
 
+const handleFocus = (e: FocusEvent) => {
+    isFocus.value = true
+    emits('focus', e)
+}
 
+const handleBlur = (e: FocusEvent) => {
+    isFocus.value = false
+    emits('blur', e)
+}
+
+const handleClear = () => {
+    emits('update:modelValue', '')
+    emits('input','')
+    emits('change','')
+    emits('clear')
+}
 </script>
 <style scoped></style>
