@@ -8,11 +8,11 @@
         'is-disable': disabled,
         'is-loading': loading,
     }" :disabled="disabled || loading" :type="nativeType">
-        <Icon icon="spinner" spin v-if="loading" />
-        <Icon :icon="icon" v-if="icon" />
-        <span>
+        <div class="dk-button__content">
+            <Icon class="dk-button__icon" icon="spinner" spin v-if="loading" />
+            <Icon class="dk-button__icon" :icon="icon" v-if="icon" />
             <slot></slot>
-        </span>
+        </div>
     </button>
 </template>
 

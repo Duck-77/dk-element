@@ -3,15 +3,24 @@ import PostcssEach from 'postcss-each'
 import PostcssEachVariables from 'postcss-each-variables'
 import PostcssFor from 'postcss-for'
 import PostcssColorMix from 'postcss-color-mix'
+import PostcssNested from 'postcss-nested'
+import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
+import { fileURLToPath } from 'url'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-    title: 'My Awesome Project',
-    description: 'A VitePress Site',
+    title: 'Dk-Element',
+    description: '一个仿 Element Plus 的组件库',
     vite: {
+        resolve:{
+          alias:{
+             '@':fileURLToPath(new URL('../../src',import.meta.url))
+          }
+        },
         css: {
             postcss: {
                 plugins: [
+                    PostcssNested(),
                     PostcssEachVariables(),
                     PostcssEach({
                         plugins: {
@@ -23,6 +32,11 @@ export default defineConfig({
         },
     },
     vue: {},
+    markdown: {
+        config(md) {
+            md.use(containerPreview), md.use(componentPreview)
+        },
+    },
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
         nav: [

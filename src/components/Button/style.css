@@ -16,9 +16,6 @@
 }
 
 .dk-button {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
     line-height: 1;
     height: var(--dk-button-size);
     white-space: nowrap;
@@ -87,8 +84,10 @@
         border-color: var(--dk-button-border-color-disabled);
     }
 
-    [class*='dk-icon'] + span {
-        margin-left: 6px;
+    &__content {
+        display: flex;
+        align-items: center;
+        gap: 6px;
     }
 }
 

@@ -10,6 +10,7 @@
         }
         --dk-color-$(val)-light-8: mix(#fff, $(color), 0.8);
         --dk-color-$(val)-dark-2: mix(#000, $(color), 0.2);
+        --dk-color-$(val)-dark-4: mix(#000, $(color), 0.4);
     }
 
     --dk-color-white: #ffffff;

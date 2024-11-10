@@ -1,0 +1,16 @@
+:root {
+    /* 主题色 */
+    --vp-home-hero-name-color: var(--dk-color-primary);
+    --vp-c-brand-1: var(--dk-color-primary);
+    --vp-c-brand-light: var(--dk-color-primary-light-3);
+    --vp-c-brand-light: var(--dk-color-primary-light-5);
+    --vp-c-brand-dark: var(--dk-color-primary-dark-2);
+    --vp-c-brand-draker: var(--dk-color-primary-dark-4);
+    /* 代码块字体色 */
+    --vp-code-color: #303133; 
+}
+
+html.dark {
+    --dk-text-color-regular: #cfd3dc;
+    --dk-text-color-primary: #fff;
+}
