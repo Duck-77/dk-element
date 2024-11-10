@@ -19,13 +19,13 @@
 </template>
 <script setup lang="ts">
     import { computed, nextTick, onMounted, ref, watch } from 'vue'
-    import Render from '../common/Render'
+    import Render from '../Common/Render'
     import Icon from '../Icon/Icon.vue'
     import type { MessageProps } from './types'
     import { getLastMessageBottomOffset } from './method'
     import { useEventListener } from '@/hooks/useEventListener'
     import { useTimer } from '@/hooks/useTimer'
-    import TypeIcon from '../common/TypeIcon'
+    import TypeIcon from '../Common/TypeIcon'
 
     const props = withDefaults(defineProps<MessageProps>(), {
         type: 'info',

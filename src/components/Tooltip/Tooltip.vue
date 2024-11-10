@@ -32,8 +32,6 @@
         hideAfter: 0
     })
 
-    console.log(props)
-
     const emits = defineEmits<TooltipEmits>()
     // DOM
     const tooltipRef = ref<HTMLElement>()

@@ -40,7 +40,7 @@
     import { computed, ref } from 'vue'
     import type { AlertEmits, AlertProps } from './type'
     import Icon from '../Icon/Icon.vue'
-import TypeIcon from '../common/TypeIcon';
+import TypeIcon from '../Common/TypeIcon';
     defineOptions({
         name: 'DkAlert',
     })

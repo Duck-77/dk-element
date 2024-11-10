@@ -14,6 +14,7 @@
     import Dropdown from './components/Dropdown/Dropdown.tsx'
     import Message from './components/Message/Message.vue'
     import { DkMessage } from './components/Message/method.ts'
+    import Input from './components/Input/Input.vue'
 
     const openValue = ref<NameType[]>(['a'])
 
@@ -83,8 +84,10 @@
 
     const createMessage = () => {
         const type = getRandom(['success', 'warning', 'info', 'error'])
-        DkMessage({ message: `This is a ${type} message.`, type, plain: true, duration: 0 })
+        DkMessage({ message: `This is a ${type} message.`, type, plain: true})
     }
+
+    const inputValue = ref('')
 
 </script>
 
@@ -175,6 +178,10 @@
 
         <div class="message">
             <Button @click="createMessage">CreateMessage</Button>
+        </div>
+
+        <div class="input">
+            <Input v-model="inputValue" show-password/>
         </div>
     </main>
 </template>

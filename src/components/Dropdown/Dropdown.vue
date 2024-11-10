@@ -37,7 +37,7 @@ import { computed, nextTick, ref } from 'vue'
 import type { DropdownProps, DropdownEmits, MenuOption, DropdownExpose } from './types.ts'
 import Tooltip from '../Tooltip/Tooltip.vue'
 import type { TooltipExpose } from '../Tooltip/types'
-import Render from '../common/Render.js'
+import Render from '../Common/Render.js'
 
 defineOptions({
     name: 'DkDropdown',
