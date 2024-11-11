@@ -81,6 +81,7 @@
         set(newVal) {
             if (newVal !== props.modelValue) {
                 emits('update:modelValue', newVal)
+                emits('input',newVal)
             }
         },
     })

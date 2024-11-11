@@ -16,9 +16,10 @@
             @click-outside="toggleDropdowShow">
             <Input
                 ref="inputRef"
-                readonly
+                :readonly="!filterable"
                 class="dk-select__tooltip-trigger"
                 v-model="selectStates.inputValue"
+                @input="handleInputFilter"
                 :disabled="disabled"
                 :placeholder="placeholder">
                 <template #suffix>
@@ -40,7 +41,7 @@
 
             <template #content>
                 <ul class="dk-select__menu">
-                    <template v-for="(item, index) in options" :key="index">
+                    <template v-for="(item, index) in filterOptions" :key="index">
                         <li
                             class="dk-select__menu-item"
                             :class="{
@@ -49,8 +50,10 @@
                             }"
                             :id="`dk-select-item-${item.value}`"
                             @click.stop="selectOption(item)">
-                            <Render :vnode="customLabel ? customLabel(item) : item.label"></Render>
-                            {{ item.label }}
+                            <Render v-if="customLabel" :vnode="customLabel ? customLabel(item) : item.label"></Render>
+                            <span v-else>
+                                {{ item.label }}
+                            </span>
                         </li>
                     </template>
                 </ul>
@@ -59,7 +62,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed, reactive, ref, watchEffect } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 import type { SelectEmits, SelectOption, SelectProps, SelectStates } from './types'
 import type { TooltipExpose } from '../Tooltip/types'
 import type { InputExpose } from '../Input/types'
@@ -67,7 +70,6 @@ import Tooltip from '../Tooltip/Tooltip.vue'
 import Input from '../Input/Input.vue'
 import Icon from '../Icon/Icon.vue'
 import Render from '../Common/Render'
-
 
 defineOptions({
     name: 'DkSelect',
@@ -117,6 +119,26 @@ const selectStates = reactive<SelectStates>({
     selectedOption: initialOption,
     selectHover: false,
 })
+
+// 筛选过后的option数组（如果支持筛选）
+const filterOptions = ref(props.options)
+watch(
+    () => props.options,
+    (cur) => {
+        filterOptions.value = cur
+    }
+)
+
+const handleInputFilter = (searchValue: string) => {
+    console.log(searchValue)
+    if (!props.filterable) return
+    if (props.filterMethod && typeof props.filterMethod === 'function') {
+        filterOptions.value = props.filterMethod(searchValue)
+    } else {
+        filterOptions.value = props.options.filter((option) => option.label.includes(searchValue))
+    }
+    filterOptions.value = props.options
+}
 
 const dropdowShow = ref(false)
 

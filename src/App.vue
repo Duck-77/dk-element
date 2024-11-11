@@ -286,7 +286,7 @@
         <div class="select">
             <Collapse v-model="selectOption">
                 <CollapseItem name="select" title="Select 展示" center>
-                    <Select v-model="selectValue" :options="selectOptions" clearable></Select>
+                    <Select v-model="selectValue" :options="selectOptions" clearable filterable></Select>
                 </CollapseItem>
             </Collapse>
         </div>
