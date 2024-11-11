@@ -16,32 +16,35 @@
             @click-outside="toggleDropdowShow">
             <Input
                 ref="inputRef"
-                :readonly="!filterable"
+                :readonly="!filterable || !dropdowShow"
                 class="dk-select__tooltip-trigger"
                 v-model="selectStates.inputValue"
                 @input="handleInputFilter"
                 :disabled="disabled"
-                :placeholder="placeholder">
+                :placeholder="filterPlaceholder">
                 <template #suffix>
-                    <Icon
-                        class="dk-select__clear"
-                        icon="fa-regular fa-circle-xmark"
-                        @mousedown.prevent="() => {}"
-                        @click.stop="handleClear"
-                        v-if="clearButtonShow"></Icon>
-                    <Icon
-                        class="dk-select__angle-down"
-                        :class="{
-                            'is-active': dropdowShow,
-                        }"
-                        icon="angle-down"
-                        v-else></Icon>
+                    <span class="dk-select__icon">
+                        <Icon
+                            class="dk-select__clear"
+                            icon="fa-regular fa-circle-xmark"
+                            @mousedown.prevent="() => {}"
+                            @click.stop="handleClear"
+                            v-if="clearButtonShow"></Icon>
+                        <Icon
+                            class="dk-select__angle-down"
+                            :class="{
+                                'is-active': dropdowShow,
+                            }"
+                            icon="angle-down"
+                            v-else>
+                        </Icon>
+                    </span>
                 </template>
             </Input>
 
             <template #content>
                 <ul class="dk-select__menu">
-                    <template v-for="(item, index) in filterOptions" :key="index">
+                    <template v-for="(item, index) in filterOptions" :key="index" v-if="filterOptions.length">
                         <li
                             class="dk-select__menu-item"
                             :class="{
@@ -55,6 +58,9 @@
                                 {{ item.label }}
                             </span>
                         </li>
+                    </template>
+                    <template v-else>
+                        <div class="dk-select__filter-nothing">No matching data</div>
                     </template>
                 </ul>
             </template>
@@ -86,7 +92,6 @@ const emits = defineEmits<SelectEmits>()
 const inputRef = ref<InputExpose>()
 const toolTipRef = ref<TooltipExpose>()
 
-// 调整dorpdown与input宽度一致
 const popperOptions: any = {
     modifiers: [
         {
@@ -110,17 +115,15 @@ const popperOptions: any = {
     ],
 }
 
-// 初始inputValue对应的选项
+
 const initialOption = findOption()
 
-// 用于保存select中的各种状态
 const selectStates = reactive<SelectStates>({
     inputValue: props.modelValue,
     selectedOption: initialOption,
     selectHover: false,
 })
 
-// 筛选过后的option数组（如果支持筛选）
 const filterOptions = ref(props.options)
 watch(
     () => props.options,
@@ -128,6 +131,14 @@ watch(
         filterOptions.value = cur
     }
 )
+
+const filterPlaceholder = computed(() => {
+    if (dropdowShow.value && selectStates.selectedOption) {
+        return selectStates.selectedOption.label
+    } else {
+        return props.placeholder
+    }
+})
 
 const handleInputFilter = (searchValue: string) => {
     console.log(searchValue)
@@ -137,13 +148,11 @@ const handleInputFilter = (searchValue: string) => {
     } else {
         filterOptions.value = props.options.filter((option) => option.label.includes(searchValue))
     }
-    filterOptions.value = props.options
 }
 
 const dropdowShow = ref(false)
 
 const clearButtonShow = computed(() => {
-    // 移入显示清空图标：1.clearable 2.存在已选项 3.inputValue不为空
     return (
         props.clearable &&
         selectStates.selectHover &&
@@ -160,16 +169,23 @@ const handleClear = () => {
     emits('update:modelValue', '')
 }
 
-// 用于手动执行tooltip暴露的方法
 const excuteManual = (next: boolean) => {
     if (next) {
+        if (selectStates.selectedOption) {
+            selectStates.inputValue = ''
+        }
+        if (props.filterable){
+            filterOptions.value = props.options
+        }
         toolTipRef.value?.onShow()
     } else {
+        if (selectStates.selectedOption) {
+            selectStates.inputValue = selectStates.selectedOption.label
+        }
         toolTipRef.value?.onHide()
     }
 }
 
-// 用于切换dorpdow的显示状态
 const toggleDropdowShow = () => {
     if (props.disabled) return
     dropdowShow.value = !dropdowShow.value

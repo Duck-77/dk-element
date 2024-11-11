@@ -20,7 +20,6 @@
     display: inline-block;
     vertical-align: middle;
     line-height: 32px;
-    user-select: none;
 
     .dk-select__tooltip-trigger,
     .dk-select__angle-down,
@@ -72,5 +71,13 @@
                 background: var(--dk-select-item-hover-bg-color);
             }
         }
+    }
+
+    .dk-select__filter-nothing{
+        width: 100%;
+        padding: 5px 0;
+        font-size: 12px;
+        color: var(--dk-text-color-placeholder);
+        text-align: center;
     }
 }
