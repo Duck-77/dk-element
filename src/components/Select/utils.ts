@@ -64,6 +64,7 @@ const remoteFilter: (e: string) => Promise<SelectOption[]> = (query: string) => 
                     .map((label) => {
                         return { label, value: label }
                     })
+                    .slice(0,10)
                 resolve(options)
             }, 500)
         } else {

@@ -28,6 +28,7 @@ export interface SelectStates {
     selectedOption: null | SelectOption
     selectHover: boolean
     loading:boolean
+    currentSelectedIndex:number;
 }
 
 export interface SelectEmits {

@@ -45,15 +45,16 @@
 
             <template #content>
                 <div class="dk-select--loading" v-if="selectStates.loading">
-                      <Icon icon="spinner" spin></Icon>
+                    <Icon icon="spinner" spin></Icon>
                 </div>
                 <ul class="dk-select__menu" v-else-if="filterOptions.length">
-                    <template v-for="(item, index) in filterOptions" :key="index" >
+                    <template v-for="(item, index) in filterOptions" :key="index">
                         <li
                             class="dk-select__menu-item"
                             :class="{
                                 'is-disabled': item.disabled,
                                 'is-selected': selectStates.selectedOption?.value === item.value,
+                                'is-highlight': selectStates.currentSelectedIndex === index,
                             }"
                             :id="`dk-select-item-${item.value}`"
                             @click.stop="selectOption(item)">
@@ -65,12 +66,8 @@
                     </template>
                 </ul>
                 <div class="dk-select__nothing" v-else>
-                    <template v-if="remote">
-                        No Data
-                    </template>
-                    <template v-else>
-                        No matching data
-                    </template>
+                    <template v-if="remote"> No Data </template>
+                    <template v-else> No matching data </template>
                 </div>
             </template>
         </Tooltip>
@@ -96,8 +93,8 @@ const findOption = () => {
     return option ? option : null
 }
 
-const props = withDefaults(defineProps<SelectProps>(),{
-    options:()=>[]
+const props = withDefaults(defineProps<SelectProps>(), {
+    options: () => [],
 })
 const emits = defineEmits<SelectEmits>()
 
@@ -127,14 +124,14 @@ const popperOptions: any = {
     ],
 }
 
-
 const initialOption = findOption()
 
 const selectStates = reactive<SelectStates>({
     inputValue: props.modelValue,
     selectedOption: initialOption,
     selectHover: false,
-    loading: false
+    loading: false,
+    currentSelectedIndex: -1,
 })
 
 const filterOptions = ref(props.options)
@@ -153,32 +150,33 @@ const filterPlaceholder = computed(() => {
     }
 })
 
-const remoteTimemout = computed(()=>props.remote ? 500 : 0)
+const remoteTimemout = computed(() => (props.remote ? 500 : 0))
 
 const handleInputFilter = async (searchValue: string) => {
     if (!props.filterable) return
     // 自定义筛选规则
     if (props.filterMethod && typeof props.filterMethod === 'function') {
         filterOptions.value = props.filterMethod(searchValue)
-    // 自定义远程搜索规则
-    } else if(props.remote && props.remoteMethod && typeof props.remoteMethod === 'function'){
+        // 自定义远程搜索规则
+    } else if (props.remote && props.remoteMethod && typeof props.remoteMethod === 'function') {
         selectStates.loading = true
-      try{
-        filterOptions.value = await props.remoteMethod(searchValue)
-      }catch(e){
-        console.error(e)
-        filterOptions.value = []
-      }finally{
-        selectStates.loading = false
-      }
+        try {
+            filterOptions.value = await props.remoteMethod(searchValue)
+        } catch (e) {
+            console.error(e)
+            filterOptions.value = []
+        } finally {
+            selectStates.loading = false
+        }
     }
     // 默认搜索规则
     else {
         filterOptions.value = props.options.filter((option) => option.label.includes(searchValue))
     }
+    selectStates.currentSelectedIndex = -1
 }
 
-const debounceInputFilter = debounce(handleInputFilter,remoteTimemout.value)
+const debounceInputFilter = debounce(handleInputFilter, remoteTimemout.value)
 
 const dropdowShow = ref(false)
 
@@ -204,7 +202,7 @@ const excuteManual = (next: boolean) => {
         if (selectStates.selectedOption) {
             selectStates.inputValue = ''
         }
-        if (props.filterable){
+        if (props.filterable) {
             filterOptions.value = props.options
         }
         toolTipRef.value?.onShow()
@@ -212,6 +210,8 @@ const excuteManual = (next: boolean) => {
         if (selectStates.selectedOption) {
             selectStates.inputValue = selectStates.selectedOption.label
         }
+
+        selectStates.currentSelectedIndex = -1
         toolTipRef.value?.onHide()
     }
 }
@@ -221,6 +221,7 @@ const toggleDropdowShow = () => {
     dropdowShow.value = !dropdowShow.value
     if (dropdowShow.value) {
         excuteManual(true)
+        handleInputFilter(selectStates.inputValue)
     } else {
         excuteManual(false)
     }
@@ -237,19 +238,50 @@ const selectOption = (e: SelectOption) => {
     toggleDropdowShow()
 }
 
-const handleKeydown = (e:KeyboardEvent)=>{
-    switch(e.key){
-      case 'Enter':
-        toggleDropdowShow()
-        break
-      case 'Escape':
-        if(dropdowShow.value){
-            toggleDropdowShow()
-        }
-        break
-      default:
-        break
+const handleKeydown = (e: KeyboardEvent) => {
+    switch (e.key) {
+        case 'Enter':
+            if(!dropdowShow.value){
+                toggleDropdowShow()
+                handleInputFilter(selectStates.inputValue)
+            }else{
+                if(selectStates.currentSelectedIndex > -1 && filterOptions.value[selectStates.currentSelectedIndex]){
+                    selectOption(filterOptions.value[selectStates.currentSelectedIndex])
+                }else{
+                    toggleDropdowShow()
+                }
+            }
+            break
+        case 'Escape':
+            if (dropdowShow.value) {
+                toggleDropdowShow()
+            }
+            break
+        case 'ArrowUp':
+            e.preventDefault()
+            if (filterOptions.value.length) {
+                if (selectStates.currentSelectedIndex === -1 || selectStates.currentSelectedIndex === 0) {
+                    selectStates.currentSelectedIndex = filterOptions.value.length - 1
+                } else {
+                    selectStates.currentSelectedIndex--
+                }
+            }
+            break
+        case 'ArrowDown':
+            e.preventDefault()
+            if (filterOptions.value.length) {
+                if (
+                    selectStates.currentSelectedIndex === -1 ||
+                    selectStates.currentSelectedIndex === filterOptions.value.length - 1
+                ) {
+                    selectStates.currentSelectedIndex = 0
+                } else {
+                    selectStates.currentSelectedIndex++
+                }
+            }
+            break
+        default:
+            break
     }
 }
-
 </script>

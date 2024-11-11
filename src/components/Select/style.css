@@ -67,13 +67,15 @@
                 }
             }
 
-            &:hover {
+            &:hover,
+            &.is-highlight {
                 background: var(--dk-select-item-hover-bg-color);
             }
         }
     }
 
-    .dk-select--loading,.dk-select__nothing {
+    .dk-select--loading,
+    .dk-select__nothing {
         font-size: 12px;
         width: 100%;
         display: flex;
