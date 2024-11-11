@@ -16,10 +16,11 @@
             @click-outside="toggleDropdowShow">
             <Input
                 ref="inputRef"
-                :readonly="!filterable || !dropdowShow"
+                :readonly="!filterable || !dropdowShow || !remote"
                 class="dk-select__tooltip-trigger"
                 v-model="selectStates.inputValue"
-                @input="handleInputFilter"
+                @input="debounceInputFilter"
+                @keydown="handleKeydown"
                 :disabled="disabled"
                 :placeholder="filterPlaceholder">
                 <template #suffix>
@@ -43,8 +44,11 @@
             </Input>
 
             <template #content>
-                <ul class="dk-select__menu">
-                    <template v-for="(item, index) in filterOptions" :key="index" v-if="filterOptions.length">
+                <div class="dk-select--loading" v-if="selectStates.loading">
+                      <Icon icon="spinner" spin></Icon>
+                </div>
+                <ul class="dk-select__menu" v-else-if="filterOptions.length">
+                    <template v-for="(item, index) in filterOptions" :key="index" >
                         <li
                             class="dk-select__menu-item"
                             :class="{
@@ -59,10 +63,15 @@
                             </span>
                         </li>
                     </template>
-                    <template v-else>
-                        <div class="dk-select__filter-nothing">No matching data</div>
-                    </template>
                 </ul>
+                <div class="dk-select__nothing" v-else>
+                    <template v-if="remote">
+                        No Data
+                    </template>
+                    <template v-else>
+                        No matching data
+                    </template>
+                </div>
             </template>
         </Tooltip>
     </div>
@@ -70,6 +79,7 @@
 <script setup lang="ts">
 import { computed, reactive, ref, watch } from 'vue'
 import type { SelectEmits, SelectOption, SelectProps, SelectStates } from './types'
+import { debounce } from 'lodash-es'
 import type { TooltipExpose } from '../Tooltip/types'
 import type { InputExpose } from '../Input/types'
 import Tooltip from '../Tooltip/Tooltip.vue'
@@ -86,7 +96,9 @@ const findOption = () => {
     return option ? option : null
 }
 
-const props = defineProps<SelectProps>()
+const props = withDefaults(defineProps<SelectProps>(),{
+    options:()=>[]
+})
 const emits = defineEmits<SelectEmits>()
 
 const inputRef = ref<InputExpose>()
@@ -122,6 +134,7 @@ const selectStates = reactive<SelectStates>({
     inputValue: props.modelValue,
     selectedOption: initialOption,
     selectHover: false,
+    loading: false
 })
 
 const filterOptions = ref(props.options)
@@ -140,15 +153,32 @@ const filterPlaceholder = computed(() => {
     }
 })
 
-const handleInputFilter = (searchValue: string) => {
-    console.log(searchValue)
+const remoteTimemout = computed(()=>props.remote ? 500 : 0)
+
+const handleInputFilter = async (searchValue: string) => {
     if (!props.filterable) return
+    // 自定义筛选规则
     if (props.filterMethod && typeof props.filterMethod === 'function') {
         filterOptions.value = props.filterMethod(searchValue)
-    } else {
+    // 自定义远程搜索规则
+    } else if(props.remote && props.remoteMethod && typeof props.remoteMethod === 'function'){
+        selectStates.loading = true
+      try{
+        filterOptions.value = await props.remoteMethod(searchValue)
+      }catch(e){
+        console.error(e)
+        filterOptions.value = []
+      }finally{
+        selectStates.loading = false
+      }
+    }
+    // 默认搜索规则
+    else {
         filterOptions.value = props.options.filter((option) => option.label.includes(searchValue))
     }
 }
+
+const debounceInputFilter = debounce(handleInputFilter,remoteTimemout.value)
 
 const dropdowShow = ref(false)
 
@@ -206,4 +236,20 @@ const selectOption = (e: SelectOption) => {
     inputRef.value?.focus()
     toggleDropdowShow()
 }
+
+const handleKeydown = (e:KeyboardEvent)=>{
+    switch(e.key){
+      case 'Enter':
+        toggleDropdowShow()
+        break
+      case 'Escape':
+        if(dropdowShow.value){
+            toggleDropdowShow()
+        }
+        break
+      default:
+        break
+    }
+}
+
 </script>

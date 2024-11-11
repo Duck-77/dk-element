@@ -14,6 +14,7 @@
     import type { MessageType } from './components/Message/types.ts'
     import Switch from './components/Switch/Switch.vue'
     import Select from './components/Select/Select.vue'
+    import { remoteFilter } from './components/Select/utils.ts'
 
     const useButton = () => {
         const buttonOpen = ref([])
@@ -142,7 +143,7 @@
             { label: 'option3', value: '3', disabled: true },
             { label: 'option4', value: '4' }
         ]
-        const selectValue = ref('3')
+        const selectValue = ref('')
 
         return { selectOption, selectOptions, selectValue }
     }
@@ -286,7 +287,7 @@
         <div class="select">
             <Collapse v-model="selectOption">
                 <CollapseItem name="select" title="Select 展示" center>
-                    <Select v-model="selectValue" :options="selectOptions" clearable filterable></Select>
+                    <Select v-model="selectValue" clearable filterable remote :remote-method="remoteFilter"></Select>
                 </CollapseItem>
             </Collapse>
         </div>

@@ -1,7 +1,8 @@
 import type { VNode } from 'vue'
 
 export type RenderLabelFunc = (option: SelectOption) => VNode
-export type CustomFilterFUnc = (value: string) => SelectOption[]
+export type CustomFilterFunc = (value: string) => SelectOption[]
+export type CustomRemoteFunc = (value: string) => Promise<SelectOption[]>
 
 export interface SelectOption {
     label: string
@@ -11,19 +12,22 @@ export interface SelectOption {
 
 export interface SelectProps {
     modelValue: string
-    options: SelectOption[]
+    options?: SelectOption[]
     placeholder?: string
     clearable?: boolean
     disabled?: boolean
     customLabel?: RenderLabelFunc
     filterable?: boolean
-    filterMethod?: CustomFilterFUnc
+    filterMethod?: CustomFilterFunc
+    remote?: boolean
+    remoteMethod?: CustomRemoteFunc
 }
 
 export interface SelectStates {
     inputValue: string
     selectedOption: null | SelectOption
     selectHover: boolean
+    loading:boolean
 }
 
 export interface SelectEmits {

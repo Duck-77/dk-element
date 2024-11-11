@@ -73,11 +73,13 @@
         }
     }
 
-    .dk-select__filter-nothing{
-        width: 100%;
-        padding: 5px 0;
+    .dk-select--loading,.dk-select__nothing {
         font-size: 12px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: var(--dk-text-color-placeholder);
-        text-align: center;
+        padding: 10px 0;
     }
 }

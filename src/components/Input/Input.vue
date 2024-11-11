@@ -51,7 +51,6 @@
 </template>
 <script setup lang="ts">
     import { computed, ref, useAttrs } from 'vue'
-    import type { Ref } from 'vue'
     import type { InputProps, InputEmits, InputExpose } from './types'
     import Icon from '../Icon/Icon.vue'
     defineOptions({
