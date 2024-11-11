@@ -42,6 +42,7 @@
     "jsdom": "^25.0.1",
     "lodash-es": "^4.17.21",
     "npm-run-all2": "^7.0.1",
+    "postcss-advanced-variables": "^5.0.0",
     "postcss-color-mix": "^1.1.0",
     "postcss-each": "^1.1.0",
     "postcss-each-variables": "^0.3.0",

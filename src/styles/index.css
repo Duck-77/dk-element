@@ -15,4 +15,6 @@
 /* Dk-Message */
 @import '../components/Message/style.css';
 /* Dk-Input */
-@import '../components/Input/style.css'
+@import '../components/Input/style.css';
+/* Dk-Switch */
+@import '../components/Switch/style.css';

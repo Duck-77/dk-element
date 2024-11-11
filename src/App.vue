@@ -12,6 +12,7 @@
     import { DkMessage } from './components/Message/method.ts'
     import Input from './components/Input/Input.vue'
     import type { MessageType } from './components/Message/types.ts'
+    import Switch from './components/Switch/Switch.vue'
 
     const useButton = () => {
         const buttonOpen = ref([])
@@ -108,12 +109,38 @@
         return { messageOpen, createMessage }
     }
 
+    const useSwitch = () => {
+        const swtichOpen = ref([])
+        const swtichValue = ref(false)
+        const switchLoading = ref(false)
+
+        const switchBeforeChange: () => Promise<boolean> = () => {
+            switchLoading.value = true
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    switchLoading.value = false
+                    resolve(false)
+                    DkMessage({ message: 'Switch faild', type: 'error' })
+                }, 1500)
+            })
+        }
+
+        return {
+            swtichOpen,
+            swtichValue,
+            switchLoading,
+            switchBeforeChange
+        }
+    }
+
     const { buttonOpen } = useButton()
     const { alertOpen } = useAlert()
     const { placement, tooltipOpen, handleTooltipToggle, manaulOpen, manaulClose, randomPlacement } = useTooltip()
     const { dropdownRef, dropdownOpen, menuOptions } = useDropdown()
     const { inputValue, inputOpen } = useInput()
     const { messageOpen, createMessage } = useMessage()
+    const { swtichOpen, swtichValue, switchLoading, switchBeforeChange } = useSwitch()
+
 </script>
 
 <template>
@@ -213,25 +240,35 @@
                 <CollapseItem name="input" title="Input 展示" center>
                     <div style="display: grid; ">
                         <div>
-                        <Input v-model="inputValue" show-password>
-                        <template #prepend>
-                            https://
-                        </template>
-                        <template #append>
-                            .com
-                        </template>
-                        <template #prefix>
-                            prefix
-                        </template>
-                        <template #suffix>
-                            suffix
-                        </template>
-                        </Input>
+                            <Input v-model="inputValue" show-password>
+                            <template #prepend>
+                                https://
+                            </template>
+                            <template #append>
+                                .com
+                            </template>
+                            <template #prefix>
+                                prefix
+                            </template>
+                            <template #suffix>
+                                suffix
+                            </template>
+                            </Input>
+                        </div>
+                        <div>
+                            <Input v-model="inputValue" type="textarea" />
+                        </div>
                     </div>
-                    <div>
-                        <Input v-model="inputValue" type="textarea" />
-                    </div>
-                    </div>
+                </CollapseItem>
+            </Collapse>
+        </div>
+
+        <div class="switch">
+            <Collapse v-model="swtichOpen">
+                <CollapseItem name="switch" title="Switch 展示" center>
+                    <Switch v-model="swtichValue" :loading="switchLoading" :before-change="switchBeforeChange"
+                        icon="fa-regular fa-user" inactive-value="left" active-value="right" active-text="on"
+                        inactive-text="off"></Switch>
                 </CollapseItem>
             </Collapse>
         </div>

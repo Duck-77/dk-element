@@ -14,6 +14,8 @@ import PostcssFor from 'postcss-for'
 //@ts-ignore
 import PostcssColorMix from 'postcss-color-mix'
 import PostcssNested from 'postcss-nested'
+//@ts-ignore
+import PostcssAdvancedVariables from 'postcss-advanced-variables'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -38,6 +40,11 @@ export default defineConfig({
                         beforeEach: [PostcssFor(), PostcssColorMix()],
                     },
                 }),
+                // PostcssAdvancedVariables({
+                //     variables: {
+                //         namespace: 'dk',
+                //     },
+                // }),
             ],
         },
     },
