@@ -13,6 +13,7 @@
     import Input from './components/Input/Input.vue'
     import type { MessageType } from './components/Message/types.ts'
     import Switch from './components/Switch/Switch.vue'
+    import Select from './components/Select/Select.vue'
 
     const useButton = () => {
         const buttonOpen = ref([])
@@ -133,6 +134,19 @@
         }
     }
 
+    const useSelect = () => {
+        const selectOption = ref([])
+        const selectOptions = [
+            { label: 'option1', value: '1' },
+            { label: 'option2', value: '2' },
+            { label: 'option3', value: '3', disabled: true },
+            { label: 'option4', value: '4' }
+        ]
+        const selectValue = ref('3')
+
+        return { selectOption, selectOptions, selectValue }
+    }
+
     const { buttonOpen } = useButton()
     const { alertOpen } = useAlert()
     const { placement, tooltipOpen, handleTooltipToggle, manaulOpen, manaulClose, randomPlacement } = useTooltip()
@@ -140,6 +154,7 @@
     const { inputValue, inputOpen } = useInput()
     const { messageOpen, createMessage } = useMessage()
     const { swtichOpen, swtichValue, switchLoading, switchBeforeChange } = useSwitch()
+    const { selectOption, selectOptions, selectValue } = useSelect()
 
 </script>
 
@@ -213,7 +228,6 @@
                 </CollapseItem>
             </Collapse>
         </div>
-
         <div class="dropdown">
             <Collapse v-model="dropdownOpen">
                 <CollapseItem name="dropdown" title="Dropdown 展示" center>
@@ -226,7 +240,6 @@
                 </CollapseItem>
             </Collapse>
         </div>
-
         <div class="message">
             <Collapse v-model="messageOpen">
                 <CollapseItem name="message" title="Message 展示" center>
@@ -234,7 +247,6 @@
                 </CollapseItem>
             </Collapse>
         </div>
-
         <div class="input">
             <Collapse v-model="inputOpen">
                 <CollapseItem name="input" title="Input 展示" center>
@@ -262,13 +274,19 @@
                 </CollapseItem>
             </Collapse>
         </div>
-
         <div class="switch">
             <Collapse v-model="swtichOpen">
                 <CollapseItem name="switch" title="Switch 展示" center>
                     <Switch v-model="swtichValue" :loading="switchLoading" :before-change="switchBeforeChange"
                         icon="fa-regular fa-user" inactive-value="left" active-value="right" active-text="on"
                         inactive-text="off"></Switch>
+                </CollapseItem>
+            </Collapse>
+        </div>
+        <div class="select">
+            <Collapse v-model="selectOption">
+                <CollapseItem name="select" title="Select 展示" center>
+                    <Select v-model="selectValue" :options="selectOptions" clearable></Select>
                 </CollapseItem>
             </Collapse>
         </div>

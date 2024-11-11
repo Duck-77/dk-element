@@ -105,6 +105,9 @@
         if (props.trigger === 'click' && popperShow.value && !props.manual) {
             toggle.hide()
         }
+        if (popperShow.value) {
+            emits('click-outside', true)
+        }
     })
 
     let popper: Instance

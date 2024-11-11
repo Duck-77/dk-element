@@ -1,7 +1,6 @@
 import type { Ref } from 'vue'
 import type { Placement, Options } from '@popperjs/core'
 
-
 export type Trigger = 'hover' | 'click'
 export type TooltipEffect = 'light' | 'dark'
 
@@ -25,6 +24,7 @@ export interface Toggle {
 
 export interface TooltipEmits {
     (e: 'visible-change', value: boolean): void
+    (e: 'click-outside', value: boolean): void
 }
 
 export interface TooltipExpose {
