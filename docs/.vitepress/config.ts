@@ -12,10 +12,10 @@ export default defineConfig({
     title: 'Dk-Element',
     description: '一个仿 Element Plus 的组件库',
     vite: {
-        resolve:{
-          alias:{
-             '@':fileURLToPath(new URL('../../src',import.meta.url))
-          }
+        resolve: {
+            alias: {
+                '@': fileURLToPath(new URL('../../src', import.meta.url)),
+            },
         },
         css: {
             postcss: {
@@ -58,7 +58,10 @@ export default defineConfig({
             '/components': [
                 {
                     text: 'Basic 基础组件',
-                    items: [{ text: 'Button', link: '/components/button' }],
+                    items: [
+                        { text: 'Button', link: '/components/button' },
+                        { text: 'Radio', link: '/components/radio' },
+                    ],
                 },
             ],
         },
