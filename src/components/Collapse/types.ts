@@ -13,7 +13,6 @@ export interface CollapseItemProps {
     disabled?: boolean
     center?: boolean
 }
-
 export interface CollapseContext {
     activeNames: Ref<NameType[]>
     handleItemClick: (item: NameType) => void

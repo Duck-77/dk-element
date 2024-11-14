@@ -7,8 +7,8 @@
     </view>
 </template>
 <script setup lang="ts">
-import { computed, provide, ref } from 'vue'
-import { type RadioGroupProps, type RadioGroupEmits, radioGropContextKey } from './RadioGroup'
+import { nextTick, provide, reactive, ref, toRefs } from 'vue'
+import { type RadioGroupProps, type RadioGroupEmits, radioGroupContextKey, type RadioGroupContext } from './RadioGroup'
 defineOptions({
     name: 'DkRadioGroup',
 })
@@ -18,11 +18,23 @@ const props = withDefaults(defineProps<RadioGroupProps>(), {
     name: 'dk-radio-group-name',
 })
 
-provide(radioGropContextKey, {
-    disabled: ref(props.disabled),
-    name: ref(props.name),
-})
-
 const emits = defineEmits<RadioGroupEmits>()
+
+const changeEvent: RadioGroupContext['changeEvent'] = (value) => {
+    emits('update:modelValue', value)
+    nextTick(() => emits('change', value))
+}
+
+const { modelValue, disabled, name } = toRefs(props)
+
+provide(
+    radioGroupContextKey,
+    reactive({
+        modelValue,
+        disabled,
+        name,
+        changeEvent,
+    })
+)
 </script>
 <style scoped></style>
