@@ -1,5 +1,5 @@
 import { type RadioEmits, type RadioProps } from './Radio'
-import { computed, inject, ref, type SetupContext } from 'vue'
+import { computed, inject, ref, useId, type SetupContext } from 'vue'
 import { radioGroupContextKey } from './RadioGroup'
 
 export const useRadio = (props: RadioProps, emit?: RadioEmits) => {
@@ -19,10 +19,18 @@ export const useRadio = (props: RadioProps, emit?: RadioEmits) => {
             radioRef.value!.checked = modelValue.value === props.value
         },
     })
-    const disabled = radioGroup?.disabled || props.disabled
-    const name = radioGroup?.name || props.name
-    const checked = computed(() => modelValue.value === props.value)
     const focus = ref(false)
+    const disabled = computed(() => radioGroup?.disabled || props.disabled)
+    const name = computed(() => {
+        if (isGroup) {
+            return radioGroup?.name || props.name
+        } else {
+            return props.name || useId()
+        }
+    })
+    const checked = computed(() => modelValue.value === props.value)
+    const border = computed(() => radioGroup?.border || props.border)
+    const size = computed(() => radioGroup?.size || props.size)
 
     return {
         radioRef,
@@ -30,6 +38,8 @@ export const useRadio = (props: RadioProps, emit?: RadioEmits) => {
         disabled,
         name,
         checked,
-        focus
+        focus,
+        border,
+        size,
     }
 }

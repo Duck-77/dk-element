@@ -1,10 +1,11 @@
 import type { InjectionKey, Ref } from 'vue'
 
-import { type RadioValueType } from './Radio'
+import { type RadioValueType, type RadioSize } from './Radio'
 
 export interface RadioGroupProps {
     modelValue: RadioValueType
-    size?: 'larger' | 'defualt' | 'small'
+    size?: RadioSize
+    border?: boolean
     disabled?: boolean
     name?: string
     id?: string
@@ -17,6 +18,8 @@ export interface RadioGroupEmits {
 
 export interface RadioGroupContext {
     modelValue: RadioValueType
+    border: boolean
+    size: RadioSize
     disabled: boolean
     name: string
     changeEvent: (value: RadioGroupProps['modelValue']) => void

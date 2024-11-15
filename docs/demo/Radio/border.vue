@@ -1,5 +1,7 @@
 <template>
-    <DkRadioGroup v-model="value">
+    <DkRadioGroup
+        border
+        v-model="value">
         <DkRadio value="1">option A</DkRadio>
         <DkRadio value="2">option B</DkRadio>
         <DkRadio value="3">option C</DkRadio>

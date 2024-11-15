@@ -24,7 +24,7 @@ const changeEvent: RadioGroupContext['changeEvent'] = (value) => {
     nextTick(() => emits('change', value))
 }
 
-const { modelValue, disabled } = toRefs(props)
+const { modelValue, disabled, border, size } = toRefs(props)
 
 const name = computed(() => props.name || useId())
 
@@ -32,8 +32,10 @@ provide(
     radioGroupContextKey,
     reactive({
         modelValue,
+        border,
         disabled,
         name,
+        size,
         changeEvent,
     })
 )

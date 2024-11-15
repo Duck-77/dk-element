@@ -1,11 +1,13 @@
 export type RadioValueType = string | number | boolean | undefined
+export type RadioSize = 'large' | 'defualt' | 'small'
 
 export interface RadioProps {
     modelValue?: RadioValueType
     label?: string
     value?: RadioValueType
-    size?: 'small' | 'default' | 'large'
+    size?: RadioSize
     name?: string
+    border?: boolean
     disabled?: boolean
 }
 

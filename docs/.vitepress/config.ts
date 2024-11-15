@@ -42,7 +42,7 @@ export default defineConfig({
         nav: [
             { text: 'Home', link: '/' },
             { text: 'Examples', link: '/markdown-examples' },
-            { text: 'Components', link: '/components' },
+            { text: '组件', link: '/components' },
         ],
 
         sidebar: {
@@ -57,7 +57,7 @@ export default defineConfig({
             ],
             '/components': [
                 {
-                    text: 'Basic 基础组件',
+                    text: '基础组件',
                     items: [
                         { text: 'Button', link: '/components/button' },
                         { text: 'Radio', link: '/components/radio' },
