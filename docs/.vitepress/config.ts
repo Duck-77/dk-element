@@ -61,6 +61,7 @@ export default defineConfig({
                     items: [
                         { text: 'Button', link: '/components/button' },
                         { text: 'Radio', link: '/components/radio' },
+                        { text: 'Form', link: '/components/form' },
                     ],
                 },
             ],
