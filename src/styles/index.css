@@ -20,3 +20,6 @@
 @import '../components/Switch/style.css';
 /* Dk-Select */
 @import '../components/Select/style.css';
+/* Dk-Radio */
+@import '../components/Radio/style/radio.css';
+@import '../components/Radio/style/radio-group.css'

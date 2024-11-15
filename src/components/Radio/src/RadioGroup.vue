@@ -7,7 +7,7 @@
     </view>
 </template>
 <script setup lang="ts">
-import { nextTick, provide, reactive, ref, toRefs } from 'vue'
+import { computed, nextTick, provide, reactive, ref, toRefs, useId } from 'vue'
 import { type RadioGroupProps, type RadioGroupEmits, radioGroupContextKey, type RadioGroupContext } from './RadioGroup'
 defineOptions({
     name: 'DkRadioGroup',
@@ -15,7 +15,6 @@ defineOptions({
 
 const props = withDefaults(defineProps<RadioGroupProps>(), {
     size: 'defualt',
-    name: 'dk-radio-group-name',
 })
 
 const emits = defineEmits<RadioGroupEmits>()
@@ -25,7 +24,9 @@ const changeEvent: RadioGroupContext['changeEvent'] = (value) => {
     nextTick(() => emits('change', value))
 }
 
-const { modelValue, disabled, name } = toRefs(props)
+const { modelValue, disabled } = toRefs(props)
+
+const name = computed(() => props.name || useId())
 
 provide(
     radioGroupContextKey,

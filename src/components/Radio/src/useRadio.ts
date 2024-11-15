@@ -5,7 +5,6 @@ import { radioGroupContextKey } from './RadioGroup'
 export const useRadio = (props: RadioProps, emit?: RadioEmits) => {
     const radioRef = ref<HTMLInputElement>()
     const radioGroup = inject(radioGroupContextKey, undefined)
-    console.log('radioGroup', radioGroup, 'radioGroup?.modelValue', radioGroup?.modelValue)
     const isGroup = computed(() => !!radioGroup)
     const modelValue = computed<RadioProps['modelValue']>({
         get() {
@@ -22,11 +21,15 @@ export const useRadio = (props: RadioProps, emit?: RadioEmits) => {
     })
     const disabled = radioGroup?.disabled || props.disabled
     const name = radioGroup?.name || props.name
+    const checked = computed(() => modelValue.value === props.value)
+    const focus = ref(false)
 
     return {
         radioRef,
         modelValue,
         disabled,
         name,
+        checked,
+        focus
     }
 }
