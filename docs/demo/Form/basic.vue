@@ -5,20 +5,27 @@
             :rules="rules">
             <FormItem
                 label="username"
-                #label="scope"
                 prop="username">
-                <Input
-                    :placeholder="scope.label"
-                    v-model="model.username" />
+                <template #label="scope">
+                    {{ scope.label }}
+                </template>
+                <Input v-model="model.username" />
             </FormItem>
             <FormItem
                 label="password"
-                #label="scope"
                 prop="password">
                 <Input
                     type="password"
-                    :placeholder="scope.label"
                     v-model="model.password" />
+            </FormItem>
+            <FormItem
+                label="email"
+                prop="email">
+                <template #default="{ validate }">
+                    <input
+                        v-model="model.email"
+                        @blur="validate" />
+                </template>
             </FormItem>
         </Form>
         <div>
@@ -32,16 +39,18 @@ import Form from '@/components/Form/src/Form.vue'
 import FormItem from '@/components/Form/src/FormItem.vue'
 import Input from '@/components/Input/Input.vue'
 import Button from '@/components/Button/Button.vue'
-import { reactive } from 'vue'
+import { reactive, watchEffect } from 'vue'
 
 const model = reactive({
     username: '',
     password: '',
+    email: '',
 })
 
 const rules = {
-    username: [{ type: 'string', required: true, trigger: 'blur' }],
-    password: [{ type: 'string', required: true, tigger: 'blur' }],
+    username: [{ type: 'string', required: true, trigger: 'blur', max: 5, min: 3 }],
+    password: [{ type: 'string', required: true, trigger: 'blur' }],
+    email: [{ type: 'email', required: true, trigger: 'blur' }],
 }
 </script>
 <style scoped></style>
