@@ -23,3 +23,6 @@
 /* Dk-Radio */
 @import '../components/Radio/style/radio.css';
 @import '../components/Radio/style/radio-group.css';
+/* Dk-Form */
+@import '../components/Form/style/form.css';
+@import '../components/Form/style/form-item.css';

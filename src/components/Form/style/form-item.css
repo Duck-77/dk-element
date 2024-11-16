@@ -1,0 +1,102 @@
+.dk-form-item {
+    --dk-form-item-margin: 0 0 18px 0;
+    --dk-form-item-label-wrapper-padding: 0 19px 0 0;
+    --dk-form-item-label-width: 150px;
+    --dk-form-item-label-font-size: var(--dk-font-size-base);
+    --dk-form-item-content-font-size: var(--dk-font-size-base);
+    --dk-form-item-error-message-font-size: var(--dk-font-size-extra-small);
+}
+
+.dk-form-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-wrap: nowrap;
+    margin: var(--dk-form-item-margin);
+
+    .dk-form-item__label-wrapper {
+        padding: var(--dk-form-item-label-wrapper-padding);
+
+        .dk-form-item__label {
+            width: var(--dk-form-item-label-width);
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            flex-wrap: nowrap;
+            box-sizing: border-box;
+            font-size: var(--dk-form-item-label-font-size);
+        }
+    }
+
+    .dk-form-item__content {
+        flex: 1;
+        min-width: 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: var(--dk-form-item-content-font-size);
+        line-height: 32px;
+
+        .dk-form-item__error-message {
+            padding-top: 2px;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            color: var(--dk-color-danger);
+            font-size: var(--dk-form-item-error-message-font-size);
+            line-height: 1;
+        }
+    }
+}
+
+.dk-form-item {
+    &--label-top {
+        display: block;
+    }
+
+    &.is-success .dk-input__wrapper {
+        box-shadow: 0 0 0 1px var(--dk-color-success) inset;
+    }
+
+    &.is-error .dk-input__wrapper {
+        box-shadow: 0 0 0 1px var(--dk-color-danger) inset;
+    }
+}
+
+.dk-form-item__label {
+    &.dk-form-item--label-left {
+        justify-content: flex-start;
+    }
+
+    &.dk-form-item--label-right {
+        justify-content: flex-end;
+    }
+
+    &.is-required {
+        &::before {
+            content: '*';
+            color: var(--dk-color-danger);
+            margin-right: 4px;
+        }
+    }
+}
+
+.dk-form-item__error-message-fade {
+    &-enter-from,
+    &-leave-from {
+        transform: scaleY(0);
+    }
+
+    &-enter-active,
+    &-leave-active {
+        transform-origin: top;
+        transition: transform 0.18s ease-in;
+    }
+
+    &-enter-to,
+    &-leave-to {
+        transform: scaleY(1);
+    }
+}

@@ -1,7 +1,10 @@
 <template>
     <form
         action=""
-        class="dk-form">
+        class="dk-form"
+        :class="{
+            [`dk-form--label-${labelPosition}`]: labelPosition,
+        }">
         <slot></slot>
     </form>
 </template>

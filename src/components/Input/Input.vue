@@ -149,7 +149,9 @@ const handleClear = () => {
 
 const runValidation = (trigger?: string) => {
     if (isFormItem.value) {
-        formItemContext?.validate(trigger)
+        formItemContext?.validate(trigger).catch((e) => {
+            console.log('validate failed:', e.errors)
+        })
     }
 }
 

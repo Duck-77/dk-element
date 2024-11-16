@@ -2,17 +2,29 @@
     <div>
         <Form
             ref="formRef"
-            :model="model">
-            <FormItem label="username">
+            :model="model"
+            :rules="rules">
+            <FormItem
+                label="username"
+                prop="username">
                 <template #label="scope">
                     {{ scope.label }}
                 </template>
                 <Input v-model="model.username" />
             </FormItem>
-            <FormItem label="password">
+            <FormItem
+                label="password"
+                prop="password">
                 <Input
                     type="password"
                     v-model="model.password" />
+            </FormItem>
+            <FormItem
+                label="email"
+                prop="email">
+                <Input
+                    type="email"
+                    v-model="model.email" />
             </FormItem>
         </Form>
         <div>
@@ -37,10 +49,26 @@ const formRef = ref()
 const model = reactive({
     username: '',
     password: '',
+    email: '',
 })
 
-const submit = async () => {}
+const rules = {
+    username: [{ type: 'string', required: true, trigger: 'input', max: 5, min: 3 }],
+    password: [{ type: 'string', required: true, trigger: 'blur' }],
+    email: [{ type: 'email', required: true, trigger: 'blur' }],
+}
 
-const reset = () => {}
+const submit = async () => {
+    try {
+        await formRef.value.validate()
+        console.log('validate succfully')
+    } catch (e) {
+        console.log('validate failed ', e)
+    }
+}
+
+const reset = () => {
+    formRef.value.clearValidates()
+}
 </script>
 <style scoped></style>

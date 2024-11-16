@@ -6,7 +6,8 @@ export type FormRules = Record<string, FormItemRule[]>
 
 export interface FormProps {
     model: Record<string, any>
-    rules: FormRules
+    rules?: FormRules
+    labelPosition?: 'left' | 'right' | 'top'
 }
 
 export interface FormContext extends FormProps {
