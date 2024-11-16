@@ -24,16 +24,18 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed, inject, provide, reactive } from 'vue'
+import { computed, inject, onMounted, onUnmounted, provide, reactive, toRefs } from 'vue'
 import { formContextKey, type FormValidateFailure } from './Form'
 import { isNil } from 'lodash-es'
 import Schema from 'async-validator'
-import { formItemContextKey, type FormItemProps } from './FormItem'
+import { formItemContextKey, type FormItemContext, type FormItemProps } from './FormItem'
 defineOptions({
     name: 'DkFormItem',
 })
 
-const props = defineProps<FormItemProps>()
+const props = withDefaults(defineProps<FormItemProps>(), {
+    prop: '',
+})
 const formContext = inject(formContextKey)
 
 const innerVal = computed(() => {
@@ -44,6 +46,8 @@ const innerVal = computed(() => {
         return null
     }
 })
+
+let initialVal: any = null
 
 const innerRule = computed(() => {
     const rules = formContext?.rules
@@ -60,14 +64,29 @@ const validateStatus = reactive({
     loading: false,
 })
 
-const validate = () => {
+const getTrggeredRules = (trigger?: string) => {
+    const rules = innerRule.value
+    if (rules.length) {
+        return rules.filter((rule) => {
+            if (!rule.trigger || !trigger) return true
+            return trigger && rule.trigger === trigger
+        })
+    } else {
+        return []
+    }
+}
+
+const validate = (trigger?: string) => {
+    const triggerRules = getTrggeredRules(trigger)
+    if (triggerRules.length === 0) {
+        return true
+    }
     if (props.prop) {
-        console.log('执行')
         const validator = new Schema({
-            [props.prop]: innerRule.value,
+            [props.prop]: triggerRules,
         })
         validateStatus.loading = true
-        validator
+        return validator
             .validate({ [props.prop]: innerVal.value })
             .then(() => {
                 validateStatus.state = 'success'
@@ -76,6 +95,7 @@ const validate = () => {
                 const { errors } = e
                 validateStatus.state = 'error'
                 validateStatus.errorMessage = errors && errors.length > 0 ? errors[0].message || '' : ''
+                return Promise.reject(e)
             })
             .finally(() => {
                 validateStatus.loading = false
@@ -83,11 +103,42 @@ const validate = () => {
     }
 }
 
-provide(
-    formItemContextKey,
-    reactive({
-        validate,
-    })
-)
+const clearValidate = () => {
+    validateStatus.state = ''
+    validateStatus.errorMessage = ''
+    validateStatus.loading = false
+}
+
+const resetField = () => {
+    clearValidate()
+    const model = formContext?.model
+    if (model && props.prop && !isNil(model[props.prop])) {
+        model[props.prop] = initialVal
+    }
+}
+
+const { prop } = toRefs(props)
+
+const formItemContext: FormItemContext = reactive({
+    prop,
+    validate,
+    clearValidate,
+    resetField,
+})
+
+provide(formItemContextKey, formItemContext)
+
+onMounted(() => {
+    if (props.prop) {
+        formContext?.addField(formItemContext)
+        initialVal = innerVal.value
+    }
+})
+
+onUnmounted(() => {
+    if (props.prop) {
+        formContext?.removeField(formItemContext)
+    }
+})
 </script>
 <style scoped></style>

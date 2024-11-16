@@ -1,6 +1,7 @@
 <template>
     <div>
         <Form
+            ref="formRef"
             :model="model"
             :rules="rules">
             <FormItem
@@ -29,8 +30,12 @@
             </FormItem>
         </Form>
         <div>
-            <Button type="primary"> Submit</Button>
-            <Button>Reset</Button>
+            <Button
+                type="primary"
+                @click="submit">
+                Submit</Button
+            >
+            <Button @click.prevent="reset">Reset</Button>
         </div>
     </div>
 </template>
@@ -39,7 +44,9 @@ import Form from '@/components/Form/src/Form.vue'
 import FormItem from '@/components/Form/src/FormItem.vue'
 import Input from '@/components/Input/Input.vue'
 import Button from '@/components/Button/Button.vue'
-import { reactive, watchEffect } from 'vue'
+import { reactive, ref } from 'vue'
+
+const formRef = ref()
 
 const model = reactive({
     username: '',
@@ -48,9 +55,22 @@ const model = reactive({
 })
 
 const rules = {
-    username: [{ type: 'string', required: true, trigger: 'blur', max: 5, min: 3 }],
+    username: [{ type: 'string', required: true, trigger: 'input', max: 5, min: 3 }],
     password: [{ type: 'string', required: true, trigger: 'blur' }],
     email: [{ type: 'email', required: true, trigger: 'blur' }],
+}
+
+const submit = async () => {
+    try {
+        await formRef.value.validate()
+        console.log('validate succfully')
+    } catch (e) {
+        console.log('validate failed ', e)
+    }
+}
+
+const reset = () => {
+    formRef.value.clearValidates()
 }
 </script>
 <style scoped></style>
