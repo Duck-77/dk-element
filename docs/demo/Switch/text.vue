@@ -1,8 +1,13 @@
 <template>
     <div class="switch-demo">
-        <Switch v-model="switchVal1"></Switch>
+        <Switch
+            v-model="switchVal1"
+            activeText="on"
+            inactiveText="off"></Switch>
         <Switch
             v-model="switchVal2"
+            activeText="ononononon"
+            inactiveText="offoffoffoffoff"
             style="--dk-switch-on-color: #13ce66; --dk-switch-off-color: #ff4949"></Switch>
     </div>
 </template>
@@ -14,7 +19,7 @@ const switchVal1 = ref(false)
 const switchVal2 = ref(false)
 </script>
 <style scoped>
-.switch-demo{
+.switch-demo {
     display: flex;
     gap: 10px;
 }
