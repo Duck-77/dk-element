@@ -1,3 +1,26 @@
-.dk-form{
-    
+.dk-form {
+    &.dk-form--hide-required-asterisk {
+        .dk-form-item {
+            .dk-form-item__label::before,
+            .dk-form-item__label::after {
+                content: none;
+            }
+        }
+    }
+
+    &.dk-form--require-asterisk-left {
+        .dk-form-item {
+            .dk-form-item__label::after {
+                content: none;
+            }
+        }
+    }
+
+    &.dk-form--require-asterisk-right {
+        .dk-form-item {
+            .dk-form-item__label::before {
+                content: none;
+            }
+        }
+    }
 }

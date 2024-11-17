@@ -1,7 +1,6 @@
 .dk-form-item {
     --dk-form-item-margin: 0 0 18px 0;
     --dk-form-item-label-wrapper-padding: 0 19px 0 0;
-    --dk-form-item-label-width: 150px;
     --dk-form-item-label-font-size: var(--dk-font-size-base);
     --dk-form-item-content-font-size: var(--dk-font-size-base);
     --dk-form-item-error-message-font-size: var(--dk-font-size-extra-small);
@@ -12,7 +11,6 @@
     display: flex;
     align-items: center;
     justify-content: left;
-    flex-wrap: nowrap;
     margin: var(--dk-form-item-margin);
 
     .dk-form-item__label-wrapper {
@@ -20,10 +18,7 @@
 
         .dk-form-item__label {
             width: var(--dk-form-item-label-width);
-            overflow: hidden;
-            white-space: nowrap;
             display: flex;
-            flex-wrap: nowrap;
             box-sizing: border-box;
             font-size: var(--dk-form-item-label-font-size);
         }
@@ -79,6 +74,12 @@
             content: '*';
             color: var(--dk-color-danger);
             margin-right: 4px;
+        }
+
+        &::after {
+            content: '*';
+            color: var(--dk-color-danger);
+            margin-left: 4px;
         }
     }
 }

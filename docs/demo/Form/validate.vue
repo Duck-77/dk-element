@@ -53,7 +53,7 @@ const model = reactive({
 })
 
 const rules = {
-    username: [{ type: 'string', required: true, trigger: 'input', max: 5, min: 3 }],
+    username: [{ type: 'string', trigger: 'input', max: 5, min: 3 }],
     password: [{ type: 'string', required: true, trigger: 'blur' }],
     email: [{ type: 'email', required: true, trigger: 'blur' }],
 }

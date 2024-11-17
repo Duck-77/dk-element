@@ -2,7 +2,8 @@
     <div>
         <Form
             ref="formRef"
-            :model="model">
+            :model="model"
+            >
             <FormItem label="username">
                 <template #label="scope">
                     {{ scope.label }}

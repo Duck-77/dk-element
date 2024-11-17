@@ -1,10 +1,16 @@
 import type { RuleItem } from 'async-validator'
-import type { InjectionKey } from 'vue'
+import type { ComputedRef, InjectionKey, Ref } from 'vue'
+import type { FormRules } from './Form'
 
 export interface FormItemProps {
-    label: string
     prop?: string
+    label: string
     labelPosition?: 'left' | 'right' | 'top'
+    labelWidth?: string | number
+    required?: boolean
+    rules?: FormRules
+    error?: string
+    showMessage?: boolean
 }
 
 export interface FormItemRule extends RuleItem {
@@ -22,6 +28,11 @@ export interface FormItemContext {
     validate: (trigger?: FormItemRule['trigger']) => Promise<any>
     clearValidate: () => void
     resetField: () => void
+}
+
+export interface FormItemLabel {
+    prop: string
+    labelRef: HTMLLabelElement
 }
 
 export interface FormItemInstance {

@@ -3,10 +3,13 @@
         <Form
             ref="formRef"
             :model="model"
-            :rules="rules">
+            :rules="rules"
+            requireAsteriskPosition="right"
+            hide-require-asterisk>
             <FormItem
                 label="username"
-                prop="username">
+                prop="username"
+                :show-message="false">
                 <template #label="scope">
                     {{ scope.label }}
                 </template>
@@ -21,7 +24,8 @@
             </FormItem>
             <FormItem
                 label="confirmPassword"
-                prop="confirmPassword">
+                prop="confirmPassword"
+                :rules="confirmPwdRules">
                 <Input
                     type="password"
                     v-model="model.confirmPassword" />
@@ -55,10 +59,17 @@ const model = reactive({
 const rules = {
     username: [{ type: 'string', required: true, trigger: 'input', max: 5, min: 3 }],
     password: [{ type: 'string', required: true, trigger: 'blur' }],
-    confirmPassword: [
-        { type: 'string', required: true, trigger: 'blur', validator: (rule, value) => value === model.password,message:'comfirm-password 与 password 不一致' },
-    ],
 }
+
+const confirmPwdRules = [
+    {
+        type: 'string',
+        required: true,
+        trigger: 'blur',
+        validator: (rule, value) => value.trim() !== '' && value === model.password,
+        message: 'comfirm-password 与 password 不一致',
+    },
+]
 
 const submit = async () => {
     try {

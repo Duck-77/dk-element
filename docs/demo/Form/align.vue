@@ -27,7 +27,7 @@
                 </RadioGroup>
             </FormItem>
             <FormItem
-                label="username"
+                label="uname"
                 :label-position="formItemLabelPosition">
                 <Input v-model="model.username" />
             </FormItem>
