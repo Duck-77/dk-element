@@ -13,6 +13,8 @@
         <div class="dk-switch__core" @click.prevent="handleSwitchToogle">
             <div class="dk-switch__core-action">
                 <Icon class="dk-switch__core-action-loading" size="xs" icon="spinner" spin v-if="loading"></Icon>
+                <Icon class="dk-switch__core-action-icon" size="xs" :icon="activeActionIcon" v-else-if="activeActionIcon && switchValue"></Icon>
+                <Icon class="dk-switch__core-action-icon" size="xs" :icon="inactiveActionIcon" v-else-if="inactiveActionIcon &&!switchValue"></Icon>
                 <Icon class="dk-switch__core-action-icon" size="xs" :icon="icon" v-else-if="icon"></Icon>
             </div>
             <div class="dk-switch__core-inner">
