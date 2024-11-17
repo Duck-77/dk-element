@@ -10,7 +10,11 @@
 .dk-alert {
     --alert-padding-col: 8px;
     --alert-padding-row: 16px;
+    --alert-title-font-size: 16px;
+    --alert-content-font-size: var(--dk-font-size-baee);
+}
 
+.dk-alert {
     margin: 20px 0;
     padding: var(--alert-padding-col) var(--alert-padding-row);
     width: 100%;
@@ -39,7 +43,7 @@
         position: relative;
         display: inline-flex;
         justify-content: space-between;
-        font-size: var(--dk-font-size-base);
+        font-size: var(--alert-title-font-size);
 
         &.is-center {
             justify-content: center;
@@ -57,6 +61,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        font-size: var(--alert-content-font-size);
 
         .dk-alert__content-row {
             display: flex;

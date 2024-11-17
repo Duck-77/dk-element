@@ -6,12 +6,14 @@ import PostcssColorMix from 'postcss-color-mix'
 import PostcssNested from 'postcss-nested'
 import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
 import { fileURLToPath } from 'url'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
     title: 'Dk-Element',
     description: '一个仿 Element Plus 的组件库',
     vite: {
+        plugins: [vueJsx()],
         resolve: {
             alias: {
                 '@': fileURLToPath(new URL('../../src', import.meta.url)),
@@ -64,6 +66,10 @@ export default defineConfig({
                         { text: 'Form', link: '/components/form' },
                         { text: 'Collapse', link: '/components/collapse' },
                     ],
+                },
+                {
+                    text: 'Feedback 反馈组件',
+                    items: [{ text: 'Alert', link: '/components/alert' }],
                 },
             ],
         },
