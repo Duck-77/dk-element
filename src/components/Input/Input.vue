@@ -145,6 +145,7 @@ const handleClear = () => {
     emits('input', '')
     emits('change', '')
     emits('clear')
+    console.log('clear',props.modelValue)
 }
 
 const runValidation = (trigger?: string) => {

@@ -42,8 +42,8 @@ export default defineConfig({
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
         nav: [
-            { text: 'Home', link: '/' },
-            { text: 'Examples', link: '/markdown-examples' },
+            { text: '首页', link: '/' },
+            { text: '快速开始', link: '/markdown-examples' },
             { text: '组件', link: '/components' },
         ],
 
@@ -62,10 +62,22 @@ export default defineConfig({
                     text: 'Basic 基础组件',
                     items: [
                         { text: 'Button', link: '/components/button' },
-                        { text: 'Radio', link: '/components/radio' },
-                        { text: 'Form', link: '/components/form' },
-                        { text: 'Collapse', link: '/components/collapse' },
+                        { text: 'Icon', link: '/components/icon' },
                     ],
+                },
+                {
+                    text: 'Form 表单组件',
+                    items: [
+                        { text: 'Input', link: '/components/input' },
+                        { text: 'Radio', link: '/components/radio' },
+                        { text: 'Switch', link: '/components/switch' },
+                        { text: 'Select', link: '/components/select' },
+                        { text: 'Form', link: '/components/form' },
+                    ],
+                },
+                {
+                    text: 'Data 数据展示',
+                    items: [{ text: 'Collapse', link: '/components/collapse' }],
                 },
                 {
                     text: 'Navigation 导航',
