@@ -20,6 +20,6 @@ export default defineComponent({
         map.set('warning', 'circle-exclamation')
         map.set('error', 'circle-xmark')
 
-        return () => <Icon icon={map.get(props.type)}></Icon>
+        return () => <Icon icon={map.get(props.type) || props.type}></Icon>
     },
 })

@@ -21,6 +21,7 @@ export const DkMessage: MessageCreator = (props) => {
             render(null, container)
         },
     }
+
     const vnode = h(Message, _props)
 
     render(vnode, container)

@@ -6,11 +6,11 @@
     --dk-button-text-color-disabled: var(--dk-disabled-text-color);
     --dk-button-font-weight: var(--dk-font-weight-primary);
     --dk-button-bg-color: var(--dk-fill-color-blank);
-    --dk-button-bg-color-hover: var(--dk-color-primary-light-9);
+    --dk-button-bg-color-hover: var(--dk-fill-color-blank);
     --dk-button-bg-color-active: var(--dk-button-bg-color-hover);
     --dk-button-bg-color-disabled: var(--dk-fill-color-blank);
     --dk-button-border-color: var(--dk-border-color);
-    --dk-button-border-color-hover: var(--dk-color-primary-light-7);
+    --dk-button-border-color-hover: var(--dk-color-primary);
     --dk-button-border-color-active: var(--dk-color-primary);
     --dk-button-border-color-disbaled: var(--dk-border-color-light);
 }

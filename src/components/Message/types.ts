@@ -13,6 +13,9 @@ export interface MessageProps {
     plain?: boolean
     icon?: string
     onDestory: () => void
+    onShow?: () => void
+    onClose?: () => void
+    onClickClose?: () => void
 }
 
 export interface MessageContext {
@@ -27,4 +30,10 @@ export type MessageCreatorProps = Omit<MessageProps, 'onDestory' | 'id' | 'zInde
 
 export interface MessageCreator {
     (props: MessageCreatorProps): MessageContext
+}
+
+export interface MessageEmits {
+    (e: 'show'): void
+    (e: 'close'): void
+    (e: 'click-close'): void
 }

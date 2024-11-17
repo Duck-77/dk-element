@@ -73,7 +73,10 @@ export default defineConfig({
                 },
                 {
                     text: 'Feedback 反馈组件',
-                    items: [{ text: 'Alert', link: '/components/alert' }],
+                    items: [
+                        { text: 'Alert', link: '/components/alert' },
+                        { text: 'Message', link: '/components/message' },
+                    ],
                 },
             ],
         },
