@@ -1,6 +1,6 @@
 ---
-title: Form | Dk-element
-decription: Form 组件文档
+title: Form
+decription: 表单
 ---
 
 # Form 表单

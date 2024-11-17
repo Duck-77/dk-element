@@ -11,7 +11,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
     title: 'Dk-Element',
-    description: '一个仿 Element Plus 的组件库',
+    description: '一个参考 Element Plus 的 Vue3 组件库',
     vite: {
         plugins: [vueJsx()],
         resolve: {
@@ -59,13 +59,17 @@ export default defineConfig({
             ],
             '/components': [
                 {
-                    text: '基础组件',
+                    text: 'Basic 基础组件',
                     items: [
                         { text: 'Button', link: '/components/button' },
                         { text: 'Radio', link: '/components/radio' },
                         { text: 'Form', link: '/components/form' },
                         { text: 'Collapse', link: '/components/collapse' },
                     ],
+                },
+                {
+                    text: 'Navigation 导航',
+                    items: [{ text: 'Dropdown', link: '/components/dropdown' }],
                 },
                 {
                     text: 'Feedback 反馈组件',

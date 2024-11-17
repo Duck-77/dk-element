@@ -14,8 +14,13 @@
             <slot></slot>
             <template #content>
                 <ul class="dk-dropdown__menu">
-                    <template v-for="option in menuOptions" :key="option.key">
-                        <li v-if="option.divided" role="separator" class="divided-placeholder"></li>
+                    <template
+                        v-for="option in menuOptions"
+                        :key="option.key">
+                        <li
+                            v-if="option.divided"
+                            role="separator"
+                            class="divided-placeholder"></li>
                         <li
                             class="dk-dropdown__option"
                             :class="{
@@ -70,14 +75,9 @@ const handleOptionClick = (option: MenuOption) => {
     emits('select', option)
 }
 
-const tooltipRef = computed(() => tooltipInstance.value?.tooltipRef as HTMLElement | undefined)
-const contentRef = computed(() => tooltipInstance.value?.contentRef as HTMLElement | undefined)
-
 defineExpose<DropdownExpose>({
-    tooltipRef,
-    contentRef,
-    onShow: tooltipInstance.value!.onShow,
-    onHide: tooltipInstance.value!.onHide,
+    onShow: () => tooltipInstance.value?.onShow(),
+    onHide: () => tooltipInstance.value?.onHide(),
 })
 </script>
 <style scoped></style>

@@ -1,9 +1,12 @@
 .dk-dropdown {
-    --dk-dropdown-option-padding: 8px 6px;
+    --dk-dropdown-option-padding: 5px 16px;
     --dk-dropdown-hover-text-color: var(--dk-color-primary);
     --dk-dropdown-hover-bg-color: var(--dk-color-primary-light-9);
+    --dk-dropdown-option-font-size: var(--dk-font-size-base);
+}
 
-    & .dk-tooltip__popper{
+.dk-dropdown {
+    & .dk-tooltip__popper {
         box-sizing: border-box;
         padding: 5px 0;
     }
@@ -20,12 +23,13 @@
         justify-content: center;
         padding: var(--dk-dropdown-option-padding);
         cursor: pointer;
+        font-size: var(--dk-dropdown-option-font-size);
 
         &:hover {
             color: var(--dk-dropdown-hover-text-color);
             background: var(--dk-dropdown-hover-bg-color);
         }
-        
+
         &.is-disabled {
             cursor: not-allowed;
         }

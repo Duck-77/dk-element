@@ -1,6 +1,6 @@
 ---
-title: Alert | Dk-Element
-description: Alert 组件文档
+title: Alert
+description: 提示
 ---
 
 # Alert 提示

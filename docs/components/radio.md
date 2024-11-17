@@ -1,9 +1,9 @@
 ---
-title: Radio | Dk-Element
-description: Radio 组件文档
+title: Radio
+description: 单选框
 ---
 
-# Radio 多选框
+# Radio 单选框
 
 ## 基础用法
 

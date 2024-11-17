@@ -1,6 +1,6 @@
 ---
-title: Collapse | Dk-Element
-descritipn: Collapse 组件文档
+title: Collapse
+descritipn: 折叠面板
 ---
 
 # Collapse 折叠面板

@@ -13,7 +13,7 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 import '@vitepress-demo-preview/component/dist/style.css'
 import { AntDesignContainer, ElementPlusContainer, NavieUIContainer } from '@vitepress-demo-preview/component'
 
-library.add(fas,far)
+library.add(fas, far)
 
 export default {
     ...DefaultTheme,

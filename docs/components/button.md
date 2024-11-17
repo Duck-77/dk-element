@@ -1,6 +1,6 @@
 ---
-title: Button | Dk-Element
-description: Button 组件文档
+title: Button
+description: 按钮
 ---
 
 # Button 按钮

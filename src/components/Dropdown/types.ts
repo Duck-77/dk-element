@@ -19,8 +19,6 @@ export interface DropdownEmits {
 }
 
 export interface DropdownExpose {
-    tooltipRef: Ref<undefined | HTMLElement>
-    contentRef: Ref<undefined | HTMLElement> | undefined
     onShow: () => void
     onHide: () => void
 }
