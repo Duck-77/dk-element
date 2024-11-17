@@ -34,7 +34,7 @@ export default defineConfig({
     vue: {},
     markdown: {
         config(md) {
-            md.use(containerPreview), md.use(componentPreview)
+            md.use(containerPreview).use(componentPreview)
         },
     },
     themeConfig: {
@@ -62,6 +62,7 @@ export default defineConfig({
                         { text: 'Button', link: '/components/button' },
                         { text: 'Radio', link: '/components/radio' },
                         { text: 'Form', link: '/components/form' },
+                        { text: 'Collapse', link: '/components/collapse' },
                     ],
                 },
             ],
