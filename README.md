@@ -1,6 +1,6 @@
 # dk-element
 
-一个仿 [Element-Plus](https://element-plus.org/) 的组件库项目
+一个参考 [Element-Plus](https://element-plus.org/) 的 Vue3 组件库项目
 
 ## Recommended IDE Setup
 
