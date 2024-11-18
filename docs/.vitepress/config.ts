@@ -10,8 +10,8 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-    title: 'Dk-Element',
-    description: '一个参考 Element Plus 的 Vue3 组件库',
+    title: 'Dk-UI',
+    description: '一个仿照 Element Plus 的 Vue3 + TypeScript 的组件库项目',
     vite: {
         plugins: [vueJsx()],
         resolve: {
@@ -88,6 +88,7 @@ export default defineConfig({
                     items: [
                         { text: 'Alert', link: '/components/alert' },
                         { text: 'Message', link: '/components/message' },
+                        { text: 'Tooltip', link: '/components/tooltip' },
                     ],
                 },
             ],
