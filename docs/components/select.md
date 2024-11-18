@@ -7,7 +7,7 @@ description: 选择器
 
 ## 基础用法
 
-通过给 dk-select 绑定 v-model，绑定的值会随着选择的值而更新
+通过给 `dk-select` 绑定 `v-model`，绑定的值会随着选择的值而更新
 
 :::preview
 
@@ -27,7 +27,7 @@ demo-preview=../demo/Select/have-disabled.vue
 
 ## 禁用状态
 
-当为 dk-select 添加 disabled 时，整个 dk-select 不可用
+当为 `dk-select` 添加 `disabled` 时，整个 `dk-select` 不可用
 
 :::preview
 
@@ -37,7 +37,7 @@ demo-preview=../demo/Select/disabled.vue
 
 ## 一键清空
 
-当为 dk-select 添加 clearable, 且在输入框有值的情况下，会清空输入框的值
+当为 `dk-select` 添加 `clearable`, 且在输入框有值的情况下，会清空输入框的值
 
 :::preview
 
@@ -47,7 +47,7 @@ demo-preview=../demo/Select/clear.vue
 
 ## 筛选选项
 
-当为 dk-select 添加 filterable 时，如果不传递 filter-mothod ，它会遵循默认的筛选策略，就是根据输入的值进行查询， 如果添加了 filter-method 时，才会根据传入的 method 进行筛选
+当为 `dk-select` 添加 `filterable` 时，如果不传递 `filter-mothod` ，它会遵循默认的筛选策略，就是根据输入的值进行查询， 如果添加了 filter-method 时，才会根据传入的 method 进行筛选
 
 :::preview
 
@@ -57,7 +57,7 @@ demo-preview=../demo/Select/filter.vue
 
 ## 远程搜索
 
-当为 dk-select 添加 filterable 时，如果不传递 filter-mothod ，它会遵循默认的筛选策略，就是根据输入的值进行查询， 如果添加了 filter-method 时，才会根据传入的 method 进行筛选
+需要同时传入 `filterable`, `remote`, 以及 `remote-method`, 如果不传入 `filterable` 属性，则不会进行筛选，当同时传入 `filter-method` 时， 它的优先级比 `remote-method` 要高
 
 :::preview
 
