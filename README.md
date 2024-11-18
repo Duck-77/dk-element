@@ -1,4 +1,4 @@
-# dk-element
+# Dk-UI
 
 一个仿照 [Element-Plus](https://element-plus.org/) 的 Vue3 组件库学习项目
 
