@@ -3,7 +3,7 @@
     --dk-popper-text-color: var(--dk-color-black);
     --dk-popper-font-size: var(--dk-font-size-extra-small);
     --dk-popper-border-color: var(--dk-border-color);
-    --dk-popper-padding: 7px;
+    --dk-popper-padding: 7px 15px;
     --dk-popper-border-radius: 4px;
     display: inline-block;
 }

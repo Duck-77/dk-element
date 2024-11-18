@@ -11,15 +11,15 @@
     --dk-select-input-focus-border-color: var(--dk-color-primary); */
 }
 
-.dk-tooltip,
-.dk-tooltip__popper {
-    padding: 0;
-}
-
 .dk-select {
     display: inline-block;
     vertical-align: middle;
     line-height: 32px;
+
+    .dk-tooltip,
+    .dk-tooltip__popper {
+        padding: 0;
+    }
 
     .dk-select__tooltip-trigger,
     .dk-select__angle-down,

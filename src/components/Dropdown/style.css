@@ -6,7 +6,7 @@
 }
 
 .dk-dropdown {
-    & .dk-tooltip__popper {
+     .dk-tooltip__popper {
         box-sizing: border-box;
         padding: 5px 0;
     }
