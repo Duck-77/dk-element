@@ -7,10 +7,19 @@
     --vp-c-brand-dark: var(--dk-color-primary-dark-2);
     --vp-c-brand-draker: var(--dk-color-primary-dark-4);
     /* 代码块字体色 */
-    --vp-code-color: #303133; 
+    --vp-code-color: #303133;
 }
 
 html.dark {
     --dk-text-color-regular: #cfd3dc;
     --dk-text-color-primary: #fff;
+}
+.vitepress-demo-preview-description__handle-btn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end !important;
+    padding-right: 20px !important;
 }
