@@ -5,7 +5,7 @@ module.exports = {
     maxMessageLength: 64,
     minMessageLength: 3,
     questions: ['type', 'scope', 'subject', 'body', 'breaking', 'issues', 'lerna'],
-    scopes: [],
+    scopes: ['api', 'component', 'docs', 'utils', 'ui', 'test','config'],
     types: {
         chore: {
             description: '构建过程或辅助工具的更改',
@@ -57,14 +57,14 @@ module.exports = {
             emoji: '💍',
             value: 'test',
         },
-        messages: {
-            type: '选择你要提交的更改类型:',
-            customScope: '选择此组件影响的范围:',
-            subject: '写一个简短的、更改描述:\n',
-            body: '提供更改的详细描述:\n ',
-            breaking: '列出任何重大更改:\n',
-            footer: '此提交关闭的问题，例如 #123:',
-            confirmCommit: '此提交影响的包:\n',
-        },
+    },
+    messages: {
+        type: '选择你要提交的更改类型:',
+        customScope: '本次更改影响的范围:',
+        subject: '对本次提交的简短描述:\n',
+        body: '对本次提交的详细描述:\n ',
+        breaking: '列出本次提交的重大更改:\n',
+        issues: '本次提交解决的问题，例如 #123:',
+        confirmCommit: '本次提交提交影响的包:\n',
     },
 }
