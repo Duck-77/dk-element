@@ -16,9 +16,10 @@
             @click-outside="toggleDropdowShow">
             <Input
                 ref="inputRef"
-                :readonly="!filterable || !dropdowShow || !remote"
+                :readonly="isReadOnly"
                 class="dk-select__tooltip-trigger"
                 v-model="selectStates.inputValue"
+                @focus="handleFocus"
                 @input="debounceInputFilter"
                 @keydown="handleKeydown"
                 :disabled="disabled"
@@ -44,11 +45,19 @@
             </Input>
 
             <template #content>
-                <div class="dk-select--loading" v-if="selectStates.loading">
-                    <Icon icon="spinner" spin></Icon>
+                <div
+                    class="dk-select--loading"
+                    v-if="selectStates.loading">
+                    <Icon
+                        icon="spinner"
+                        spin></Icon>
                 </div>
-                <ul class="dk-select__menu" v-else-if="filterOptions.length">
-                    <template v-for="(item, index) in filterOptions" :key="index">
+                <ul
+                    class="dk-select__menu"
+                    v-else-if="filterOptions.length">
+                    <template
+                        v-for="(item, index) in filterOptions"
+                        :key="index">
                         <li
                             class="dk-select__menu-item"
                             :class="{
@@ -58,14 +67,18 @@
                             }"
                             :id="`dk-select-item-${item.value}`"
                             @click.stop="selectOption(item)">
-                            <Render v-if="customLabel" :vnode="customLabel ? customLabel(item) : item.label"></Render>
+                            <Render
+                                v-if="customLabel"
+                                :vnode="customLabel ? customLabel(item) : item.label"></Render>
                             <span v-else>
                                 {{ item.label }}
                             </span>
                         </li>
                     </template>
                 </ul>
-                <div class="dk-select__nothing" v-else>
+                <div
+                    class="dk-select__nothing"
+                    v-else>
                     <template v-if="remote"> No Data </template>
                     <template v-else> No matching data </template>
                 </div>
@@ -100,6 +113,10 @@ const emits = defineEmits<SelectEmits>()
 
 const inputRef = ref<InputExpose>()
 const toolTipRef = ref<TooltipExpose>()
+
+const isReadOnly = computed(() => {
+    return !props.filterable || !dropdowShow.value
+})
 
 const popperOptions: any = {
     modifiers: [
@@ -176,6 +193,13 @@ const handleInputFilter = async (searchValue: string) => {
     selectStates.currentSelectedIndex = -1
 }
 
+const handleFocus = async () => {
+    if (props.filterable && props.remote && props.remoteMethod) {
+        console.log('?')
+        filterOptions.value = await props.remoteMethod('')
+    }
+}
+
 const debounceInputFilter = debounce(handleInputFilter, remoteTimemout.value)
 
 const dropdowShow = ref(false)
@@ -241,13 +265,13 @@ const selectOption = (e: SelectOption) => {
 const handleKeydown = (e: KeyboardEvent) => {
     switch (e.key) {
         case 'Enter':
-            if(!dropdowShow.value){
+            if (!dropdowShow.value) {
                 toggleDropdowShow()
                 handleInputFilter(selectStates.inputValue)
-            }else{
-                if(selectStates.currentSelectedIndex > -1 && filterOptions.value[selectStates.currentSelectedIndex]){
+            } else {
+                if (selectStates.currentSelectedIndex > -1 && filterOptions.value[selectStates.currentSelectedIndex]) {
                     selectOption(filterOptions.value[selectStates.currentSelectedIndex])
-                }else{
+                } else {
                     toggleDropdowShow()
                 }
             }
