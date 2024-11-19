@@ -5,7 +5,7 @@ import { beforeEach } from 'vitest'
 import Button from '../../src/components/Button/Button.vue'
 import Tooltip from '../../src/components/Tooltip/Tooltip.vue'
 
-describe('Component-Test:Tooltip', () => {
+describe('test::dk-tooltip', () => {
     let wrapper: VueWrapper
 
     beforeEach(() => {
@@ -14,7 +14,9 @@ describe('Component-Test:Tooltip', () => {
             () => (
                 <div>
                     <div className='outer-btn'></div>
-                    <Tooltip content='tooltip' trigger='click'>
+                    <Tooltip
+                        content='tooltip'
+                        trigger='click'>
                         <Button>click</Button>
                     </Tooltip>
                 </div>
