@@ -1,8 +1,9 @@
 //@ts-nocheck
 import { ref } from 'vue'
-import { describe, expect, test } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Radio from '../../src/components/Radio/src/Radio.vue'
+import { nextTick } from 'process'
 
 describe('test::dk-radio', () => {
     describe('basic', () => {
@@ -109,7 +110,7 @@ describe('test::dk-radio', () => {
                 <>
                     <Radio
                         value='a'
-                        name="radio-a"></Radio>
+                        name='radio-a'></Radio>
                     <Radio
                         value='b'
                         name='radio-b'></Radio>
@@ -122,8 +123,7 @@ describe('test::dk-radio', () => {
         test('4.border', () => {
             const wrapper = mount(() => (
                 <>
-                    <Radio
-                        value='a'></Radio>
+                    <Radio value='a'></Radio>
                     <Radio
                         value='b'
                         border></Radio>
@@ -136,8 +136,7 @@ describe('test::dk-radio', () => {
         test('5.disabled', () => {
             const wrapper = mount(() => (
                 <>
-                    <Radio
-                        value='a'></Radio>
+                    <Radio value='a'></Radio>
                     <Radio
                         value='b'
                         disabled></Radio>
@@ -146,6 +145,47 @@ describe('test::dk-radio', () => {
             const radios = wrapper.findAll('.dk-radio')
             expect(radios[0].classes('is-disabled')).toBeFalsy()
             expect(radios[1].classes('is-disabled')).toBeTruthy()
+        })
+    })
+
+    describe('emits', () => {
+        test('1.change', async () => {
+            const v = ref('')
+            const handleChange = vi.fn((e) => {
+                console.log('change,', e)
+            })
+            const wrapper = mount(
+                () => (
+                    <>
+                        <Radio
+                            modelValue={v.value}
+                            onUpdate:modelValue={(e) => {
+                                v.value = e
+                            }}
+                            onChange={handleChange}
+                            value='A'></Radio>
+                        <Radio
+                            modelValue={v.value}
+                            onUpdate:modelValue={(e) => {
+                                v.value = e
+                            }}
+                            onChange={handleChange}
+                            value='B'></Radio>
+                    </>
+                ),
+                {
+                    attachTo: document.body,
+                }
+            )
+
+            await nextTick(() => {})
+            const radios = wrapper.findAll('.dk-radio')
+            await radios[0].trigger('click')
+            expect(handleChange).toHaveBeenCalledTimes(1)
+            expect(handleChange).toHaveBeenCalledWith('A')
+            await radios[1].trigger('click')
+            expect(handleChange).toHaveBeenCalledTimes(2)
+            expect(handleChange).toHaveBeenCalledWith('B')
         })
     })
 })
