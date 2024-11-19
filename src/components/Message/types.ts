@@ -4,12 +4,12 @@ export type MessageType = 'success' | 'warning' | 'info' | 'error'
 
 export interface MessageProps {
     id: string | number
-    message?: string | VNode
+    message: string | VNode
     duration?: number
     showClose?: boolean
     type?: MessageType
     offset?: number
-    zIndex: number
+    zIndex?: number
     plain?: boolean
     icon?: string
     onDestory: () => void

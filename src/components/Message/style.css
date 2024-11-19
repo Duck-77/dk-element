@@ -60,7 +60,7 @@
 }
 
 @each $type in success, warning, info, error {
-    .dk-message-$(type) {
+    .dk-message--$(type) {
         --dk-message-bg-color: var(--dk-color-$(type)-light-8);
         --dk-message-text-color: var(--dk-color-$(type));
         --dk-message-border: var(--dk-border-width) var(--dk-border-style) var(--dk-color-$(type)-light-7);

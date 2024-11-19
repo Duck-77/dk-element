@@ -7,7 +7,7 @@
             ref="messageRef"
             class="dk-message"
             :class="{
-                [`dk-message-${type}`]: type,
+                [`dk-message--${type}`]: type,
                 'is-close': showClose,
                 'is-plain': plain,
             }"
@@ -78,11 +78,13 @@ const { startTimer, clearTimer } = useTimer(props.duration, () => {
 })
 
 const showing = () => {
+    props.onShow()
     if (props.duration <= 0) return
     startTimer()
 }
 
 const handleLeave = () => {
+    props.onClose()
     if (props.duration > 0) {
         startTimer()
     }
@@ -95,7 +97,6 @@ const handleClickClose = () => {
 
 const destoryComponent = () => {
     props.onDestory()
-    props.onClose()
 }
 
 const updateHeight = async () => {
