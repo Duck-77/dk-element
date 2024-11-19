@@ -79,10 +79,10 @@ export default defineConfig({
                     text: 'Data 数据展示',
                     items: [{ text: 'Collapse', link: '/components/collapse' }],
                 },
-                {
-                    text: 'Navigation 导航',
-                    items: [{ text: 'Dropdown', link: '/components/dropdown' }],
-                },
+                // {
+                //     text: 'Navigation 导航',
+                //     items: [{ text: 'Dropdown', link: '/components/dropdown' }],
+                // },
                 {
                     text: 'Feedback 反馈组件',
                     items: [
