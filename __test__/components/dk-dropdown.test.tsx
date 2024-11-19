@@ -4,8 +4,8 @@ import Dropdown from '../../src/components/Dropdown/Dropdown.vue'
 import Button from '../../src/components/Button/Button.vue'
 
 describe.skip('test::dk-dropdown', () => {
-    describe('basic', () => {
-        test('1.menu options', async () => {
+    describe.skip('basic', () => {
+        test('1.options', async () => {
             vi.useFakeTimers()
             const menuOptions = [
                 {
@@ -54,5 +54,16 @@ describe.skip('test::dk-dropdown', () => {
             await vi.runAllTimers()
             expect(wrapper.find('.dk-tooltip__popper').exists()).toBeTruthy()
         })
+    })
+    describe.skip('props', () => {
+        test('1.hide-on-click', () => {})
+    })
+    describe.skip('emits', () => {
+        test('1.select', () => {})
+        test('2.visible-change', () => {})
+    })
+    describe.skip('expose', () => {
+        test('1.onShow', () => {})
+        test('2.onHide', () => {})
     })
 })
