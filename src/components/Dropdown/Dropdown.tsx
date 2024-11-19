@@ -84,12 +84,7 @@ export default defineComponent({
             ))
         })
 
-        const tooltipRef = computed(() => tooltipInstance.value?.tooltipRef as HTMLElement | undefined)
-        const contentRef = computed(() => tooltipInstance.value?.contentRef as HTMLElement | undefined)
-
         expose<DropdownExpose>({
-            tooltipRef,
-            contentRef,
             onHide: () => tooltipInstance.value?.onHide(),
             onShow: () => tooltipInstance.value?.onShow(),
         })
