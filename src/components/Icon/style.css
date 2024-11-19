@@ -1,6 +1,8 @@
 .dk-icon {
     --dk-icon-color: inherit;
+}
 
+.dk-icon {
     display: inline-flex;
     justify-content: center;
     align-items: center;
