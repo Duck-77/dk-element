@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { mount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import { beforeEach } from 'vitest'
@@ -13,7 +12,7 @@ describe('test::dk-tooltip', () => {
         wrapper = mount(
             () => (
                 <div>
-                    <div className='outer-btn'></div>
+                    <div class='outer-btn'></div>
                     <Tooltip
                         content='tooltip'
                         trigger='click'>
@@ -31,6 +30,7 @@ describe('test::dk-tooltip', () => {
         expect(wrapper.find('.dk-tooltip__popper').exists()).toBeFalsy()
         btn.trigger('click')
         await vi.runAllTimers()
+        console.log(wrapper.html())
         expect(wrapper.find('.dk-tooltip__popper').exists()).toBeTruthy()
     })
 
