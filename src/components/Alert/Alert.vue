@@ -4,8 +4,8 @@
             v-if="alertShow"
             class="dk-alert"
             :class="{
-                [`dk-alert-${type}`]: type,
-                [`dk-alert-${effect}`]: effect,
+                [`dk-alert--${type}`]: type,
+                [`dk-alert--${effect}`]: effect,
             }"
             :style="alertTextColor">
             <!-- Alert-Light-->

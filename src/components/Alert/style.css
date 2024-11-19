@@ -102,14 +102,14 @@
 
 @each $type, $color in var(--alert-type) {
     /* dk-alert-type */
-    .dk-alert-$(type) {
+    .dk-alert--$(type) {
         background-color: $(color);
 
         &.dk-alert {
             color: var(--dk-color-$(type));
         }
 
-        &.dk-alert-dark {
+        &.dk-alert--dark {
             background-color: var(--dk-color-$(type));
         }
     }
