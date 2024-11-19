@@ -40,7 +40,6 @@ const menuOptions = [
 ]
 
 const handleOpen = () => {
-    console.log(dropdownRef.value)
     dropdownRef.value.onShow()
 }
 

@@ -16,19 +16,20 @@
         </div>
     </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import Tooltip from '@/components/Tooltip/Tooltip.vue'
 import Button from '@/components/Button/Button.vue'
+import { type TooltipExpose } from '@/components/Tooltip/types';
 
-const tooltipRef = ref()
+const tooltipRef = ref<TooltipExpose>()
 
 const handleOpen = () => {
-    tooltipRef.value.onShow()
+    tooltipRef.value?.onShow()
 }
 
 const handleClose = () => {
-    tooltipRef.value.onHide()
+    tooltipRef.value?.onHide()
 }
 </script>
 <style scoped>
