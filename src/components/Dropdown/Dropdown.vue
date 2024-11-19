@@ -38,7 +38,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed, nextTick, ref } from 'vue'
+import { nextTick, ref } from 'vue'
 import type { DropdownProps, DropdownEmits, MenuOption, DropdownExpose } from './types.ts'
 import Tooltip from '../Tooltip/Tooltip.vue'
 import type { TooltipExpose } from '../Tooltip/types'

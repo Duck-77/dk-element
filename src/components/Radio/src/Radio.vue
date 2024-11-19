@@ -37,7 +37,7 @@
     </label>
 </template>
 <script setup lang="ts">
-import { computed, nextTick, ref, watchEffect } from 'vue'
+import { nextTick, ref } from 'vue'
 import type { RadioEmits, RadioProps } from './Radio'
 import { useRadio } from './useRadio'
 
