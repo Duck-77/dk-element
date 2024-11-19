@@ -35,7 +35,7 @@
                         <Icon
                             class="dk-select__angle-down"
                             :class="{
-                                'is-active': dropdowShow,
+                                'is-active': isMenuOptionsVisible,
                             }"
                             icon="angle-down"
                             v-else>
@@ -115,7 +115,7 @@ const inputRef = ref<InputExpose>()
 const toolTipRef = ref<TooltipExpose>()
 
 const isReadOnly = computed(() => {
-    return !props.filterable || !dropdowShow.value
+    return !props.filterable || !isMenuOptionsVisible.value
 })
 
 const popperOptions: any = {
@@ -160,7 +160,7 @@ watch(
 )
 
 const filterPlaceholder = computed(() => {
-    if (dropdowShow.value && selectStates.selectedOption) {
+    if (isMenuOptionsVisible.value && selectStates.selectedOption) {
         return selectStates.selectedOption.label
     } else {
         return props.placeholder
@@ -202,7 +202,7 @@ const handleFocus = async () => {
 
 const debounceInputFilter = debounce(handleInputFilter, remoteTimemout.value)
 
-const dropdowShow = ref(false)
+const isMenuOptionsVisible = ref(false)
 
 const clearButtonShow = computed(() => {
     return (
@@ -242,14 +242,14 @@ const excuteManual = (next: boolean) => {
 
 const toggleDropdowShow = () => {
     if (props.disabled) return
-    dropdowShow.value = !dropdowShow.value
-    if (dropdowShow.value) {
+    isMenuOptionsVisible.value = !isMenuOptionsVisible.value
+    if (isMenuOptionsVisible.value) {
         excuteManual(true)
         handleInputFilter(selectStates.inputValue)
     } else {
         excuteManual(false)
     }
-    emits('visible-change', dropdowShow.value)
+    emits('visible-change', isMenuOptionsVisible.value)
 }
 
 const selectOption = (e: SelectOption) => {
@@ -265,7 +265,7 @@ const selectOption = (e: SelectOption) => {
 const handleKeydown = (e: KeyboardEvent) => {
     switch (e.key) {
         case 'Enter':
-            if (!dropdowShow.value) {
+            if (!isMenuOptionsVisible.value) {
                 toggleDropdowShow()
                 handleInputFilter(selectStates.inputValue)
             } else {
@@ -277,7 +277,7 @@ const handleKeydown = (e: KeyboardEvent) => {
             }
             break
         case 'Escape':
-            if (dropdowShow.value) {
+            if (isMenuOptionsVisible.value) {
                 toggleDropdowShow()
             }
             break
