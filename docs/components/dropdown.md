@@ -17,7 +17,7 @@ demo-preview=../demo/Dropdown/basic.vue
 
 ## 触发方式
 
-利用 `tigger` 选项可以自定义触发方式，例如 `click` `hover` 等
+利用 `trigger` 选项可以自定义触发方式，例如 `click` `hover` 等
 
 :::preview
 
