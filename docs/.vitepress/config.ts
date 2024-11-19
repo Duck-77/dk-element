@@ -11,7 +11,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
     title: 'Dk-UI',
-    description: '一个仿照 Element Plus 的 Vue3 + TypeScript 的组件库项目',
+    description: '一个仿照 Element Plus 实现的 Vue3 + TypeScript 的组件库项目',
     vite: {
         plugins: [vueJsx()],
         resolve: {
