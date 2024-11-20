@@ -37,9 +37,10 @@
     </label>
 </template>
 <script setup lang="ts">
-import { nextTick, ref } from 'vue'
+import { computed, inject, nextTick, ref } from 'vue'
 import type { RadioEmits, RadioProps } from './Radio'
 import { useRadio } from './useRadio'
+import { formItemContextKey } from '@/components/Form/src/FormItem'
 
 defineOptions({
     name: 'DkRadio',
@@ -47,13 +48,26 @@ defineOptions({
 
 const props = defineProps<RadioProps>()
 const emits = defineEmits<RadioEmits>()
+const formItemContext = inject(formItemContextKey, undefined)
+const isFormItem = computed(() => !!formItemContext)
 
 const { modelValue, radioRef, disabled, checked, name, focus, border, size } = useRadio(props, emits)
 
 const radioInnerRef = ref<HTMLSpanElement>()
 
 const handleChange = () => {
-    nextTick(() => emits('change', modelValue.value))
+    nextTick(() => {
+        emits('change', modelValue.value)
+        runValidation('change')
+    })
+}
+
+const runValidation = (trigger?: string) => {
+    if (isFormItem.value) {
+        formItemContext?.validate(trigger).catch((e) => {
+            console.log('validate failed:', e.errors)
+        })
+    }
 }
 </script>
 <style scoped></style>

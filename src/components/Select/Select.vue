@@ -87,7 +87,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, inject, reactive, ref, watch } from 'vue'
 import type { SelectEmits, SelectOption, SelectProps, SelectStates } from './types'
 import { debounce } from 'lodash-es'
 import type { TooltipExpose } from '../Tooltip/types'
@@ -96,6 +96,7 @@ import Tooltip from '../Tooltip/Tooltip.vue'
 import Input from '../Input/Input.vue'
 import Icon from '../Icon/Icon.vue'
 import Render from '../Common/Render'
+import { formItemContextKey } from '../Form/src/FormItem'
 
 defineOptions({
     name: 'DkSelect',
@@ -110,6 +111,9 @@ const props = withDefaults(defineProps<SelectProps>(), {
     options: () => [],
 })
 const emits = defineEmits<SelectEmits>()
+
+const formItemContext = inject(formItemContextKey, undefined)
+const isFormItem = computed(() => !!formItemContext)
 
 const inputRef = ref<InputExpose>()
 const toolTipRef = ref<TooltipExpose>()
@@ -195,7 +199,6 @@ const handleInputFilter = async (searchValue: string) => {
 
 const handleFocus = async () => {
     if (props.filterable && props.remote && props.remoteMethod) {
-        console.log('?')
         filterOptions.value = await props.remoteMethod('')
     }
 }
@@ -219,6 +222,8 @@ const handleClear = () => {
     emits('clear')
     emits('change', '')
     emits('update:modelValue', '')
+    runValidation('change')
+    runValidation('clear')
 }
 
 const excuteManual = (next: boolean) => {
@@ -258,6 +263,7 @@ const selectOption = (e: SelectOption) => {
     selectStates.selectedOption = e
     emits('change', e.label)
     emits('update:modelValue', e.label)
+    runValidation('change')
     inputRef.value?.focus()
     toggleDropdowShow()
 }
@@ -306,6 +312,14 @@ const handleKeydown = (e: KeyboardEvent) => {
             break
         default:
             break
+    }
+}
+
+const runValidation = (trigger?: string) => {
+    if (isFormItem.value) {
+        formItemContext?.validate(trigger).catch((e) => {
+            console.log('validate failed:', e.errors)
+        })
     }
 }
 </script>

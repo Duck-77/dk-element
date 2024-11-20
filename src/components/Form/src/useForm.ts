@@ -27,7 +27,6 @@ const useForm = () => {
     })
 
     const validate: FormInstance['validate'] = async () => {
-        console.log(fields)
         let validationErrors: ValidateFieldsError = {}
         for (const field of fields) {
             try {

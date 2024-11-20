@@ -120,24 +120,26 @@ const inputValue = computed({
             runValidation('input')
             emits('update:modelValue', newVal)
             emits('input', newVal)
+            runValidation('input')
         }
     },
 })
 
 const handleChange = () => {
-    runValidation('change')
     emits('change', props.modelValue)
+    runValidation('change')
 }
 
 const handleFocus = (e: FocusEvent) => {
     isFocus.value = true
     emits('focus', e)
+    runValidation('focus')
 }
 
 const handleBlur = (e: FocusEvent) => {
     isFocus.value = false
-    runValidation('blur')
     emits('blur', e)
+    runValidation('blur')
 }
 
 const handleClear = () => {
@@ -145,6 +147,9 @@ const handleClear = () => {
     emits('input', '')
     emits('change', '')
     emits('clear')
+    runValidation('change')
+    runValidation('clear')
+    runValidation('input')
     console.log('clear',props.modelValue)
 }
 

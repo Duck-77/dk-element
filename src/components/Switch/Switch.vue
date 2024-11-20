@@ -54,9 +54,10 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref } from 'vue'
+import { computed, inject, nextTick, onMounted, ref } from 'vue'
 import type { SwtichProps, SwitchEmits, SwitchValue } from './types'
 import Icon from '../Icon/Icon.vue'
+import { formItemContextKey } from '../Form/src/FormItem'
 
 defineOptions({
     name: 'DkSwitch',
@@ -68,6 +69,8 @@ const props = withDefaults(defineProps<SwtichProps>(), {
     inactiveValue: false,
 })
 const emits = defineEmits<SwitchEmits>()
+const formItemContext = inject(formItemContextKey, undefined)
+const isFormItem = computed(() => !!formItemContext)
 
 const inputRef = ref<HTMLInputElement>()
 
@@ -81,6 +84,7 @@ const handleSwitchToogle = () => {
         }
         emits('change', newValue)
         emits('update:modelValue', newValue)
+        runValidation('change')
     }
 
     if (notAllowed.value) return
@@ -114,8 +118,15 @@ const switchValue = computed({
 })
 
 const checked = computed(() => switchValue.value === props.activeValue)
-
 const notAllowed = computed(() => props.disabled || props.loading)
+
+const runValidation = (trigger?: string) => {
+    if (isFormItem.value) {
+        formItemContext?.validate(trigger).catch((e) => {
+            console.log('validate failed:', e.errors)
+        })
+    }
+}
 
 onMounted(() => {
     inputRef.value!.checked = checked.value
