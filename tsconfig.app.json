@@ -1,6 +1,6 @@
 {
     "extends": "@vue/tsconfig/tsconfig.dom.json",
-    "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/**/*.ts", "__test__/**/*"],
+    "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/**/*.ts", "__test__/**/*", "docs/**/*"],
     // "exclude": ["./__test__/**/*"],
     "compilerOptions": {
         "lib": ["ESNext", "DOM"],
