@@ -1,4 +1,4 @@
-import type { Type } from '@/types'
+import type { Type } from '@/components/Common/types'
 import type { PropType } from 'vue'
 
 export type ButtonType = Type

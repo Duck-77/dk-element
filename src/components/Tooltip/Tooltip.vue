@@ -32,7 +32,7 @@ defineOptions({
     name: 'DkTooltip',
 })
 import { computed, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
-import type { Toggle, TooltipEmits, TooltipExpose, TooltipProps } from './types'
+import type { TooltipEmits, TooltipExpose, TooltipProps } from './types'
 import { createPopper } from '@popperjs/core'
 import type { Instance } from '@popperjs/core'
 import { unset, debounce } from 'lodash-es'
