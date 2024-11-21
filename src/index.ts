@@ -2,7 +2,7 @@ import type { App } from 'vue'
 import Alert from './components/Alert'
 import Button from './components/Button'
 import Collapse from './components/Collapse'
-import CollapseItem from './components/Collapse'
+import { CollapseItem } from './components/Collapse'
 import Dropdown from './components/Dropdown'
 import Form from './components/Form/src'
 import { FormItem } from './components/Form/src'
@@ -15,6 +15,13 @@ import RadioGroup from './components/Radio/src/RadioGroup.vue'
 import Select from './components/Select'
 import Switch from './components/Switch'
 import Tooltip from './components/Tooltip'
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
+library.add(fas, far)
+
+import './styles/index.css'
 
 const dkUIComponents = [
     Alert,
