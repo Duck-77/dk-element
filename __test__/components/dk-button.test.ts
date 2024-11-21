@@ -41,7 +41,7 @@ describe('test::dk-button', () => {
             test('denger', () => {
                 const wrapper = mount(Button, {
                     props: {
-                        type: 'denger',
+                        type: 'danger',
                     },
                 })
                 expect(wrapper.classes()).toContain('dk-button--denger')
