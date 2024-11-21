@@ -1,21 +1,36 @@
 {
-    "name": "dk-ui",
+    "name": "@duck-77/dk-ui",
     "description": "一个仿照 Element Plus 实现的 Vue3 + Typescript 组件库项目",
     "version": "1.0.0",
     "type": "module",
-    "private": true,
+    "author": {
+        "name": "qyq (duck-77)",
+        "url": "https://github.com/Duck-77"
+    },
+    "keywords": [
+        "UI",
+        "Component",
+        "Vue3"
+    ],
+    "homepage": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Duck-77/dk-ui"
+    },
+    "sideEffects": [
+        "./dist/index.css"
+    ],
     "files": [
         "dist"
     ],
-    "sideEffects":"./dist/index.css",
     "main": "./dist/umd/dk-ui.umd.cjs",
     "module": "./dist/es/dk-ui.js",
-    "types": "./dist/index.d.ts",
+    "types": "./dist/types/index.d.ts",
     "exports": {
         ".": {
             "import": "./dist/es/dk-ui.js",
             "require": "./dist/umd/dk-ui.umd.cjs",
-            "types": "./dist/index.d.ts"
+            "types": "./dist/types/index.d.ts"
         },
         "./dist/": {
             "import": "./dist/",
@@ -36,7 +51,8 @@
         "test": "vitest",
         "docs:dev": "vitepress dev docs",
         "docs:build": "vitepress build docs",
-        "docs:preview": "vitepress preview docs"
+        "docs:preview": "vitepress preview docs",
+        "prepublishOnly": "npm run build"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^6.6.0",
