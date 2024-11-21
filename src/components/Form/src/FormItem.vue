@@ -45,12 +45,12 @@
     </div>
 </template>
 <script setup lang="ts">
-import { type FormItemInstance, type FormItemProps, type ValidateStatusProps } from './FormItem'
-import { useFormItem } from './useFormItem'
-
 defineOptions({
     name: 'DkFormItem',
 })
+import { type FormItemInstance, type FormItemProps, type ValidateStatusProps } from './FormItem'
+import { useFormItem } from './useFormItem'
+
 const props = withDefaults(defineProps<FormItemProps>(), {
     prop: '',
     showMessage: true,

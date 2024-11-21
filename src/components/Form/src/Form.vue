@@ -11,13 +11,13 @@
     </form>
 </template>
 <script setup lang="ts">
+defineOptions({
+    name: 'dkForm',
+})
 import { provide, reactive, toRefs } from 'vue'
 import { type FormInstance, type FormProps, formContextKey } from './Form'
 import useForm from './useForm'
 
-defineOptions({
-    name: 'dkForm',
-})
 const props = withDefaults(defineProps<FormProps>(), {
     hideRequiredAsterisk: false,
     requireAsteriskPosition: 'left',

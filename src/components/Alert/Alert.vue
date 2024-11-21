@@ -63,13 +63,14 @@
     </Transition>
 </template>
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import type { AlertEmits, AlertProps } from './type'
-import Icon from '../Icon/Icon.vue'
-import TypeIcon from '../Common/TypeIcon'
 defineOptions({
     name: 'DkAlert',
 })
+import { computed, ref } from 'vue'
+import type { AlertEmits, AlertProps } from './types.ts'
+import Icon from '../Icon/Icon.vue'
+import TypeIcon from '../Common/TypeIcon'
+
 const props = withDefaults(defineProps<AlertProps>(), {
     closeable: true,
     showIcon: false,

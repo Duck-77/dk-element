@@ -26,8 +26,7 @@ export const DkMessage: MessageCreator = (props) => {
 
     render(vnode, container)
 
-    // 添加到MessageContext
-    const manualDestory = () => {
+    const destoryMessage = () => {
         const message = dkMessageContext.find((message) => message.id === id)
         if (message) {
             message.vm.exposed!.visible.value = false
@@ -39,7 +38,7 @@ export const DkMessage: MessageCreator = (props) => {
         vnode: vnode,
         vm: vnode.component!,
         props: _props,
-        destory: manualDestory,
+        destory: destoryMessage,
     }
 
     dkMessageContext.push(message)
@@ -49,6 +48,12 @@ export const DkMessage: MessageCreator = (props) => {
     })
 
     return message
+}
+
+export const closeAll = () => {
+    dkMessageContext.forEach((message) => {
+        message.props.onDestory()
+    })
 }
 
 export const getLastMessage = () => {
