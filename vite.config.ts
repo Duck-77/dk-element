@@ -14,12 +14,13 @@ import PostcssFor from 'postcss-for'
 //@ts-ignore
 import PostcssColorMix from 'postcss-color-mix'
 import PostcssNested from 'postcss-nested'
-//@ts-ignore
-import PostcssAdvancedVariables from 'postcss-advanced-variables'
 
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [vue(), vueJsx()],
+    plugins: [
+        vue(),
+        vueJsx()
+    ],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -27,7 +28,7 @@ export default defineConfig({
     },
     test: {
         globals: true,
-        // include: ['**/*.{spec,test}.(c|m)[jt]s(x)'],
+        include: ['**/*.{spec,test}.?(c|m)[jt]s?(x)'],
         environment: 'jsdom',
     },
     css: {
@@ -40,12 +41,7 @@ export default defineConfig({
                         beforeEach: [PostcssFor(), PostcssColorMix()],
                     },
                 }),
-                // PostcssAdvancedVariables({
-                //     variables: {
-                //         namespace: 'dk',
-                //     },
-                // }),
             ],
         },
-    },
+    }
 })
