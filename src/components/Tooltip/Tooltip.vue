@@ -28,6 +28,9 @@
     </div>
 </template>
 <script setup lang="ts">
+defineOptions({
+    name: 'DkTooltip',
+})
 import { computed, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
 import type { Toggle, TooltipEmits, TooltipExpose, TooltipProps } from './types'
 import { createPopper } from '@popperjs/core'

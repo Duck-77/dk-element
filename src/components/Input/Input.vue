@@ -87,14 +87,15 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed, inject, ref, useAttrs } from 'vue'
-import type { InputProps, InputEmits, InputExpose } from './types'
-import Icon from '../Icon/Icon.vue'
-import { formItemContextKey } from '../Form/src/FormItem'
 defineOptions({
     name: 'DkInput',
     inheritAttrs: false,
 })
+import { computed, inject, ref, useAttrs } from 'vue'
+import type { InputProps, InputEmits, InputExpose } from './types'
+import Icon from '../Icon/Icon.vue'
+import { formItemContextKey } from '../Form/src/FormItem'
+
 const props = withDefaults(defineProps<InputProps>(), {
     type: 'text',
     autofocus: false,
@@ -150,7 +151,7 @@ const handleClear = () => {
     runValidation('change')
     runValidation('clear')
     runValidation('input')
-    console.log('clear',props.modelValue)
+    console.log('clear', props.modelValue)
 }
 
 const runValidation = (trigger?: string) => {

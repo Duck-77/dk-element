@@ -54,15 +54,14 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed, inject, nextTick, onMounted, ref } from 'vue'
-import type { SwtichProps, SwitchEmits, SwitchValue } from './types'
-import Icon from '../Icon/Icon.vue'
-import { formItemContextKey } from '../Form/src/FormItem'
-
 defineOptions({
     name: 'DkSwitch',
     inheritAttrs: false,
 })
+import { computed, inject, nextTick, onMounted, ref } from 'vue'
+import type { SwtichProps, SwitchEmits, SwitchValue } from './types'
+import Icon from '../Icon/Icon.vue'
+import { formItemContextKey } from '../Form/src/FormItem'
 
 const props = withDefaults(defineProps<SwtichProps>(), {
     activeValue: true,

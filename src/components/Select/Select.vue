@@ -87,6 +87,10 @@
     </div>
 </template>
 <script setup lang="ts">
+defineOptions({
+    name: 'DkSelect',
+})
+
 import { computed, inject, reactive, ref, watch } from 'vue'
 import type { SelectEmits, SelectOption, SelectProps, SelectStates } from './types'
 import { debounce } from 'lodash-es'
@@ -97,10 +101,6 @@ import Input from '../Input/Input.vue'
 import Icon from '../Icon/Icon.vue'
 import Render from '../Common/Render'
 import { formItemContextKey } from '../Form/src/FormItem'
-
-defineOptions({
-    name: 'DkSelect',
-})
 
 const findOption = () => {
     const option = props.options.find((item) => item.value === props.modelValue)

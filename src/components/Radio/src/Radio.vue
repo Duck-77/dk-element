@@ -37,14 +37,13 @@
     </label>
 </template>
 <script setup lang="ts">
+defineOptions({
+    name: 'DkRadio',
+})
 import { computed, inject, nextTick, ref } from 'vue'
 import type { RadioEmits, RadioProps } from './Radio'
 import { useRadio } from './useRadio'
 import { formItemContextKey } from '@/components/Form/src/FormItem'
-
-defineOptions({
-    name: 'DkRadio',
-})
 
 const props = defineProps<RadioProps>()
 const emits = defineEmits<RadioEmits>()

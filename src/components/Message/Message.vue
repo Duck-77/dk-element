@@ -34,6 +34,9 @@
     </Transition>
 </template>
 <script setup lang="ts">
+defineOptions({
+    name: 'DkMessage',
+})
 import { computed, nextTick, onMounted, ref } from 'vue'
 import Render from '../Common/Render'
 import Icon from '../Icon/Icon.vue'

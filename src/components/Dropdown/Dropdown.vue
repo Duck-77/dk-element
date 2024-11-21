@@ -38,15 +38,14 @@
     </div>
 </template>
 <script setup lang="ts">
+defineOptions({
+    name: 'DkDropdown',
+})
 import { nextTick, ref } from 'vue'
 import type { DropdownProps, DropdownEmits, MenuOption, DropdownExpose } from './types.ts'
 import Tooltip from '../Tooltip/Tooltip.vue'
 import type { TooltipExpose } from '../Tooltip/types'
 import Render from '../Common/Render.js'
-
-defineOptions({
-    name: 'DkDropdown',
-})
 
 const props = withDefaults(defineProps<DropdownProps>(), {
     effect: 'light',

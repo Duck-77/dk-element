@@ -7,11 +7,11 @@
     </view>
 </template>
 <script setup lang="ts">
-import { computed, nextTick, provide, reactive, ref, toRefs, useId } from 'vue'
-import { type RadioGroupProps, type RadioGroupEmits, radioGroupContextKey, type RadioGroupContext } from './RadioGroup'
 defineOptions({
     name: 'DkRadioGroup',
 })
+import { computed, nextTick, provide, reactive, ref, toRefs, useId } from 'vue'
+import { type RadioGroupProps, type RadioGroupEmits, radioGroupContextKey, type RadioGroupContext } from './RadioGroup'
 
 const props = withDefaults(defineProps<RadioGroupProps>(), {
     size: 'defualt',
