@@ -5,7 +5,7 @@ module.exports = {
     maxMessageLength: 64,
     minMessageLength: 3,
     questions: ['type', 'scope', 'subject', 'body', 'breaking', 'issues', 'lerna'],
-    scopes: [],
+    scopes: ['api', 'component', 'docs', 'utils', 'ui', 'test', 'config', 'patch'],
     types: {
         chore: {
             description: '构建过程或辅助工具的更改',
