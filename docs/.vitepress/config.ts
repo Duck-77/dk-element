@@ -23,6 +23,7 @@ export default defineConfig({
             postcss: {
                 plugins: [
                     PostcssNested(),
+                    //@ts-ignore
                     PostcssEachVariables(),
                     PostcssEach({
                         plugins: {
@@ -43,17 +44,16 @@ export default defineConfig({
         // https://vitepress.dev/reference/default-theme-config
         nav: [
             { text: '首页', link: '/' },
-            { text: '快速开始', link: '/markdown-examples' },
+            { text: '指南', link: '/guide' },
             { text: '组件', link: '/components' },
         ],
 
         sidebar: {
-            '/markdown-examples': [
+            '/guide': [
                 {
-                    text: 'Examples',
+                    text: '基础',
                     items: [
-                        { text: 'Markdown Examples', link: '/markdown-examples' },
-                        { text: 'Runtime API Examples', link: '/api-examples' },
+                        { text: '快速开始', link: '/guide/start' },
                     ],
                 },
             ],

@@ -11,13 +11,13 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 
 /** vitepress-demo-preview */
 import '@vitepress-demo-preview/component/dist/style.css'
-import { AntDesignContainer, ElementPlusContainer, NavieUIContainer } from '@vitepress-demo-preview/component'
+import { ElementPlusContainer } from '@vitepress-demo-preview/component'
 
 library.add(fas, far)
 
 export default {
     ...DefaultTheme,
     enhanceApp({ app }) {
-        app.component('demo-preview', AntDesignContainer)
-    },
+        app.component('demo-preview', ElementPlusContainer)
+    }
 }

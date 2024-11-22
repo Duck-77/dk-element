@@ -3,16 +3,15 @@
 layout: home
 
 hero:
-  name: "Dk Element"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: "Dk UI"
+  text: "一个 Vue3 组件库"
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: 指南
+      link: /guide
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: 组件
+      link: /components
 
 features:
   - title: Feature A
