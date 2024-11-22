@@ -1,6 +1,6 @@
 {
     "extends": "@vue/tsconfig/tsconfig.dom.json",
-    "include": ["src/index.ts", "src/components/**/*", "src/hooks/**/*", "src/utils/**/*"],
+    "include": ["./src/index.ts", "./src/components/**/*", "./src/hooks/**/*", "./src/utils/**/*"],
     "compilerOptions": {
         "lib": ["ESNext", "DOM"],
         "composite": true,
@@ -15,6 +15,9 @@
         "paths": {
             "@/*": ["./src/*"]
         },
+
+        "declaration": true,
+        "declarationDir": "./dist/",
 
         "types": [""]
     }

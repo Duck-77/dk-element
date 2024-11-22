@@ -30,14 +30,16 @@ export default defineConfig({
         vueJsx(),
         dts({
             insertTypesEntry: true,
-            tsconfigPath: './tsconfig.app.build.json',
-            outDir: 'dist/types',
-        }),
+            tsconfigPath: path.resolve(__dirname,'../tsconfig.app.build.json'),
+            outDir: 'dist',
+            // rollupTypes: true,
+            pathsToAliases: true
+        })
     ],
     resolve: {
         alias: {
-            '@': fileURLToPath(new URL('../src', import.meta.url)),
-        },
+            '@': fileURLToPath(new URL('../src', import.meta.url))
+        }
     },
     css: {
         postcss: {
@@ -47,19 +49,18 @@ export default defineConfig({
                 PostcssEachVariables(),
                 PostcssEach({
                     plugins: {
-                        beforeEach: [PostcssFor(), PostcssColorMix()],
-                    },
-                }),
-            ],
-        },
+                        beforeEach: [PostcssFor(), PostcssColorMix()]
+                    }
+                })
+            ]
+        }
     },
     build: {
         outDir: 'dist/es',
         lib: {
             entry: path.resolve(__dirname, '../src/index.ts'),
-            name: 'DkUI',
-            fileName: 'dk-ui',
-            formats: ['es'],
+            fileName: 'index',
+            formats: ['es']
         },
         rollupOptions: {
             external,
@@ -69,9 +70,9 @@ export default defineConfig({
                         return 'index.css'
                     }
                     return '[name].[ext]'
-                },
-            },
+                }
+            }
         },
-        sourcemap: true,
-    },
+        sourcemap: true
+    }
 })

@@ -20,12 +20,7 @@ import PostcssNested from 'postcss-nested'
 export default defineConfig({
     plugins: [
         vue(),
-        vueJsx(),
-        dts({
-            insertTypesEntry: true,
-            tsconfigPath: './tsconfig.app.build.json',
-            outDir: 'dist/types',
-        }),
+        vueJsx()
     ],
     resolve: {
         alias: {
@@ -50,8 +45,8 @@ export default defineConfig({
         outDir: 'dist/umd',
         lib: {
             entry: path.resolve(__dirname, '../src/index.ts'),
-            name: 'DkUI',
-            fileName: 'dk-ui',
+            name: 'DKUI',
+            fileName:'index',
             formats: ['umd'],
         },
         rollupOptions: {

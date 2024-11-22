@@ -3,12 +3,8 @@ import { moveFile } from 'move-file'
 
 const moveMap = {
     'dist/es/index.css': 'dist/index.css',
-    'dist/types/src/index.d.ts': 'dist/types/index.d.ts',
-    'dist/types/src/components': 'dist/types/components',
-    'dist/types/src/hooks': 'dist/types/hooks',
-    'dist/types/src/utils': 'dist/types/utils'
 }
-const removePaths = ['dist/es/favicon.ico', 'dist/umd/favicon.ico', 'dist/umd/index.css', 'dist/types/src']
+const removePaths = ['dist/es/favicon.ico', 'dist/umd/favicon.ico', 'dist/umd/index.css']
 
 const moveFiles = async () => {
     console.log('files moving...⏱')
