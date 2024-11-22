@@ -1,8 +1,8 @@
 //@ts-nocheck
 import { mount, VueWrapper } from '@vue/test-utils'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
-import Collapse from '../../src/components/Collapse/Collapse.vue'
-import CollapseItem from '../../src/components/Collapse/CollapseItem.vue'
+import Collapse from '../../src/components/Collapse/collapse.vue'
+import CollapseItem from '../../src/components/Collapse/collapse-item.vue'
 
 describe('test::dk-collapse', () => {
     let wrapper: VueWrapper

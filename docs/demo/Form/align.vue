@@ -53,7 +53,7 @@
 import Form from '@/components/Form/src/Form.vue'
 import FormItem from '@/components/Form/src/FormItem.vue'
 import Input from '@/components/Input/Input.vue'
-import Button from '@/components/Button/Button.vue'
+import Button from '@/components/Button/button.vue'
 import Radio from '@/components/Radio/src/Radio.vue'
 import RadioGroup from '@/components/Radio/src/RadioGroup.vue'
 import { reactive, ref } from 'vue'

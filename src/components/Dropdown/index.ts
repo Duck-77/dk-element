@@ -1,10 +1,7 @@
-import type { App } from 'vue'
 import Dropdown from './Dropdown.vue'
+import { withInstall } from '@/utils/install'
 
-Dropdown.install = (app: App) => {
-    app.component(Dropdown.name ?? 'DkDropdown', Dropdown)
-}
+const DkDropdown = withInstall(Dropdown)
 
-export default Dropdown
-
+export default DkDropdown
 export * from './types'

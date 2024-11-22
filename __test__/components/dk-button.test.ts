@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Button from '../../src/components/Button/Button.vue'
+import Button from '../../src/components/Button/button.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 describe('test::dk-button', () => {

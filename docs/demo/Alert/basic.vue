@@ -16,6 +16,6 @@
     </div>
 </template>
 <script setup>
-import Alert from '@/components/Alert/Alert.vue'
+import Alert from '@/components/Alert/alert.vue'
 </script>
 <style scoped></style>

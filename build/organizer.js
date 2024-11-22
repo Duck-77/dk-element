@@ -1,12 +1,12 @@
 import { rimraf } from 'rimraf'
 import { moveFile } from 'move-file'
-import path from 'node:path'
 
 const moveMap = {
     'dist/es/index.css': 'dist/index.css',
     'dist/types/src/index.d.ts': 'dist/types/index.d.ts',
     'dist/types/src/components': 'dist/types/components',
     'dist/types/src/hooks': 'dist/types/hooks',
+    'dist/types/src/utils': 'dist/types/utils'
 }
 const removePaths = ['dist/es/favicon.ico', 'dist/umd/favicon.ico', 'dist/umd/index.css', 'dist/types/src']
 
@@ -18,6 +18,7 @@ const moveFiles = async () => {
             console.log(`\x1b[32mMoved: ${from} -> ${to}\x1b[39m`)
         } catch (e) {
             console.error(`Move failed for ${from} with error: `, e)
+            return false
         }
     }
     return true

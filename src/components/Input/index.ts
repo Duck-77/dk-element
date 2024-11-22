@@ -1,10 +1,7 @@
-import type { App } from 'vue'
 import Input from './Input.vue'
+import { withInstall } from '@/utils/install'
 
-Input.install = (app: App) => {
-    app.component(Input.name ?? 'dkInput', Input)
-}
+const DkInput = withInstall(Input)
 
-export default Input
-
+export default DkInput
 export * from './types'

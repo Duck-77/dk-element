@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, test } from 'vitest'
-import Alert from '../../src/components/Alert/Alert.vue'
+import Alert from '../../src/components/Alert/alert.vue'
 
 describe('test::dk-alert', () => {
     describe('basic', () => {

@@ -57,7 +57,7 @@ export default defineConfig({
         outDir: 'dist/es',
         lib: {
             entry: path.resolve(__dirname, '../src/index.ts'),
-            name: 'dkUI',
+            name: 'DkUI',
             fileName: 'dk-ui',
             formats: ['es'],
         },
@@ -72,5 +72,6 @@ export default defineConfig({
                 },
             },
         },
+        sourcemap: true,
     },
 })

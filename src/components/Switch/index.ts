@@ -1,10 +1,7 @@
-import type { App } from 'vue'
 import Switch from './Switch.vue'
+import { withInstall } from '@/utils/install'
 
-Switch.install = (app: App) => {
-    app.component(Switch.name ?? 'DkSwitch', Switch)
-}
+const DkSwitch = withInstall(Switch)
 
-export default Switch
-
+export default DkSwitch
 export * from './types'

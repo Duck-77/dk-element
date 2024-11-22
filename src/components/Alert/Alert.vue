@@ -69,7 +69,7 @@ defineOptions({
 import { computed, ref } from 'vue'
 import type { AlertEmits, AlertProps } from './types.ts'
 import Icon from '../Icon/Icon.vue'
-import TypeIcon from '../Common/TypeIcon'
+import TypeIcon from '../Common/TypeIcon.tsx'
 
 const props = withDefaults(defineProps<AlertProps>(), {
     closeable: true,

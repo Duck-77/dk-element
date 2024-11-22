@@ -1,18 +1,11 @@
-import type { App } from 'vue'
 import Radio from './Radio.vue'
 import RadioGroup from './RadioGroup.vue'
+import { withInstall } from '@/utils/install'
 
-Radio.install = (app: App) => {
-    app.component(Radio.name ?? 'DkRaio', Radio)
-}
+const DkRadio = withInstall(Radio)
+const DkRadioGroup = withInstall(RadioGroup)
 
-RadioGroup.install = (app: App) => {
-    app.component(RadioGroup.name ?? 'DkRadioGroup', RadioGroup)
-}
-
-export default Radio
-
-export { RadioGroup }
-
+export default DkRadio
+export { DkRadioGroup }
 export * from './Radio'
 export * from './RadioGroup'

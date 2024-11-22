@@ -1,10 +1,8 @@
-import type { App } from 'vue'
-import Alert from './Alert.vue'
+import Alert from './alert.vue'
+import { withInstall } from '@/utils/install.ts'
 
-Alert.install = (app: App) => {
-    app.component(Alert.name ?? 'DkDropdown', Alert)
-}
+const DkAlert = withInstall(Alert)
 
-export default Alert
+export default DkAlert
 
 export * from './types.ts'

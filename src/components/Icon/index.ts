@@ -1,10 +1,7 @@
-import type { App } from 'vue'
 import Icon from './Icon.vue'
+import { withInstall } from '@/utils/install'
 
-Icon.install = (app: App) => {
-    app.component(Icon.name ?? 'DkIcon', Icon)
-}
+const DkIcon = withInstall(Icon)
 
-export default Icon
-
+export default DkIcon
 export * from './types'

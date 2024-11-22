@@ -1,20 +1,15 @@
-import type { App } from 'vue'
-import Alert from './components/Alert'
-import Button from './components/Button'
-import Collapse from './components/Collapse'
-import { CollapseItem } from './components/Collapse'
-import Dropdown from './components/Dropdown'
-import Form from './components/Form/src'
-import { FormItem } from './components/Form/src'
-import Icon from './components/Icon'
-import Input from './components/Input'
-import Message from './components/Message'
-import { DkMessage, closeAll } from './components/Message'
-import Radio from './components/Radio/src'
-import RadioGroup from './components/Radio/src/RadioGroup.vue'
-import Select from './components/Select'
-import Switch from './components/Switch'
-import Tooltip from './components/Tooltip'
+import DkAlert from './components/Alert'
+import DkButton from './components/Button'
+import DkCollapse, { DkCollapseItem } from './components/Collapse'
+import DkDropdown from './components/Dropdown'
+import DkForm, { DkFornItem } from './components/Form/src'
+import DkIcon from './components/Icon'
+import DkInput from './components/Input'
+import DkMessage, { createDkMessage, closeAll } from './components/Message'
+import DkRadio, { DkRadioGroup } from './components/Radio/src'
+import DkSelect from './components/Select'
+import DkSwitch from './components/Switch'
+import DkTooltip from './components/Tooltip'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -23,51 +18,51 @@ library.add(fas, far)
 
 import './styles/index.css'
 
-const dkUIComponents = [
-    Alert,
-    Button,
-    Collapse,
-    CollapseItem,
-    Dropdown,
-    Form,
-    FormItem,
-    Icon,
-    Input,
-    Message,
-    Radio,
-    RadioGroup,
-    Select,
-    Switch,
-    Tooltip,
+const DkUIComponents = [
+    DkAlert,
+    DkButton,
+    DkCollapse,
+    DkCollapseItem,
+    DkDropdown,
+    DkForm,
+    DkFornItem,
+    DkIcon,
+    DkInput,
+    DkMessage,
+    DkRadio,
+    DkRadioGroup,
+    DkSelect,
+    DkSwitch,
+    DkTooltip
 ]
 
-const install = (app: App) => {
-    dkUIComponents.forEach((component) => {
+const install = (app: import('vue').App): void => {
+    DkUIComponents.forEach((component) => {
         app.component(component.name!, component)
     })
 }
 
 export {
-    Alert,
-    Button,
-    Collapse,
-    CollapseItem,
-    Dropdown,
-    Form,
-    FormItem,
-    Icon,
-    Input,
-    Message,
+    DkAlert,
+    DkButton,
+    DkCollapse,
+    DkCollapseItem,
+    DkDropdown,
+    DkForm,
+    DkFornItem,
+    DkIcon,
+    DkInput,
     DkMessage,
+    DkRadio,
+    DkRadioGroup,
+    DkSelect,
+    DkSwitch,
+    DkTooltip,
+    createDkMessage,
     closeAll,
-    Radio,
-    RadioGroup,
-    Select,
-    Switch,
-    Tooltip,
-    install,
+    install
 }
 
 export default {
-    install,
+    install
 }

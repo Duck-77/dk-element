@@ -7,7 +7,7 @@
 <script setup>
 import { h } from 'vue'
 import { DkMessage } from '@/components/Message/method.ts'
-import Button from '@/components/Button/Button.vue'
+import Button from '@/components/Button/button.vue'
 
 const open = () => {
     DkMessage({

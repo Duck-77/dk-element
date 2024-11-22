@@ -6,7 +6,7 @@
 <script setup>
 import { h } from 'vue'
 import Dropdown from '@/components/Dropdown/Dropdown.vue'
-import Button from '@/components/Button/Button.vue'
+import Button from '@/components/Button/button.vue'
 const menuOptions = [
     {
         label: h('span', { style: { color: 'red' } }, 'option1'),

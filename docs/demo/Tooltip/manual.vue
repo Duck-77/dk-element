@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Tooltip from '@/components/Tooltip/Tooltip.vue'
-import Button from '@/components/Button/Button.vue'
+import Button from '@/components/Button/button.vue'
 import { type TooltipExpose } from '@/components/Tooltip/types';
 
 const tooltipRef = ref<TooltipExpose>()

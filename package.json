@@ -1,7 +1,7 @@
 {
     "name": "@duck-77/dk-ui",
     "description": "一个仿照 Element Plus 实现的 Vue3 + Typescript 组件库项目",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "type": "module",
     "author": {
         "name": "qyq (duck-77)",
@@ -21,16 +21,23 @@
         "./dist/index.css"
     ],
     "files": [
-        "dist"
+        "dist",
+        "package.json",
+        "README.md"
     ],
-    "main": "./dist/umd/dk-ui.umd.cjs",
-    "module": "./dist/es/dk-ui.js",
-    "types": "./dist/types/index.d.ts",
+    "main": "index.js",
+    "module": "dist/es/dk-ui.js",
+    "types": "dist/types/index.d.ts",
     "exports": {
         ".": {
-            "import": "./dist/es/dk-ui.js",
-            "require": "./dist/umd/dk-ui.umd.cjs",
-            "types": "./dist/types/index.d.ts"
+            "import": {
+                "default":"./dist/es/dk-ui.js",
+                "types": "./dist/types/index.d.ts"
+            },
+            "require": {
+                "default":"./dist/umd/dk-ui.umd.cjs",
+                "types": "./dist/types/index.d.ts"
+            }
         },
         "./dist/": {
             "import": "./dist/",
@@ -96,8 +103,8 @@
         "vite-plugin-dts": "^4.3.0",
         "vitepress": "^1.5.0",
         "vitest": "^2.1.4",
-        "vue-tsc": "^2.1.6",
-        "vue": "^3.5.12"
+        "vue": "^3.5.12",
+        "vue-tsc": "^2.1.6"
     },
     "config": {
         "commitizen": {

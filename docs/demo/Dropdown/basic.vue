@@ -5,7 +5,7 @@
 </template>
 <script setup>
 import Dropdown from '@/components/Dropdown/Dropdown.vue'
-import Button from '@/components/Button/Button.vue'
+import Button from '@/components/Button/button.vue'
 const menuOptions = [
     {
         label: 'option1',

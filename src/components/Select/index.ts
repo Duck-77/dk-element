@@ -1,10 +1,7 @@
-import type { App } from 'vue'
 import Select from './Select.vue'
+import { withInstall } from '@/utils/install'
 
-Select.install = (app: App) => {
-    app.component(Select.name ?? 'DkSelect', Select)
-}
+const DkSelect = withInstall(Select)
 
-export default Select
-
+export default DkSelect
 export * from './types'

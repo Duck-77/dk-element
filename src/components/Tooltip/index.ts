@@ -1,10 +1,7 @@
-import type { App } from 'vue'
 import Tooltip from './Tooltip.vue'
+import { withInstall } from '@/utils/install'
 
-Tooltip.install = (app: App) => {
-    app.component(Tooltip.name ?? 'DkTooltip', Tooltip)
-}
+const DkTooltip = withInstall(Tooltip)
 
-export default Tooltip
-
+export default DkTooltip
 export * from './types'

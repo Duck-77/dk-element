@@ -1,7 +1,7 @@
 import { mount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import { beforeEach } from 'vitest'
-import Button from '../../src/components/Button/Button.vue'
+import Button from '../../src/components/Button/button.vue'
 import Tooltip from '../../src/components/Tooltip/Tooltip.vue'
 
 describe('test::dk-tooltip', () => {

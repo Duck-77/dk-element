@@ -13,7 +13,7 @@
 <script setup>
 import { ref } from 'vue'
 import Dropdown from '@/components/Dropdown/Dropdown.vue'
-import Button from '@/components/Button/Button.vue'
+import Button from '@/components/Button/button.vue'
 
 const dropdownRef = ref()
 

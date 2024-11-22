@@ -1,13 +1,9 @@
-import type { App } from 'vue'
 import Message from './Message.vue'
-import { DkMessage, closeAll } from './method'
+import { createDkMessage, closeAll } from './method'
+import { withInstall } from '@/utils/install'
 
-Message.install = (app: App) => {
-    app.component(Message.name ?? 'DkMessage', Message)
-}
+const DkMessage = withInstall(Message)
 
-export default Message
-
-export { DkMessage, closeAll }
-
+export default DkMessage
+export { createDkMessage, closeAll }
 export * from './types'

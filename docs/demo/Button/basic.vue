@@ -35,7 +35,7 @@
     </div>
 </template>
 <script setup>
-    import Button from '@/components/Button/Button.vue'
+    import Button from '@/components/Button/button.vue'
 </script>
 <style scoped>
     .basic {

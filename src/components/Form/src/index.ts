@@ -1,17 +1,11 @@
-import type { App } from 'vue'
 import Form from './Form.vue'
 import FormItem from './FormItem.vue'
+import { withInstall } from '@/utils/install'
 
-Form.install = (app: App) => {
-    app.component(Form.name ?? 'DkForm', Form)
-}
+const DkForm = withInstall(Form)
+const DkFornItem = withInstall(FormItem)
 
-FormItem.install = (app: App) => {
-    app.component(FormItem.name ?? 'DkFormItem', FormItem)
-}
-
-export default Form
-export { FormItem }
-
+export default DkForm
+export { DkFornItem }
 export * from './Form'
 export * from './FormItem'

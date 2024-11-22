@@ -50,7 +50,7 @@ export default defineConfig({
         outDir: 'dist/umd',
         lib: {
             entry: path.resolve(__dirname, '../src/index.ts'),
-            name: 'dkUI',
+            name: 'DkUI',
             fileName: 'dk-ui',
             formats: ['umd'],
         },
@@ -69,5 +69,6 @@ export default defineConfig({
                 },
             },
         },
+        sourcemap: true,
     },
 })

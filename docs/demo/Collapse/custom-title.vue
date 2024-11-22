@@ -42,8 +42,8 @@
 </template>
 <script setup>
 import { ref } from 'vue'
-import Collapse from '@/components/Collapse/Collapse.vue'
-import CollapseItem from '@/components/Collapse/CollapseItem.vue'
+import Collapse from '@/components/Collapse/collapse.vue'
+import CollapseItem from '@/components/Collapse/collapse-item.vue'
 import Icon from '@/components/Icon/Icon.vue'
 
 const openCollapse = ref([])

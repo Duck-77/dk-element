@@ -1,4 +1,4 @@
-import type { SelectOption } from './types'
+import type { SelectOption } from '../../../src/components/Select/types'
 
 const states = [
     'Alabama',

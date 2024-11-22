@@ -1,10 +1,7 @@
-import type { App } from 'vue'
-import Button from './Button.vue'
+import Button from './button.vue'
+import { withInstall } from '@/utils/install'
 
-Button.install = (app: App) => {
-    app.component(Button.name ?? 'DkButton', Button)
-}
+const DkButton = withInstall(Button)
 
-export default Button
-
+export default DkButton
 export * from './types'

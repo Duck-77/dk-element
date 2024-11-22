@@ -1,17 +1,10 @@
-import type { App } from 'vue'
-import Collapse from './Collapse.vue'
-import CollapseItem from './CollapseItem.vue'
+import Collapse from './collapse.vue'
+import CollapseItem from './collapse-item.vue'
+import { withInstall } from '@/utils/install'
 
-Collapse.install = (app: App) => {
-    app.component(Collapse.name ?? 'DkCollapse', Collapse)
-}
+const DkCollapse = withInstall(Collapse)
+const DkCollapseItem = withInstall(CollapseItem)
 
-CollapseItem.install = (app: App) => {
-    app.component(CollapseItem.name ?? 'DkCollapseItem', CollapseItem)
-}
-
-export default Collapse
-
-export { CollapseItem }
-
+export default DkCollapse
+export { DkCollapseItem }
 export * from './types'

@@ -6,7 +6,7 @@ import Message from './Message.vue'
 let lastMessageId = 1
 const dkMessageContext: MessageContext[] = shallowReactive([])
 
-export const DkMessage: MessageCreator = (props) => {
+export const createDkMessage: MessageCreator = (props) => {
     const id = `dk_message_${lastMessageId++}`
     const { next } = usezIndex()
     const container = document.createElement('div')
