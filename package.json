@@ -1,7 +1,7 @@
 {
     "name": "@duck-77/dk-ui",
     "description": "一个仿照 Element Plus 实现的 Vue3 + Typescript 组件库项目",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "type": "module",
     "author": {
         "name": "qyq (duck-77)",

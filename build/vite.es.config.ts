@@ -23,6 +23,9 @@ const external = new Array<string>()
 Object.keys(pkg.dependencies).forEach((name) => {
     external.push(name)
 })
+Object.keys(pkg.peerDependencies).forEach((name) => {
+    external.push(name)
+})
 
 export default defineConfig({
     plugins: [
@@ -30,7 +33,7 @@ export default defineConfig({
         vueJsx(),
         dts({
             insertTypesEntry: true,
-            tsconfigPath: path.resolve(__dirname,'../tsconfig.app.build.json'),
+            tsconfigPath: path.resolve(__dirname, '../tsconfig.app.build.json'),
             outDir: 'dist',
             // rollupTypes: true,
             pathsToAliases: true
