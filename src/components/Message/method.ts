@@ -26,19 +26,11 @@ export const createDkMessage: MessageCreator = (props) => {
 
     render(vnode, container)
 
-    const destoryMessage = () => {
-        const message = dkMessageContext.find((message) => message.id === id)
-        if (message) {
-            message.vm.exposed!.visible.value = false
-        }
-    }
-
     const message: MessageContext = {
         id,
         vnode: vnode,
         vm: vnode.component!,
         props: _props,
-        destory: destoryMessage,
     }
 
     dkMessageContext.push(message)

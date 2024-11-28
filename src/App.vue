@@ -1,8 +1,8 @@
 <template>
-    <Button type="primary">11</Button>
-    <Alert type="success">123</Alert>
+    <DkButton type="primary">11</DkButton>
+    <DkAlert type="success">123</DkAlert>
 </template>
 <script setup lang="ts">
-import { Button, Alert } from './index'
+import { DkButton, DkAlert } from './index'
 </script>
 <style scoped></style>
