@@ -8,7 +8,7 @@
 </template>
 <script setup>
 import Switch from '@/components/Switch/Switch.vue'
-import { DkMessage } from '@/components/Message/method.ts'
+import { createDkMessage } from '@/components/Message/method.ts'
 import { ref } from 'vue'
 
 const switchLoading = ref(false)
@@ -19,7 +19,7 @@ const handleBeforeChange = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             reject('timeout')
-            DkMessage({ message: 'Switch faild', type: 'error' })
+            createDkMessage({ message: 'Switch faild', type: 'error' })
         }, 1000)
     }).finally(() => {
         switchLoading.value = false
