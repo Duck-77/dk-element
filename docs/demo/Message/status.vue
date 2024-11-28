@@ -7,11 +7,11 @@
     </div>
 </template>
 <script setup>
-import { DkMessage } from '@/components/Message/method.ts'
+import { createDkMessage } from '@/components/Message/method.ts'
 import Button from '@/components/Button/button.vue'
 
 const open = (type) => {
-    DkMessage({
+    createDkMessage({
         message: `This is a ${type ?? ''} message`,
         type,
     })

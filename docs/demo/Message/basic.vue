@@ -6,11 +6,11 @@
 </template>
 <script setup>
 import { h } from 'vue'
-import { DkMessage } from '@/components/Message/method.ts'
+import { createDkMessage } from '@/components/Message/method.ts'
 import Button from '@/components/Button/button.vue'
 
 const open = () => {
-    DkMessage({
+    createDkMessage({
         message: 'This is a message.',
         onClose: () => {
             console.log('close')
@@ -19,7 +19,7 @@ const open = () => {
 }
 
 const openVNode = () => {
-    DkMessage({
+    createDkMessage({
         message: h('p', { style: 'line-height: 1; font-size: 14px' }, [
             h('span', null, 'Message can be '),
             h('i', { style: 'color: teal' }, 'VNode'),
